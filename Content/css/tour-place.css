@@ -75,6 +75,35 @@ body{
 .img-destination img{
     width:100%;
 }
+.dropdown {
+    display: none;
+    margin-right: 30px;
+    display: inline-block;
+}
+.dropdown img{
+    display: none;
+    width: 60px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: #14e0c2 solid 2px;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
 @media(max-width: 960px){
     .container-header{
         padding-left: 3rem;
@@ -103,13 +132,14 @@ body{
     width: 100%;
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 .DescribeTour .AboutTour .PictureOfTour
 {   
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
-	grid-gap: 15px;
+	grid-gap: 0.5rem;
 	justify-content: center;
 	align-items: center;
     /* flex-wrap: wrap; */
@@ -168,7 +198,10 @@ body{
     margin-right:10px;
     float:left;
 }
-
+.detailad{
+    display: flex;
+    flex-direction: row;
+}
 .detailtable{
     margin-top: 50px;
     margin-bottom: 20px;
@@ -194,26 +227,28 @@ body{
     height: 50%;
     border-bottom: thistle solid 1px ;
 }
+.advcontainer{
+    margin-left: 15px;
+    position: relative;
+    width: 25%;
+}
 .adv{
-    margin-left:10px;
-    margin-top:40px;
-    width: 300px;
-    height: 600px;
     border: 3px solid #73AD21;
+    margin-top: 40px;
 }
 .WhyChooseUs{
+    width: 100%;
     display:block;
 }
 .cnt{
     text-align: center;
-    font-size: 20px;
-    margin-bottom: 50px;
+    font-size: 2vw;
+    margin-bottom: 2.5vw;
 }
 .reason{
-    
     align-items: center;
     text-align: center;
-    font-size: 12px;
+    font-size: 0.8vw;
     font-weight: 1000;
 }
 .reason img{
@@ -224,6 +259,16 @@ body{
 .AboutTour .DescribeDetailTour{
     margin-top: 50px;
 }
+#tab-1-content, #tab-2-content, #tab-3-content{
+    display:none;
+}
+.tab-border{
+    border-bottom:  #73AD21 4px solid;
+}
+.show{
+    display:block !important;
+}
+
 .AboutTour .DescribeDetailTour .SelectDetail .btnSelect{ 
     font-size: 25px;
     font-weight: 500;
@@ -234,13 +279,8 @@ body{
 .AboutTour .DescribeDetailTour .SelectDetail .btnSelect span{ 
     font-weight: 700;
 }
-.AboutTour .DescribeDetailTour .SelectDetail .btnSelect:hover{ 
-    border-bottom:lawngreen solid 5px;
-}
-.tab-content{
-    display: none;
-}
-.tab-content .post-blog img{
+
+.post-blog img{
     width: 100%;
 }
 
@@ -387,27 +427,29 @@ body{
 .container .TourList .tour-item .wrap-list-gui h3{
     font-size: 1rem;
 }
-
+.container .TourList .tour-item .wrap-list-gui .view-detail-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .container .TourList .tour-item .wrap-list-gui .add-view {
     position: relative;
-	display: inline-block;
+    width: 15vw;
+	display: flex;
 	margin-top: 30px;
 	padding: 10px 30px;
 	background:#14e0c2;
 	color: #333;
     text-decoration: none;
     border-radius: 10px;
-    margin-left: 6em;
-
+    align-items: center;
+    justify-content: center;
 }
 .booknow {
-    
-    text-align: center;
-    position: relative;
     display: flex;
-    justify-content: center;
-
-
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
 }
 .booknow a{
 	margin-top: 50px;
@@ -416,7 +458,6 @@ body{
 	color: #333;
     text-decoration: none;
     border-radius: 10px;
-    margin-left: 6em;
 }
 
 .container .TourList .tour-item .wrap-list-gui .add-view:hover {
@@ -505,4 +546,159 @@ a.cd-top.cd-is-visible {
 }
 a.cd-top.cd-fade-out {
     opacity: 1;
+}
+
+/* Resize */
+@media(max-width: 1180px){
+    .footer{
+        height: 400px;  
+    }
+}
+
+@media(max-width: 974px){
+    .footer{
+        height: 450px;  
+    }
+}
+@media(max-width: 960px){
+    .advcontainer{
+        display: none;
+    }
+    .DescribeTour .AboutTourContainer .AboutTour{
+        width: 100%;
+    }
+    .tours .container .title{
+        text-align: center;
+        margin-bottom: 2em;
+    }
+    .container .TourList{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        width:100%;
+        grid-gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .container .TourList .tour-item .wrap-list-gui .add-view {
+        width: 30vw;
+    }
+}
+@media(max-width: 900px){
+    .menu-home nav{
+        display: none;
+    }
+    .advcontainer{
+        display: none;
+    }
+    .DescribeTour .AboutTourContainer .AboutTour{
+        width: 100%;
+    }
+    .menu-home{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .dropdown{
+        display:inline;
+        position: absolute;
+        right: 5px;
+    }
+    .dropdown img{
+        display:inline;
+    }
+}
+@media(max-width: 750px){
+    .AboutTour .DescribeDetailTour .SelectDetail .btnSelect{ 
+        font-size: 20px;
+    }
+    .footer{
+        height: 530px;  
+    }
+}
+@media(max-width: 680px){
+    .menu-home{
+        min-height: 40px;
+    }
+    .menu-home #branding img{
+        margin-top:0;
+        font-size: 35px;
+        width: 30vw;
+        height: 15vw;
+    }
+    .container .title h1{
+        font-size: 25px;
+    }
+    .container{
+        max-width: 96%;
+        padding: 5px;
+    }
+    .footer{
+        height: 1000px;
+    }
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .footer-bottom{
+        font-size: small;
+    }
+    
+}
+@media(max-width: 640px){
+    .menu-home{
+        min-height: 40px;
+    }
+    .menu-home #branding img{
+        margin-top:0;
+        font-size: 35px;
+        width: 30vw;
+        height: 15vw;
+    }
+    .container .title h1{
+        font-size: 25px;
+    }
+    .container{
+        max-width: 96%;
+        padding: 5px;
+    }
+    .AboutTour .DescribeDetailTour .SelectDetail .btnSelect{ 
+        margin-left: 5px;
+    }
+    .AboutTour .DescribeDetailTour .SelectDetail{ 
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media(max-width: 480px){
+    .dropdown img{
+        width: 30px;
+    }
+    .menu-home{
+        min-height: 50px;
+    }
+    .container .title h1{
+        font-size: 20px;
+    }
+    .container{
+        max-width: 100%;
+        padding: 5px;
+    }
+    .DescribeTour .AboutTour .PictureOfTour{   
+        margin-top: 10px;
+    }
+    .AboutTour .DescribeDetailTour{
+        margin-top: 10px;
+    }
+    .menu-home #branding img{
+        margin-top:0;
+        font-size: 35px;
+        width: 30vw;
+        height: 15vw;
+    }
+    .detailtable{
+        display: flex;
+        flex-direction: column;
+    }
 }

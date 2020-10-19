@@ -126,7 +126,34 @@ width: 75%;
 .right-column .card img{
 	margin-bottom: 10px;
 }
+.dropdown {
+    display: none;
+    margin-right: 30px;
+    display: inline-block;
+}
+.dropdown img{
+    display: none;
+    width: 60px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: #14e0c2 solid 2px;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #ddd;}
 
+.dropdown:hover .dropdown-content {display: block;}
 
 footer{
 	background-color: #dddddd;
@@ -276,4 +303,129 @@ a.cd-top.cd-is-visible {
 }
 a.cd-top.cd-fade-out {
     opacity: 1;
+}
+/* Resize */
+@media(max-width: 1180px){
+    .footer{
+        height: 400px;  
+    }
+}
+
+@media(max-width: 974px){
+    .footer{
+        height: 450px;  
+    }
+}
+@media(max-width: 960px){
+    .advcontainer{
+        display: none;
+    }
+    .tours .container .title{
+        text-align: center;
+        margin-bottom: 2em;
+    }
+    .container .TourList{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        width:100%;
+        grid-gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .container .TourList .tour-item .wrap-list-gui .add-view {
+        width: 30vw;
+    }
+}
+@media(max-width: 900px){
+    .menu-home nav{
+        display: none;
+    }
+    .menu-home{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .dropdown{
+        display:inline;
+        position: absolute;
+        right: 5px;
+    }
+    .dropdown img{
+        display:inline;
+    }
+}
+@media(max-width: 750px){
+    .footer{
+        height: 530px;  
+    }
+}
+@media(max-width: 680px){
+    .menu-home{
+        min-height: 40px;
+    }
+    .menu-home #branding img{
+        margin-top:0;
+        font-size: 35px;
+        width: 30vw;
+        height: 15vw;
+    }
+    .container .title h1{
+        font-size: 25px;
+    }
+    .container{
+        max-width: 96%;
+        padding: 5px;
+    }
+    .footer{
+        height: 1000px;
+    }
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .footer-bottom{
+        font-size: small;
+    }
+    
+}
+@media(max-width: 640px){
+    .menu-home{
+        min-height: 40px;
+    }
+    .menu-home #branding img{
+        margin-top:0;
+        font-size: 35px;
+        width: 30vw;
+        height: 15vw;
+    }
+    .container .title h1{
+        font-size: 25px;
+    }
+    .container{
+        max-width: 96%;
+        padding: 5px;
+    }
+}
+@media(max-width: 480px){
+    .dropdown img{
+        width: 30px;
+    }
+    .menu-home{
+        min-height: 50px;
+    }
+    .container .title h1{
+        font-size: 20px;
+    }
+    .container{
+        max-width: 100%;
+        padding: 5px;
+    }
+    .menu-home #branding img{
+        margin-top:0;
+        font-size: 35px;
+        width: 30vw;
+        height: 15vw;
+    }
 }

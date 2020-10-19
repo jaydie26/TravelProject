@@ -59,22 +59,22 @@
 
                 <div class="DescribeDetailTour">
                     <div class="SelectDetail">
-                        <div class="btnSelect" onclick="openTab(event , 1)" id="defautOpen">
+                        <div id="tab-1" class="btnSelect tab-item tab-boder">
                             <span>CUSTOMIZABLE ITINERARY</span>
                         </div>
-                        <div class="btnSelect" onclick="openTab(event , 2)">
+                        <div id="tab-2" class="btnSelect tab-item">
                             <span>DETAILS</span>
                         </div>
-                        <div class="btnSelect" onclick="openTab(event , 3)">
+                        <div id="tab-3" class="btnSelect tab-item">
                             <span>PRICE</span>
                         </div>
                     </div>
                     <div class="DisplayForm">
-                        <div class="tab-content customizable">
+                        <div id="tab-1-content" class="customizable show tab-content-item">
                             <div class="detailtable">
                                 <div class="detailad">
                                     <div class="imgdetailad box1">
-                                        <img alt src="~/Content/images/tour/trip_days_icon.png" style="height: 30px;width: 30px;">
+                                        <img src="~/Content/images/tour/trip_days_icon.png" style="height: 30px;width: 30px;">
                                     </div>
                                     <div class="txtdetalad">
                                         <strong>TOTAL: </strong>
@@ -85,31 +85,31 @@
                                 </div>
                                 <div class="detailad">
                                     <div class="imgdetailad box2">
-                                        <img alt src="~/Content/images/tour/countries_icon.png" style="height: 30px;width: 30px;">
+                                        <img src="~/Content/images/tour/countries_icon.png" style="height: 30px;width: 30px;">
                                     </div>
                                     <div class="txtdetailad">
                                         <strong>DEPARTURE DATES </strong>
                                         <strong></strong>
                                         <br>
-                                        <span>VietNam</span>
+                                        <span>Dates are flexible and customizable for private departures</span>
                                     </div>
                                 </div>
 
 
                                 <div class="detailad">
                                     <div class="imgdetailad box3">
-                                        <img alt src="~/Content/images/tour/destinations_icon.png" style="height: 30px;width: 30px;">
+                                        <img src="~/Content/images/tour/destinations_icon.png" style="height: 30px;width: 30px;">
                                     </div>
                                     <div class="txtdetailad">
                                         <strong>COUNTRIES VISITED </strong>
                                         <strong></strong>
                                         <br>
-                                        <span>Dates are flexible and customizable for private departures</span>
+                                        <span>VietNam</span>
                                     </div>
                                 </div>
                                 <div class="detailad">
                                     <div class="imgdetailad box4">
-                                        <img alt src="~/Content/images/tour/departure_date_icon.png" style="height: 30px;width: 30px;">
+                                        <img src="~/Content/images/tour/departure_date_icon.png" style="height: 30px;width: 30px;">
                                     </div>
                                     <div class="txtdetalad">
                                         <strong>PLACES VISIT: </strong>
@@ -126,7 +126,7 @@
                                 Our classic itinerary with a perfect combination suite for all of traveler we will not only bring you the most top attraction in Bai Tu Long such as: Cap la. Tra San, Cong Dam, Thien Canh Son cave and Vung Vieng floating village but also take you deep into natural wonderful with various amazing activities. Let’s come to First Travel to make your trip more experience
                             </span>
                         </div>
-                        <div class="tab-content detail">
+                        <div id="tab-2-content" class="detail tab-content-item">
                             <div class="post-blog">
                                 <ul>
                                     <li>
@@ -181,12 +181,12 @@
                                 </ul>
                                 <br>
                                 <br>
-                                <img alt src="~/Content/images/Tour/tour-1.jpg">
+                                <img src="~/Content/images/tour/tour-1.jpg">
                             </div>
                         </div>
-                        <div class="tab-content price">
+                        <div id="tab-3-content" class="price tab-content-item">
                             <div class="startingprice">
-                                <img alt="icon" src="~/Content/images/Tour/price_icon.svg" style="font-feature-settings: normal;height: 50px;margin: 0px;opacity: 0.9;padding: 0px;width: 50px;">
+                                <img alt="icon" src="./images/tour/price_icon.svg" style="font-feature-settings: normal;height: 50px;margin: 0px;opacity: 0.9;padding: 0px;width: 50px;">
                                 <span style="font-size: 16px;">
                                     <strong>Starting Price</strong>
                                 </span>
@@ -196,7 +196,7 @@
                                 </ul>
                             </div>
                             <div class="included">
-                                <img alt="icon" src="~/Content/images/Tour/included_icon.svg" style="font-feature-settings: normal;height: 50px;margin: 0px;opacity: 0.9;padding: 0px;width: 50px;">
+                                <img alt="icon" src="./images/tour/included_icon.svg" style="font-feature-settings: normal;height: 50px;margin: 0px;opacity: 0.9;padding: 0px;width: 50px;">
                                 <span style="font-size: 16px;">
                                     <strong>What's Included</strong>
                                 </span>
@@ -217,32 +217,34 @@
                     </div>
                 </div>
             </div>
-            <div class="adv" id="advert">
-                <div class="WhyChooseUs">
-                    <h6 class="cnt">Why Chose Us</h6>
-                    <div class="chech_quality">
-                        <div class="reason">
-                            <img src="~/Content/images/Tour/coin@2x.png">
-                            <p>Best Price</p>
+            <div class="advcontainer">
+                <div class="adv" id="advert">
+                    <div class="WhyChooseUs">
+                        <h6 class="cnt">Why Chose Us</h6>
+                        <div class="chech_quality">
+                            <div class="reason">
+                                <img src="~/Content/images/tour/coin@2x.png">
+                                <p>Best Price</p>
+                            </div>
+                            <div class="reason">
+                                <img src="~/Content/images/tour/shield@2x.png">
+                                <p>Default and fraund protetion</p>
+                            </div>
+                            <div class="reason">
+                                <img src="~/Content/images/tour/b3.png">
+                                <p>24/7 support from other partnes</p>
+                            </div>
+                            <div class="reason">
+                                <img src="~/Content/images/tour/alarm-clock@2x.png">
+                                <p>Quick and professional</p>
+                            </div>
+                            <div class="reason">
+                                <img src="~/Content/images/tour/b4.png">
+                                <p>Unmatched destination expertise</p>
+                            </div>
                         </div>
-                        <div class="reason">
-                            <img src="~/Content/images/Tour/shield@2x.png">
-                            <p>Default and fraund protetion</p>
-                        </div>
-                        <div class="reason">
-                            <img src="~/Content/images/Tour/b3.png">
-                            <p>24/7 support from other partnes</p>
-                        </div>
-                        <div class="reason">
-                            <img src="~/Content/images/Tour/alarm-clock@2x.png">
-                            <p>Quick and professional</p>
-                        </div>
-                        <div class="reason">
-                            <img src="~/Content/images/Tour/b4.png">
-                            <p>Unmatched destination expertise</p>
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -388,3 +390,4 @@
         </div>
     </div>
 </section>
+<script type="text/javascript" src="~/Content/js/tour-place.js"></script>

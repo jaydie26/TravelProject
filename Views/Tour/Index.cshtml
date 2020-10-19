@@ -1,4 +1,5 @@
-﻿
+﻿@using TravelProject.Models;
+@model List<Tour>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/MyLayout/_Layout.cshtml";
@@ -24,117 +25,34 @@
         <div class="TourListContainer">
             <div class="TourList2">
                 <div class="TourList">
-                    <div class="img-list">
-                        <div class="tour">
-                            <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
-                                <img src="~/Content/images/Tour/tour-1.jpg">
-                                <p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-                            </a>
-                            <span class="desc">
-                                <p class="star"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> 545 Reviews</p>
-                                <h2><a href="@Url.Action("TourPlace","Tour")">Family Tour in Greece</a></h2>
-                                <span class="city">Athens, Greece</span>
-                            </span>
+                    @foreach (var item in Model)
+                    {
+                        <div class="img-list">
+                            <div class="tour">
+                                <a href="tour-place.html" class="tour-img">
+                                    <img src="@Url.Content("~/Content/")@item.LinkImage">
+                                    <p class="price"><span>$@item.Gia</span> <small>/ @item.NumDay Days</small></p>
+                                </a>
+                                <span class="desc">
+                                    <p class="star">
+                                        <span>
+                                            @for (int i = 0; i < @item.NumStar; i++)
+                                            {
+                                                <i class="fas fa-star yellow"></i>
+                                            }
+                                            @for (int i = 0; i < 5 - @item.NumStar; i++)
+                                            {
+                                                <i class="fas fa-star"></i>
+                                            }
+                                        </span>
+                                        @item.NumView Reviews
+                                    </p>
+                                    <h2><a href="tour-place.html">@item.TenTour</a></h2>
+                                    <span class="city">@item.Place</span>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="img-list">
-                        <div class="tour">
-                            <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
-                                <img src="~/Content/images/Tour/tour-2.jpg">
-                                <p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-                            </a>
-                            <span class="desc">
-                                <p class="star"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> 545 Reviews</p>
-                                <h2><a href="@Url.Action("TourPlace","Tour")">Family Tour in Greece</a></h2>
-                                <span class="city">Athens, Greece</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="img-list">
-                        <div class="tour">
-                            <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
-                                <img src="~/Content/images/Tour/tour-3.jpg">
-                                <p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-                            </a>
-                            <span class="desc">
-                                <p class="star"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> 545 Reviews</p>
-                                <h2><a href="@Url.Action("TourPlace","Tour")">Family Tour in Greece</a></h2>
-                                <span class="city">Athens, Greece</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="img-list">
-                        <div class="tour">
-                            <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
-                                <img src="~/Content/images/Tour/tour-4.jpg">
-                                <p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-                            </a>
-                            <span class="desc">
-                                <p class="star"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> 545 Reviews</p>
-                                <h2><a href="@Url.Action("TourPlace","Tour")">Family Tour in Greece</a></h2>
-                                <span class="city">Athens, Greece</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="img-list">
-                        <div class="tour">
-                            <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
-                                <img src="~/Content/images/Tour/tour-5.jpg">
-                                <p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-                            </a>
-                            <span class="desc">
-                                <p class="star"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> 545 Reviews</p>
-                                <h2><a href="@Url.Action("TourPlace","Tour")">Family Tour in Greece</a></h2>
-                                <span class="city">Athens, Greece</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="img-list">
-                        <div class="tour">
-                            <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
-                                <img src="~/Content/images/Tour/tour-6.jpg">
-                                <p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-                            </a>
-                            <span class="desc">
-                                <p class="star"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> 545 Reviews</p>
-                                <h2><a href="@Url.Action("TourPlace","Tour")">Family Tour in Greece</a></h2>
-                                <span class="city">Athens, Greece</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="img-list">
-                        <div class="tour">
-                            <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
-                                <img src="~/Content/images/Tour/tour-7.jpg">
-                                <p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-                            </a>
-                            <span class="desc">
-                                <p class="star"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> 545 Reviews</p>
-                                <h2><a href="@Url.Action("TourPlace","Tour")">Family Tour in Greece</a></h2>
-                                <span class="city">Athens, Greece</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="img-list">
-                        <div class="tour">
-                            <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
-                                <img src="~/Content/images/Tour/tour-8.jpg">
-                                <p class="price"><span>$1500</span> <small>/ 3 Days</small></p>
-                            </a>
-                            <span class="desc">
-                                <p class="star"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> 545 Reviews</p>
-                                <h2><a href="@Url.Action("TourPlace","Tour")">Family Tour in Greece</a></h2>
-                                <span class="city">Athens, Greece</span>
-                            </span>
-                        </div>
-                    </div>
+                    }
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-center">
@@ -155,53 +73,53 @@
                     <div class="sidebar-wrap">
                         <div class="search-wrap">
                             <h3 class="sidebar-heading">Find your tour</h3>
-                            <form method="post" class="findform">
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div class="form-group">
-                                            <label for="date">Where:</label>
-                                            <div class="form-field">
-                                                <input type="text" id="location" class="form-control" placeholder="Search Location">
+                            <form method="post" class="findform" action="@Url.Action("Index","Tour",new { id = "search" })">
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group">
+                                                <label for="date">Where:</label>
+                                                <div class="form-field">
+                                                    <input type="text" name="search" id="location" class="form-control" placeholder="Search Location">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="date">Check-in:</label>
-                                            <div class="form-field">
-                                                <input type="datetime-local" id="date" class="form-control date">
+                                        @*<div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="date">Check-in:</label>
+                                                <div class="form-field">
+                                                    <input type="datetime-local" id="date" class="form-control date">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="date">Check-out:</label>
-                                            <div class="form-field">
-                                                <input type="datetime-local" id="date" class="form-control date">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="date">Check-out:</label>
+                                                <div class="form-field">
+                                                    <input type="datetime-local" id="date" class="form-control date">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="guests">Guest</label>
-                                            <div class="form-field">
-                                                <select name="people" id="people" class="form-control">
-                                                    <option value="#">1</option>
-                                                    <option value="#">2</option>
-                                                    <option value="#">3</option>
-                                                    <option value="#">4</option>
-                                                    <option value="#">5+</option>
-                                                </select>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="guests">Guest</label>
+                                                <div class="form-field">
+                                                    <select name="people" id="people" class="form-control">
+                                                        <option value="#">1</option>
+                                                        <option value="#">2</option>
+                                                        <option value="#">3</option>
+                                                        <option value="#">4</option>
+                                                        <option value="#">5+</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div>*@
 
-                                    <div class="col-md-12 btnfind">
-                                        <input type="submit" name="submit" id="submit" value="Find Flights">
+                                        <div class="col-md-12 btnfind">
+                                            <input type="submit" id="submit" value="Find">
 
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
                         </div>
                     </div>
                 </div>
