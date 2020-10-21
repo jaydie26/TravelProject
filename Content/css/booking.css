@@ -243,6 +243,15 @@ body{
     width: 100%;
 
 }
+.trash{
+    background-color: white;
+    border: none;
+}
+.trash:active, 
+.trash:focus 
+{
+     outline-style: none;
+}
 .Contact-Person .Contact-Person-Inf .cnt{
     width: 100%;
 }

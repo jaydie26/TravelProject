@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="List-customer-detail">
                                     <div class="tablebar">
-                                        <table>
+                                        <table id="tablecustomers">
                                             <tr>
                                                 <th>STT</th>
                                                 <th>Full Name</th>
@@ -169,7 +169,7 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td><input type="text" class="fullname"></td>
-                                                <td><input type="datetime-local" class="dateofb"></td>
+                                                <td><input type="date" class="dateofb"></td>
                                                 <td><input type="text" class="adr"></td>
                                                 <td>
                                                     <select name="sex" class="sex">
@@ -186,11 +186,12 @@
                                                 </td>
                                                 <td><input type="text" class="age"></td>
                                                 <td><input type="text" class="pri"></td>
+                                                <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
                                                 <td><input type="text" class="fullname"></td>
-                                                <td><input type="datetime-local" class="dateofb"></td>
+                                                <td><input type="date" class="dateofb"></td>
                                                 <td><input type="text" class="adr"></td>
                                                 <td>
                                                     <select name="sex" class="sex">
@@ -207,11 +208,12 @@
                                                 </td>
                                                 <td><input type="text" class="age"></td>
                                                 <td><input type="text" class="pri"></td>
+                                                <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
                                             </tr>
                                         </table>
                                     </div>
                                     <div class="insert-customer">
-                                        <button class="insertBtn">Insert Customers</button>
+                                        <button class="insertBtn" onclick="insertCustomer()">Insert Customers</button>
                                         <div class="SaleId">
                                             <div class="cnt"><span>Discount Code</span></div>
                                             <div class="box"></div>
