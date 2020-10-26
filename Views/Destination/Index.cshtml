@@ -1,4 +1,5 @@
-﻿
+﻿@using TravelProject.Models;
+@model List<DiaDanh> 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/MyLayout/_Layout.cshtml";
@@ -22,106 +23,24 @@
         </div>
         <div class="lisdescontainer">
             <div class="listdes">
-                <div class="wrapper">
-                    <div class="search_box">
-                        <div class="search_btn"><i class="fas fa-search"></i></div>
-                        <input type="text" class="input_search" placeholder="What are you looking for?">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div id="filter-list">
-                            <input type="submit" name="submit1" class="filter active no-outline" value="ALL">
-                            <input type="submit" name="submit2" class="filter no-outline" value="NORTHEAST">
-                            <input type="submit" name="submit3" class="filter no-outline" value="NORTHWEST">
-                            <input type="submit" name="submit4" class="filter no-outline" value="RED RIVER DELTA">
-                            <input type="submit" name="submit5" class="filter no-outline" value="SOUTH CENTRAL COAST">
-                            <input type="submit" name="submit6" class="filter no-outline" value="CENTRAL HIGHLANDS">
-                            <input type="submit" name="submit7" class="filter no-outline" value="SOUTEAST">
-                            <input type="submit" name="submit8" class="filter no-outline" value="MEKONG RIVER DELTA">
+                @foreach (DiaDanh dd in Model.Take(5))
+                {
+                    <a href="@Url.Action("DestinationDetail", "Destination",new {@id=dd.MaDiaDanh})" class="Ades">
+                        <div class="image">
+                            <img src="@Url.Content("~/Content/images/Destination2/"+dd.Img)" />
                         </div>
-                    </div>
-                </div>
-                <a href="@Url.Action("DestinationDetail","Destination")" class="Ades">
-                    <div class="image">
-                        <img src="~/Content/images/Destination2/HaLong2.jpg">
-                    </div>
-                    <div class="describe">
-                        <div class="text">
-                            Ha Long
+                        <div class="describe">
+                            <div class="text">
+                               @dd.TenDiaDanh
+                            </div>
+                            <div class="text_describe">
+                                <ul>
+                                    <li>@dd.MoTa</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="text_describe">
-                            <ul>
-                                <li>"Ha Long" means "Bay of Descending Dragons", though prior to the 19th century this name was not recorded in any document or archive</li>
-                                <li>When mentioning the present-day Quang Ninh Sea or Ha Long Bay, old historical books often referred to them by the names of An Bang, Luc Thuy or Van Don. Not until the late 19th century did the name of Ha Long Bay appear on a French Marine Map</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
-                <a href="@Url.Action("DestinationDetail","Destination")" class="Ades">
-                    <div class="image">
-                        <img src="~/Content/images/Destination2/HaLong2.jpg">
-                    </div>
-                    <div class="describe">
-                        <div class="text">
-                            Ha Long
-                        </div>
-                        <div class="text_describe">
-                            <ul>
-                                <li>"Ha Long" means "Bay of Descending Dragons", though prior to the 19th century this name was not recorded in any document or archive</li>
-                                <li>When mentioning the present-day Quang Ninh Sea or Ha Long Bay, old historical books often referred to them by the names of An Bang, Luc Thuy or Van Don. Not until the late 19th century did the name of Ha Long Bay appear on a French Marine Map</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
-                <a href="@Url.Action("DestinationDetail","Destination")" class="Ades">
-                    <div class="image">
-                        <img src="~/Content/images/Destination2/HaLong2.jpg">
-                    </div>
-                    <div class="describe">
-                        <div class="text">
-                            Ha Long
-                        </div>
-                        <div class="text_describe">
-                            <ul>
-                                <li>"Ha Long" means "Bay of Descending Dragons", though prior to the 19th century this name was not recorded in any document or archive</li>
-                                <li>When mentioning the present-day Quang Ninh Sea or Ha Long Bay, old historical books often referred to them by the names of An Bang, Luc Thuy or Van Don. Not until the late 19th century did the name of Ha Long Bay appear on a French Marine Map</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
-                <a href="@Url.Action("DestinationDetail","Destination")" class="Ades">
-                    <div class="image">
-                        <img src="~/Content/images/Destination2/HaLong2.jpg">
-                    </div>
-                    <div class="describe">
-                        <div class="text">
-                            Ha Long
-                        </div>
-                        <div class="text_describe">
-                            <ul>
-                                <li>"Ha Long" means "Bay of Descending Dragons", though prior to the 19th century this name was not recorded in any document or archive</li>
-                                <li>When mentioning the present-day Quang Ninh Sea or Ha Long Bay, old historical books often referred to them by the names of An Bang, Luc Thuy or Van Don. Not until the late 19th century did the name of Ha Long Bay appear on a French Marine Map</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
-                <a href="@Url.Action("DestinationDetail","Destination")" class="Ades">
-                    <div class="image">
-                        <img src="~/Content/images/Destination2/HaLong2.jpg">
-                    </div>
-                    <div class="describe">
-                        <div class="text">
-                            Ha Long
-                        </div>
-                        <div class="text_describe">
-                            <ul>
-                                <li>"Ha Long" means "Bay of Descending Dragons", though prior to the 19th century this name was not recorded in any document or archive</li>
-                                <li>When mentioning the present-day Quang Ninh Sea or Ha Long Bay, old historical books often referred to them by the names of An Bang, Luc Thuy or Van Don. Not until the late 19th century did the name of Ha Long Bay appear on a French Marine Map</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                }
             </div>
             <div class="find-tour">
                 <div class="areas">
@@ -145,60 +64,20 @@
                     <div class="sidebar-wrap">
                         <div class="search-wrap">
                             <h3 class="sidebar-heading">Find your destination</h3>
-                            <form method="post" class="findform">
+                            <form method="post" class="findform" action="@Url.Action("Index","Destination", new {id="search"})">
                                 <div class="row">
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label for="date">Where:</label>
                                             <div class="form-field">
-                                                <input type="text" id="location" class="form-control" placeholder="Search Location">
+                                                <input name="search" type="text" id="location" class="form-control" placeholder="Search Location">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12 btnfind">
                                         <input type="submit" name="submit" id="submit" value="Find">
-
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="location">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="sidebar-heading">Location</h3>
-                            <form method="post" class="findform-2">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Ha Noi</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Ho Chi Minh City</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Da Nang</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Quang Ninh</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Kien Giang</h4>
-                                    </label>
                                 </div>
                             </form>
                         </div>

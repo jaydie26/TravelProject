@@ -18,7 +18,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort>44328</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -288,12 +289,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\MyLayout\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Destination\Index.cshtml" />
     <Content Include="Views\Tour\Index.cshtml" />
     <Content Include="Views\Tour\TourPlace.cshtml" />
     <Content Include="Views\Home\blog.cshtml" />
     <Content Include="Views\Tour\Booking.cshtml" />
     <Content Include="Views\Destination\DestinationDetail.cshtml" />
+    <Content Include="Views\Destination\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
