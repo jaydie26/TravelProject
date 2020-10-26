@@ -6,15 +6,8 @@ namespace TravelProject.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Tour")]
-    public partial class Tour
+    public partial class Tour_Diadanh
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tour()
-        {
-            PhieuDatTours = new HashSet<PhieuDatTour>();
-        }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaTour { get; set; }
@@ -22,14 +15,11 @@ namespace TravelProject.Models
         [StringLength(100)]
         public string TenTour { get; set; }
 
-        [StringLength(100)]
-        public string Mota { get; set; }
-
         public decimal? Gia { get; set; }
 
-        public int? MaDiaDanh { get; set; }
-
         public int? MaChiTietTour { get; set; }
+
+        public int? MaDiaDanh { get; set; }
 
         public int? NumStar { get; set; }
 
@@ -43,11 +33,7 @@ namespace TravelProject.Models
 
         public int? NumDay { get; set; }
 
-        public virtual ChiTietTour ChiTietTour { get; set; }
-
-        public virtual DiaDanh DiaDanh { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuDatTour> PhieuDatTours { get; set; }
+        [StringLength(30)]
+        public string TenDiaDanh { get; set; }
     }
 }

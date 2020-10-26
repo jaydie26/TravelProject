@@ -1,37 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@mrle0bda3t 
-Learn Git and GitHub without any code!
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-
-
-jaydie26
-/
-WebTravel
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-WebTravel/css/destination.css
-
-= finish destination
-Latest commit 0f6f3b4 1 hour ago
- History
- 0 contributors
-311 lines (277 sloc)  5.81 KB
-  
 *{
     box-sizing: border-box;
 }
@@ -106,7 +72,34 @@ body{
     color: #e0850f;
     text-decoration: none;
 }
-/* footer */
+.dropdown {
+    display: none;
+    margin-right: 30px;
+    display: inline-block;
+}
+.dropdown img{
+    display: none;
+    width: 60px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: #14e0c2 solid 2px;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
 
 /* image */
 .img-destination img{
@@ -235,7 +228,11 @@ body{
     height: 250px;
     object-fit:cover;
 }
-
+.view-detail-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .content .container .TourList .tour-item .img-list img:hover{
     opacity: 0.5;
     transform: scale(1.5);
@@ -266,7 +263,6 @@ body{
 	color: #333;
     text-decoration: none;
     border-radius: 10px;
-    margin-left: 6em;
 
 }
 
@@ -342,4 +338,195 @@ body{
 }
 .tab-border{
     font-weight:bold;
+}
+/* back to top */
+
+a.cd-top {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+   
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    background: #3097D1 url("https://thinhweb.com/wp-content/themes/thinhweb/images/cd-top-arrow.svg") no-repeat center 50%;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+    -moz-transition: opacity .3s 0s, visibility 0s .3s;
+    transition: opacity .3s 0s, visibility 0s .3s;
+}
+a.cd-top.cd-is-visible, a.cd-top.cd-fade-out, .no-touch a.cd-top:hover {
+    -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+    -moz-transition: opacity .3s 0s, visibility 0s 0s;
+    transition: opacity .3s 0s, visibility 0s 0s;
+}
+a.cd-top, a.cd-top:visited, a.cd-top:hover {
+    color: #CCCCCC;
+    text-decoration: none;
+}
+a.cd-top.cd-is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+a.cd-top.cd-fade-out {
+    opacity: 1;
+}
+
+/* Resize */
+@media(max-width: 1295px){
+    .package-tours .container .tab-list .tab-show{
+        font-size:2vw;
+    }
+    .package-tours .container .tab-list .tab-control{
+        font-size: 2.5vw;
+    }   
+    .package-tours .container .tab-list .tab-control .nav-tabs{
+        padding-left: 20px;
+    }   
+    .package-tours .container h1{
+        font-size: 3vw;
+    }
+    .content .container .recommend #title h2{
+        font-size: 3vw;
+    }
+    .content .container .recommend #title{
+        font-size: 2.5vw;
+    }
+    
+    .content .container .feature-tours h2{
+        font-size: 3vw;
+    }
+    
+    .content .container .recommend p,.content .container .feature-tours p{
+        font-size: 2vw;
+    }
+}
+@media(max-width: 1180px){
+    .footer{
+        height: 400px;  
+    }
+}
+
+@media(max-width: 974px){
+    .footer{
+        height: 450px;  
+    }
+}
+@media(max-width: 900px){
+    .menu-home nav{
+        display: none;
+    }
+    .menu-home{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .dropdown{
+        display:inline;
+        position: absolute;
+        right: 5px;
+    }
+    .dropdown img{
+        display:inline;
+    }
+}
+@media(max-width: 840px){
+    .content .container .TourList{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media(max-width: 750px){
+    .footer{
+        height: 530px;  
+    }
+    .container{
+        max-width: 94%;
+        padding: 5px;
+    }
+    .container .title h1{
+        font-size: 30px;
+    }
+}
+@media(max-width: 680px){
+    .footer{
+        height: 1000px;
+    }
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .footer-bottom{
+        font-size: small;
+    }
+    .container{
+        max-width: 96%;
+        padding: 5px;
+    }
+    .container .title h1{
+        font-size: 28px;
+    }
+    .menu-home #branding img{
+        margin-top:0;
+        font-size: 35px;
+        width: 30vw;
+        height: 15vw;
+    }
+    .menu-home{
+        min-height: 50px;
+    }
+    
+}
+@media(max-width: 640px){
+    .container{
+        max-width: 96%;
+        padding: 5px;
+    }
+    .container .title h1{
+        font-size: 25px;
+    }
+    .menu-home #branding img{
+        margin-top:0;
+        font-size: 35px;
+        width: 30vw;
+        height: 15vw;
+    }
+    .menu-home{
+        min-height: 50px;
+    }
+}
+@media(max-width: 480px){
+    .dropdown img{
+        width: 30px;
+    }
+    .menu-home{
+        min-height: 50px;
+    }
+    .container .title h1{
+        font-size: 20px;
+    }
+    .container{
+        max-width: 100%;
+        padding: 5px;
+    }
+    .menu-home #branding img{
+        margin-top:0;
+        font-size: 35px;
+        width: 30vw;
+        height: 15vw;
+    }
+    .detailtable{
+        display: flex;
+        flex-direction: column;
+    }
+    .content .container .TourList{
+        grid-template-columns: repeat(1,1fr);
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }

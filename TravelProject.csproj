@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.10\build\Microsoft.NETCore.UniversalWindowsPlatform.props" Condition="Exists('packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.10\build\Microsoft.NETCore.UniversalWindowsPlatform.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -17,7 +18,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort>44328</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -150,12 +151,13 @@
     <Compile Include="Models\ChiTietTour.cs" />
     <Compile Include="Models\DiaDanh.cs" />
     <Compile Include="Models\KhachHang.cs" />
-    <Compile Include="Models\TravelContext.cs" />
+    <Compile Include="Models\Link.cs" />
     <Compile Include="Models\PhanHoi.cs" />
     <Compile Include="Models\PhieuDatTour.cs" />
-    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\ThanhVien.cs" />
     <Compile Include="Models\Tour.cs" />
+    <Compile Include="Models\Tour_Diadanh.cs" />
+    <Compile Include="Models\TravelContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +229,7 @@
     <Content Include="Content\images\Tour\departure_date_icon.png" />
     <Content Include="Content\images\Tour\destinations_icon.png" />
     <Content Include="Content\images\Tour\included_icon.svg" />
+    <Content Include="Content\images\Tour\menu.png" />
     <Content Include="Content\images\Tour\price_icon.svg" />
     <Content Include="Content\images\Tour\shield%402x.png" />
     <Content Include="Content\images\Tour\tour-1.jpg" />
@@ -238,15 +241,22 @@
     <Content Include="Content\images\Tour\tour-7.jpg" />
     <Content Include="Content\images\Tour\tour-8.jpg" />
     <Content Include="Content\images\Tour\trip_days_icon.png" />
+    <Content Include="Content\images\vnmap.jpg" />
     <Content Include="Content\js\booking.js" />
     <Content Include="Content\js\destination.js" />
     <Content Include="Content\js\index.js" />
     <Content Include="Content\js\jquery-3.5.1.min.js" />
+    <Content Include="Content\js\jquery.filterizr.min.js" />
     <Content Include="Content\js\JQuery3.3.1.js" />
     <Content Include="Content\js\lightslider.js" />
+    <Content Include="Content\js\listdes.js" />
     <Content Include="Content\js\login.js" />
+    <Content Include="Content\js\mapoid.js" />
+    <Content Include="Content\js\mapoid.min.js" />
+    <Content Include="Content\js\popper.min.js" />
     <Content Include="Content\js\script.js" />
     <Content Include="Content\js\top_tours.js" />
+    <Content Include="Content\js\tour-place.js" />
     <Content Include="Content\js\tour.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -283,6 +293,7 @@
     <Content Include="Views\Tour\TourPlace.cshtml" />
     <Content Include="Views\Home\blog.cshtml" />
     <Content Include="Views\Tour\Booking.cshtml" />
+    <Content Include="Views\Destination\DestinationDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -333,7 +344,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.10\build\Microsoft.NETCore.UniversalWindowsPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.10\build\Microsoft.NETCore.UniversalWindowsPlatform.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.10\build\Microsoft.NetCore.UniversalWindowsPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.10\build\Microsoft.NetCore.UniversalWindowsPlatform.targets'))" />
   </Target>
+  <Import Project="packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.10\build\Microsoft.NetCore.UniversalWindowsPlatform.targets" Condition="Exists('packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.10\build\Microsoft.NetCore.UniversalWindowsPlatform.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelProject.Models;
 
 namespace TravelProject.Controllers
 {
@@ -11,7 +12,10 @@ namespace TravelProject.Controllers
         // GET: Tour
         public ActionResult Index()
         {
-            return View();
+            TravelContext md = new TravelContext();
+            var model = md.Tours.ToList();
+
+            return View(model);
         }
         public ActionResult TourPlace()
         {
@@ -20,6 +24,14 @@ namespace TravelProject.Controllers
         public ActionResult Booking()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Index(string search)
+        {
+            TravelContext mdt = new TravelContext();
+            var model = mdt.Tours.Where(x => x.Place.Contains(search)).ToList();
+            return View(model);
+
         }
     }
 }

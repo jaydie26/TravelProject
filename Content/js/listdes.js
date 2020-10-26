@@ -1,3 +1,7 @@
+$("map[name=hmap8807]").mapoid();
+function writeText(txt) {
+    document.getElementById("Aarea").innerHTML = txt;
+}
 (function($)
 {
 	"use strict";

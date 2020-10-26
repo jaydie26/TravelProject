@@ -13,5 +13,9 @@ namespace TravelProject.Controllers
         {
             return View();
         }
+        public ActionResult DestinationDetail()
+        {
+            return View();
+        }
     }
 }

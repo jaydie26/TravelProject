@@ -23,388 +23,241 @@
         </div>
         <div class="TourListContainer">
             <div class="Book-tour">
-                <div class="SelectDetail">
-                    <div class="btnSelect1 tab-selected active" onclick="openTab(event , 1)" id="defautOpen">
-                        <p>Step 1</p>
-                        <span>Import Information</span>
-                    </div>
-                    <div class="btnSelect2 tab-selected" onclick="openTab(event , 2)">
-                        <p>Step 2</p>
-                        <span>Confirm</span>
-                    </div>
-                    <div class="btnSelect3 tab-selected" onclick="openTab(event , 3)">
-                        <p>Step 3</p>
-                        <span>Pay</span>
-                    </div>
-                </div>
-                <div class="step1 tab-content">
-                    <div class="Tour-inf">
-                        <div class="Tour-inf-detail">
-                            <div class="content-tour">
-                                <span>Tour Information</span>
-                            </div>
-                            <div class="tour-inf-dt">
-                                <div class="Tour-name"><span>Ha Long Tour</span></div>
-                                <ul>
-                                    <li>
-                                        <span>Tour Id : <strong>T1001</strong></span>
-                                    </li>
-                                    <li>
-                                        <span>Time: <strong>3 Days</strong></span>
-                                    </li>
-                                    <li>
-                                        <span>Day Check-in: <strong>25/05/2020</strong></span>
-                                    </li>
-                                    <li>
-                                        <span>Day Check-out: <strong>28/05/2020</strong></span>
-                                    </li>
-                                    <li>
-                                        <span>Pick up place: <strong>Ha Noi</strong></span>
-                                    </li>
-                                </ul>
-                            </div>
+                <div class="tabs">
+                    <div class="container">
+                        <div id="tab-1" class="tab-item tab-border">
+                            <p>Step 1</p>
+                            <span>Import Information</span>
                         </div>
-                        <div class="Tour-price">
-                            <div class="content-tour">
-                                <span>Tour Price</span>
-                            </div>
-                            <div class="Tour-price-table">
-                                <table>
-                                    <tr>
-                                        <th></th>
-                                        <th>Vienamese</th>
-                                        <th>Overseas Vietnamese</th>
-                                        <th>Foreigner</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Adult (> 9 years old)</td>
-                                        <td>100</td>
-                                        <td>100</td>
-                                        <td>100</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Children (6 to 8 years old)</td>
-                                        <td>100</td>
-                                        <td>100</td>
-                                        <td>100</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Baby (< 5 years old)</td>
-                                        <td>100</td>
-                                        <td>100</td>
-                                        <td>100</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="note">
-                                <span>Note: Promotion applies (if any)</span>
-                                <div class="Currency_unit"><span>Currency unit : $</span></div>
-                            </div>
+                        <div id="tab-2" class="tab-item">
+                            <p>Step 2</p>
+                            <span>Confirm</span>
                         </div>
-                    </div>
-                    <div class="Contact-Person">
-                        <div class="content-tour">
-                            <span>Contact Persion Information</span>
-                        </div>
-                        <div class="Contact-Person-Inf">
-                            <div class="boxrow1">
-                                <div class="box-container">
-                                    <div class="cnt">
-                                        <span>Full Name</span>
-                                    </div>
-                                    <div class="box"></div>
-                                </div>
-                                <div class="box-container">
-                                    <div class="cnt">
-                                        <span>Email</span>
-                                    </div>
-                                    <div class="box"></div>
-                                </div>
-                            </div>
-                            <div class="boxrow2">
-                                <div class="box-container">
-                                    <div class="cnt">
-                                        <span>Address</span>
-                                    </div>
-                                    <div class="box"></div>
-                                </div>
-                                <div class="box-container">
-                                    <div class="cnt">
-                                        <span>Phone Number</span>
-                                    </div>
-                                    <div class="box"></div>
-                                </div>
-                            </div>
-                            <div class="boxrow3">
-                                <div class="box-container">
-                                    <div class="cnt">
-                                        <span>Notes</span>
-                                    </div>
-                                    <div class="box"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="List-customer">
-                        <div class="content-tour">
-                            <span>List customers</span>
-                        </div>
-                        <div class="List-customer-detail">
-                            <div class="tablebar">
-                                <table>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Full Name</th>
-                                        <th>Date Of Birth</th>
-                                        <th>Address</th>
-                                        <th>Sex</th>
-                                        <th>Type</th>
-                                        <th>Age</th>
-                                        <th>Price</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Jame Bones</td>
-                                        <td>05/04/2005</td>
-                                        <td>Some Where</td>
-                                        <td>Male</td>
-                                        <td>Vietnamese</td>
-                                        <td>Adult</td>
-                                        <td>100</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jame Bones</td>
-                                        <td>05/04/2005</td>
-                                        <td>Some Where</td>
-                                        <td>Male</td>
-                                        <td>Vietnamese</td>
-                                        <td>Adult</td>
-                                        <td>100</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="insert-customer">
-                                <button class="insertBtn">Insert Customers</button>
-                                <div class="SaleId">
-                                    <div class="cnt"><span>Discount Code</span></div>
-                                    <div class="box"></div>
-                                </div>
-                            </div>
-                            <div class="Money">
-                                <div class="note">
-                                    <span><strong>Notes :</strong>The unit price includes tour price and other surcharges (if any)</span>
-                                </div>
-                                <div class="price">
-                                    <strong>Total Price :</strong>
-                                    <div class="price1>"><span>200 $</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="payments">
-                        <div class="content-tour">
-                            <span>Payments</span>
-                        </div>
-                        <div class="payments-detail">
-                            <form action="#">
-                                <p>Please select your payment:</p>
-                                <input type="radio" id="cash" name="payments" value="cash">
-                                <label for="cash">Cash</label><br>
-                                <input type="radio" id="transfer" name="payments" value="transfer">
-                                <label for="transfer">Transfer</label><br>
-                                <input type="radio" id="bankcard" name="payments" value="bankcard">
-                                <label for="bankcard">Domestic bank card - ATM/ Internet Banking</label><br>
-                                <input type="radio" id="creditcard" name="payments" value="creditcard">
-                                <label for="creditcard">Credit card</label>
-                        </div>
-                    </div>
-                    <div class="btnbook">
-                        <button type="submit" class="btn btn-big contact-btn">
-                            <i class="fas fa-envelope"></i>
-                            Book Tour
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="find-tour">
-                <div class="col-md-15">
-                    <div class="sidebar-wrap">
-                        <div class="search-wrap">
-                            <h3 class="sidebar-heading">Find your tour</h3>
-                            <form method="post" class="findform">
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div class="form-group">
-                                            <label for="date">Where:</label>
-                                            <div class="form-field">
-                                                <input type="text" id="location" class="form-control" placeholder="Search Location">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="date">Check-in:</label>
-                                            <div class="form-field">
-                                                <input type="datetime-local" id="date" class="form-control date">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="date">Check-out:</label>
-                                            <div class="form-field">
-                                                <input type="datetime-local" id="date" class="form-control date">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="guests">Guest</label>
-                                            <div class="form-field">
-                                                <select name="people" id="people" class="form-control">
-                                                    <option value="#">1</option>
-                                                    <option value="#">2</option>
-                                                    <option value="#">3</option>
-                                                    <option value="#">4</option>
-                                                    <option value="#">5+</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12 btnfind">
-                                        <input type="submit" name="submit" id="submit" value="Find Flights">
-
-                                    </div>
-                                </div>
-                            </form>
+                        <div id="tab-3" class="tab-item">
+                            <p>Step 3</p>
+                            <span>Pay</span>
                         </div>
                     </div>
                 </div>
-                <div class="Price">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="sidebar-heading">Price Range</h3>
-                            <form method="post" class="findform-2">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="guests">Price from:</label>
-                                            <div class="form-field">
-                                                <i class="icon icon-arrow-down3"></i>
-                                                <select name="people" id="people" class="form-control">
-                                                    <option value="#">1</option>
-                                                    <option value="#">200</option>
-                                                    <option value="#">300</option>
-                                                    <option value="#">400</option>
-                                                    <option value="#">1000</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                <div class="step1">
+                    <div id="tab-1-content" class="tab-content-item show">
+                        <div class="tab-1-content-container">
+                            <div class="Tour-inf">
+                                <div class="Tour-inf-detail">
+                                    <div class="content-tour">
+                                        <span>Tour Information</span>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="guests">Price to:</label>
-                                            <div class="form-field">
-                                                <select name="people" id="people" class="form-control">
-                                                    <option value="#">2000</option>
-                                                    <option value="#">4000</option>
-                                                    <option value="#">6000</option>
-                                                    <option value="#">8000</option>
-                                                    <option value="#">10000</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                    <div class="tour-inf-dt">
+                                        <div class="Tour-name"><span>Ha Long Tour</span></div>
+                                        <ul>
+                                            <li>
+                                                <span>Tour Id : <strong>T1001</strong></span>
+                                            </li>
+                                            <li>
+                                                <span>Time: <strong>3 Days</strong></span>
+                                            </li>
+                                            <li>
+                                                <span>Day Check-in: <strong>25/05/2020</strong></span>
+                                            </li>
+                                            <li>
+                                                <span>Day Check-out: <strong>28/05/2020</strong></span>
+                                            </li>
+                                            <li>
+                                                <span>Pick up place: <strong>Ha Noi</strong></span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </form>
+                                <div class="Tour-price">
+                                    <div class="content-tour">
+                                        <span>Tour Price</span>
+                                    </div>
+                                    <div class="Tour-price-table">
+                                        <table>
+                                            <tr>
+                                                <th></th>
+                                                <th>Vienamese</th>
+                                                <th>Overseas Vietnamese</th>
+                                                <th>Foreigner</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Adult (> 9 years old)</td>
+                                                <td>100</td>
+                                                <td>100</td>
+                                                <td>100</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Children (6 to 8 years old)</td>
+                                                <td>100</td>
+                                                <td>100</td>
+                                                <td>100</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Baby (< 5 years old)</td>
+                                                <td>100</td>
+                                                <td>100</td>
+                                                <td>100</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="note">
+                                        <span>Note: Promotion applies (if any)</span>
+                                        <div class="Currency_unit"><span>Currency unit : $</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Contact-Person">
+                                <div class="content-tour">
+                                    <span>Contact Persion Information</span>
+                                </div>
+                                <div class="Contact-Person-Inf">
+                                    <div class="boxrow1">
+                                        <div class="box-container">
+                                            <div class="cnt">
+                                                <span>Full Name</span>
+                                            </div>
+                                            <input type="text" class="box">
+                                        </div>
+                                        <div class="box-container">
+                                            <div class="cnt">
+                                                <span>Email</span>
+                                            </div>
+                                            <input type="text" class="box">
+                                        </div>
+                                    </div>
+                                    <div class="boxrow2">
+                                        <div class="box-container">
+                                            <div class="cnt">
+                                                <span>Address</span>
+                                            </div>
+                                            <input type="text" class="box">
+                                        </div>
+                                        <div class="box-container">
+                                            <div class="cnt">
+                                                <span>Phone Number</span>
+                                            </div>
+                                            <input type="text" class="box">
+                                        </div>
+                                    </div>
+                                    <div class="boxrow3">
+                                        <div class="box-container">
+                                            <div class="cnt">
+                                                <span>Notes</span>
+                                            </div>
+                                            <input type="text" class="box">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="List-customer">
+                                <div class="content-tour">
+                                    <span>List customers</span>
+                                </div>
+                                <div class="List-customer-detail">
+                                    <div class="tablebar">
+                                        <table id="tablecustomers">
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Full Name</th>
+                                                <th>Date Of Birth</th>
+                                                <th>Address</th>
+                                                <th>Sex</th>
+                                                <th>Type</th>
+                                                <th>Age</th>
+                                                <th>Price</th>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><input type="text" class="fullname"></td>
+                                                <td><input type="date" class="dateofb"></td>
+                                                <td><input type="text" class="adr"></td>
+                                                <td>
+                                                    <select name="sex" class="sex">
+                                                        <option value="#">Male</option>
+                                                        <option value="#">Female</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="typecustomer" class="typecustomer">
+                                                        <option value="#">VietNamese</option>
+                                                        <option value="#">Overseas Vietnamese</option>
+                                                        <option value="#">Foreigner</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" class="age"></td>
+                                                <td><input type="text" class="pri"></td>
+                                                <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td><input type="text" class="fullname"></td>
+                                                <td><input type="date" class="dateofb"></td>
+                                                <td><input type="text" class="adr"></td>
+                                                <td>
+                                                    <select name="sex" class="sex">
+                                                        <option value="#">Male</option>
+                                                        <option value="#">Female</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="typecustomer" class="typecustomer">
+                                                        <option value="#">VietNamese</option>
+                                                        <option value="#">Overseas Vietnamese</option>
+                                                        <option value="#">Foreigner</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" class="age"></td>
+                                                <td><input type="text" class="pri"></td>
+                                                <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="insert-customer">
+                                        <button class="insertBtn" onclick="insertCustomer()">Insert Customers</button>
+                                        <div class="SaleId">
+                                            <div class="cnt"><span>Discount Code</span></div>
+                                            <div class="box"></div>
+                                        </div>
+                                    </div>
+                                    <div class="Money">
+                                        <div class="note">
+                                            <span><strong>Notes :</strong>The unit price includes tour price and other surcharges (if any)</span>
+                                        </div>
+                                        <div class="price">
+                                            <strong>Total Price :</strong>
+                                            <div class="price1>"><span>200 $</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payments">
+                                <div class="content-tour">
+                                    <span>Payments</span>
+                                </div>
+                                <div class="payments-detail">
+                                    <form action="#">
+                                        <p>Please select your payment:</p>
+                                        <input type="radio" id="cash" name="payments" value="cash">
+                                        <label for="cash">Cash</label><br>
+                                        <input type="radio" id="transfer" name="payments" value="transfer">
+                                        <label for="transfer">Transfer</label><br>
+                                        <input type="radio" id="bankcard" name="payments" value="bankcard">
+                                        <label for="bankcard">Domestic bank card - ATM/ Internet Banking</label><br>
+                                        <input type="radio" id="creditcard" name="payments" value="creditcard">
+                                        <label for="creditcard">Credit card</label>
+                                </div>
+                            </div>
+                            <div class="btnbook">
+                                <button type="submit" class="btn btn-big contact-btn">
+                                    <i class="fas fa-envelope"></i>
+                                    Book Tour
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="review-rating">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="sidebar-heading">Review Rating</h3>
-                            <form method="post" class="findform-2">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star"></i></span></p>
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="location">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="sidebar-heading">Location</h3>
-                            <form method="post" class="findform-2">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Ha Noi</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Ho Chi Minh City</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Da Nang</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Quang Ninh</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Kien Giang</h4>
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
-    </div>
 </section>
+<script type="text/javascript" src="~/Content/js/booking.js"></script>
