@@ -8,7 +8,7 @@ namespace TravelProject.Models
     public partial class TravelContext : DbContext
     {
         public TravelContext()
-            : base("name=MyDataBase")
+            : base("name=TravelContext2")
         {
         }
 
@@ -24,6 +24,14 @@ namespace TravelProject.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DiaDanh>()
+                .Property(e => e.Img)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DiaDanh>()
+                .Property(e => e.MoTa)
+                .IsUnicode(false);
+
             modelBuilder.Entity<KhachHang>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
@@ -46,6 +54,10 @@ namespace TravelProject.Models
 
             modelBuilder.Entity<ThanhVien>()
                 .Property(e => e.pass)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ThanhVien>()
+                .Property(e => e.email)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Tour>()

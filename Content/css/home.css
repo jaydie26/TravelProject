@@ -104,6 +104,9 @@ body{
     margin-right: 30px;
     
 }
+.menu-home nav ul li span {
+    font-size: 21px;
+}
 
 
 .menu-home a{
