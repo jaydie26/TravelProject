@@ -25,9 +25,9 @@ namespace TravelProject.Controllers
         }
         public ActionResult DestinationDetail(int id)
         {
-            if (id == null)
+            if (id==null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Destination");
             }
             //Nếu không thì truy xuất csdl lấy ra sản phẩm tương ứng
             DiaDanh dd = travel.DiaDanhs.SingleOrDefault(n => n.MaDiaDanh == id);

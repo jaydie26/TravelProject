@@ -8,7 +8,7 @@ namespace TravelProject.Models
     public partial class TravelContext : DbContext
     {
         public TravelContext()
-            : base("name=TravelContext2")
+            : base("name=TravelContext")
         {
         }
 
