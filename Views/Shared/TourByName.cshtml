@@ -1,0 +1,30 @@
+﻿@using TravelProject.Models;
+@model List<Tour>
+@foreach (var item in Model)
+{
+    <div class="img-list">
+        <div class="tour">
+            <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
+                <img src="@Url.Content("~/Content/")@item.LinkImage">
+                <p class="price"><span>$@item.Gia</span> <small>/ @item.NumDay Days</small></p>
+            </a>
+            <span class="desc">
+                <p class="star">
+                    <span>
+                        @for (int i = 0; i < 4; i++)
+                        {
+                            <i class="fas fa-star yellow"></i>
+                        }
+                        @for (int i = 0; i < 5 -4; i++)
+                        {
+                            <i class="fas fa-star"></i>
+                        }
+                    </span>
+                    @item.NumView Reviews
+                </p>
+                <h2><a href="tour-place.html">@item.TenTour</a></h2>
+                <span class="city">@item.DiaDiem</span>
+            </span>
+        </div>
+    </div>
+}

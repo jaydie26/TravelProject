@@ -1,0 +1,25 @@
+﻿@using TravelProject.Models;
+@model PagedList.IPagedList<Vung_Diadanh>
+@using PagedList.Mvc;
+@foreach (Vung_Diadanh dd in Model.Take(5))
+{
+    <a href="@Url.Action("DestinationDetail", "Destination",new {@id=dd.MaDiaDanh})" class="Ades">
+        <div class="image">
+            <img src="@Url.Content("~/Content/images/Destination2/"+dd.Img)" />
+        </div>
+        <div class="describe">
+            <div class="text">
+                @dd.TenDiaDanh
+            </div>
+            <div class="text_describe">
+                <ul>
+                    <li>@dd.MoTa</li>
+                </ul>
+            </div>
+        </div>
+    </a>
+}
+<br />
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("GetPaging", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "lisdesbyarea" }))
+

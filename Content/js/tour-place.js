@@ -14,10 +14,24 @@ function removeShow(){
 function removeBorder(){
     tabItems.forEach(item=>item.classList.remove("tab-border"));
 }
+function hienthi(idd, idhien, idan) {
+    document.getElementById("" + idd).style.overflow = "visible";
+    document.getElementById("" + idd).style.height = "auto";
+    document.getElementById("" + idhien).style.display = "none";
+    document.getElementById("" + idan).style.display = "block";
+}
+
+function andi(idd, idhien, idan) {
+    document.getElementById("" + idd).style.overflow = "hidden";
+    document.getElementById("" + idd).style.height = "90px";
+    document.getElementById("" + idhien).style.display = "block";
+    document.getElementById("" + idan).style.display = "none";
+}
 tabItems.forEach(item => item.addEventListener("click",selectItem));
 document.getElementById("tab-1").click();
-
 window.addEventListener('scroll', function() {
+    var h=document.getElementById("getheight").offsetHeight
+    console.log(h)
     var width = $(window).width();
     if(width>1295){
             var x = pageYOffset;
@@ -25,7 +39,7 @@ window.addEventListener('scroll', function() {
             let a = document.getElementById("advert");
             a.style.position = "static";
             a.style.width = "100%"
-        } else if (x >= 720&&x<1330) {
+        } else if (x >= 720&&x<h) {
             let a = document.getElementById("advert");
             a.style.position = "fixed";
             a.style.top = "60px";
@@ -33,7 +47,7 @@ window.addEventListener('scroll', function() {
         } else{
             let a = document.getElementById("advert");
             a.style.position = "relative";
-            a.style.top="580px";
+            a.style.top=h-700+"px";
             a.style.width = "100%"
         }
     }
@@ -43,7 +57,7 @@ window.addEventListener('scroll', function() {
             let a = document.getElementById("advert");
             a.style.position = "static";
             a.style.width = "100%"
-        } else if (x >= 650&&x<1200) {
+        } else if (x >= 650&&x<h-50) {
             let a = document.getElementById("advert");
             a.style.position = "fixed";
             a.style.top = "60px";
@@ -51,7 +65,7 @@ window.addEventListener('scroll', function() {
         } else{
             let a = document.getElementById("advert");
             a.style.position = "relative";
-            a.style.top="520px";
+            a.style.top=h-700+"px";
             a.style.width = "100%"
         }
     }
@@ -61,7 +75,7 @@ window.addEventListener('scroll', function() {
             let a = document.getElementById("advert");
             a.style.position = "static";
             a.style.width = "100%"
-        } else if (x >= 550&&x<1000) {
+        } else if (x >= 550&&x<h-50) {
             let a = document.getElementById("advert");
             a.style.position = "fixed";
             a.style.top = "60px";
@@ -69,7 +83,7 @@ window.addEventListener('scroll', function() {
         } else{
             let a = document.getElementById("advert");
             a.style.position = "relative";
-            a.style.top="420px";
+            a.style.top=h-700+"px";
             a.style.width = "100%"
         }
     }

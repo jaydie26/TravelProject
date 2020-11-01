@@ -826,53 +826,53 @@
 			
 		},
 		
-		_selectArea: function( id, fixed, showCanvas )
-		{
-			var self = this
+		//_selectArea: function( id, fixed, showCanvas )
+		//{
+		//	var self = this
 			
-			id = parseInt( id )
+		//	id = parseInt( id )
 			
-			var el = self.$elem.find("area[data-id='"+id+"']")
-			var selected = el.hasClass('selected')
-			var cnv = self.$elem.find('canvas[data-id="'+id+'"]')
+		//	var el = self.$elem.find("area[data-id='"+id+"']")
+		//	var selected = el.hasClass('selected')
+		//	var cnv = self.$elem.find('canvas[data-id="'+id+'"]')
 			
 			
-			//alert(self.mapHidden)
-			if( self.mapIsVisible() )
-			{
-				self._reloadAreasIfHidden()
-			}
-			else
-			self.mapHidden = true
+		//	//alert(self.mapHidden)
+		//	if( self.mapIsVisible() )
+		//	{
+		//		self._reloadAreasIfHidden()
+		//	}
+		//	else
+		//	self.mapHidden = true
 			
-			//{
-			//console.log('ID '+id+' nemozem vybrat, mapa nie je viditelna!')
-			//return false;
-			//}
+		//	//{
+		//	//console.log('ID '+id+' nemozem vybrat, mapa nie je viditelna!')
+		//	//return false;
+		//	//}
 			
-			if(selected)
-			{
-			console.log('ID '+id+' je uz vybrane!')
-			return false;
-			}
+		//	if(selected)
+		//	{
+		//	console.log('ID '+id+' je uz vybrane!')
+		//	return false;
+		//	}
 			
-			if(fixed !== true)
-			fixed = false
+		//	if(fixed !== true)
+		//	fixed = false
 			
-			if(el.length > 0)
-			{
-				self.$elem.find('canvas[data-id="'+id+'"]:last').removeClass('temp')	
-				el.addClass('selected')
-				cnv.removeClass('temp')
-				self.selectedAreas.push(id)
-				if(showCanvas)
-				self._mapover( el, true, fixed )
+		//	if(el.length > 0)
+		//	{
+		//		self.$elem.find('canvas[data-id="'+id+'"]:last').removeClass('temp')	
+		//		el.addClass('selected')
+		//		cnv.removeClass('temp')
+		//		self.selectedAreas.push(id)
+		//		if(showCanvas)
+		//		self._mapover( el, true, fixed )
 				
-				self._eventCallback('select', false, el )
-			}
-			else
-			console.log('Plocha s ID '+id+' na mape neexistuje!')
-		},
+		//		self._eventCallback('select', false, el )
+		//	}
+		//	else
+		//	console.log('Plocha s ID '+id+' na mape neexistuje!')
+		//},
 		
 		_deselectArea: function( id, hideCanvas )
 		{

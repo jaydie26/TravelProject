@@ -268,7 +268,69 @@ body{
 .show{
     display:block !important;
 }
-
+.list{
+    float:left;
+    padding: 1.5em 0;
+    margin-bottom: 1em;
+}
+.list .list_item{
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.list .list_item .list_time{
+    color: #212121;
+    width: 15%;
+    text-align: left;
+}
+.list .list_item .list_time .num{
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff002d;
+    margin-bottom: 7px;
+}
+.list .list_item .list_time .day{
+    width: 80px;
+}
+.list .list_item .day{
+    width: 80px;
+}
+.list .list_desc{
+    width: 70%;
+    color: #212121;
+    font-size: 15px;
+    line-height: 22px;
+    padding-bottom: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.list .list_desc .name{
+    padding-bottom: 7px;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 7px;
+    font-size: 18px;
+    color: #007ce6;
+}
+.list .list_desc .detailday{
+    height: 90px; 
+    overflow: hidden;
+}
+.an-hien button{
+    background-color: white;
+    border: none;
+    color: red;
+}
+.an-hien .btnanhien button:hover{
+    color: rgb(119, 2, 2);
+}
+.an-hien button
+{
+     outline-style: none;
+}
 .AboutTour .DescribeDetailTour .SelectDetail .btnSelect{ 
     font-size: 25px;
     font-weight: 500;
@@ -701,4 +763,8 @@ a.cd-top.cd-fade-out {
         display: flex;
         flex-direction: column;
     }
+}
+.ngay1, .ngay2, .ngay3, .ngay4, .ngay5, .ngay6, .ngay7, . ngay8, .ngay9, .ngay10 {
+    overflow: visible;
+    height: auto;
 }

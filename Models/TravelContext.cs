@@ -12,15 +12,22 @@ namespace TravelProject.Models
         {
         }
 
+        public virtual DbSet<ChiTietNgay> ChiTietNgays { get; set; }
         public virtual DbSet<ChiTietTour> ChiTietTours { get; set; }
+        public virtual DbSet<DanhGia> DanhGias { get; set; }
+        public virtual DbSet<DanhMucTour> DanhMucTours { get; set; }
         public virtual DbSet<DiaDanh> DiaDanhs { get; set; }
+        public virtual DbSet<DichVuTour> DichVuTours { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<Link> Links { get; set; }
+        public virtual DbSet<Ngay> Ngays { get; set; }
         public virtual DbSet<PhanHoi> PhanHois { get; set; }
         public virtual DbSet<PhieuDatTour> PhieuDatTours { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThanhVien> ThanhViens { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
-        public virtual DbSet<Tour_Diadanh> Tour_Diadanh { get; set; }
+        public virtual DbSet<Vung> Vungs { get; set; }
+        public virtual DbSet<Vung_Diadanh> Vung_Diadanh { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -39,6 +46,11 @@ namespace TravelProject.Models
             modelBuilder.Entity<KhachHang>()
                 .Property(e => e.SoDienThoai)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<KhachHang>()
+                .HasMany(e => e.DanhGias)
+                .WithRequired(e => e.KhachHang)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Link>()
                 .Property(e => e.LinkCode)
@@ -65,23 +77,20 @@ namespace TravelProject.Models
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<Tour>()
-                .Property(e => e.Place)
+                .Property(e => e.LinkImage)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Tour>()
-                .Property(e => e.LinkImage)
+                .HasMany(e => e.DanhGias)
+                .WithRequired(e => e.Tour)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Vung_Diadanh>()
+                .Property(e => e.Img)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Tour_Diadanh>()
-                .Property(e => e.Gia)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<Tour_Diadanh>()
-                .Property(e => e.Place)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Tour_Diadanh>()
-                .Property(e => e.LinkImage)
+            modelBuilder.Entity<Vung_Diadanh>()
+                .Property(e => e.MoTa)
                 .IsUnicode(false);
         }
     }

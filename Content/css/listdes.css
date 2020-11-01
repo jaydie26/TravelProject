@@ -285,6 +285,10 @@ body{
     text-align: left;
     margin-bottom: 100px;
 }
+.areas a{
+    border: 20px;
+    background: lightblue;
+}
 .boxarea{
     position: absolute;
     left: 10px;
@@ -325,7 +329,7 @@ body{
 .form-check .form-check-input{
     margin-top:10px;
 }
-.btnfind input[type=submit]{
+.btnfind input[type=button]{
     background-color: #4CAF50;
     border: none;
     color: white;

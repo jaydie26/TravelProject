@@ -7,12 +7,47 @@ function writeText(txt) {
 	"use strict";
 	
 	
-	jQuery(window).on('load', function() {
+	$(window).on('load', function() {
 		
 		
-		jQuery('#filter-list input').on("click", function(){
-			jQuery('#filter-list input').removeClass('active');
-			jQuery(this).addClass('active');
+		$('#filter-list input').on("click", function(){
+			$('#filter-list input').removeClass('active');
+			$(this).addClass('active');
 		});
 	});	
-})(jQuery);	
+})($);
+//function HienThiVung(index) {
+//	$.ajax({
+
+//		type: 'GET',
+//		data: { mavung: index },
+//		url: 'ListDesByArea',
+//		success: function (result) {
+//			$('#lisdesbyarea').html(result);
+//		},
+//		error: function (e) {
+//			alert(e.responseText);
+//		}
+//	});
+//}
+//function HienThiDiaDanh() {
+//	$.ajax({
+
+//		type: 'GET',
+//		data: { search: $('#location').val() },
+//		url: 'ListDesByName',
+//		success: function (result) {
+//			$('#lisdesbyarea').html(result);
+//		},
+//		error: function (e) {
+//			alert(e.responseText);
+//		}
+//	});
+//}
+function HienThiVung(index) {
+	document.location.href = '/Destination/Index/?mavung=' + index;
+}
+function HienThiDiaDanh() {
+	document.location.href = '/Destination/Index/?search=' + $('#location').val();
+}
+

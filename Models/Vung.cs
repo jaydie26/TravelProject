@@ -6,29 +6,23 @@ namespace TravelProject.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ThanhVien")]
-    public partial class ThanhVien
+    [Table("Vung")]
+    public partial class Vung
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ThanhVien()
+        public Vung()
         {
-            KhachHangs = new HashSet<KhachHang>();
+            DiaDanhs = new HashSet<DiaDanh>();
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int MaThanhVien { get; set; }
-
-        [StringLength(10)]
-        public string username { get; set; }
-
-        [StringLength(20)]
-        public string pass { get; set; }
+        public int MaVung { get; set; }
 
         [StringLength(100)]
-        public string email { get; set; }
+        public string TenVung { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KhachHang> KhachHangs { get; set; }
+        public virtual ICollection<DiaDanh> DiaDanhs { get; set; }
     }
 }
