@@ -6,16 +6,20 @@ namespace TravelProject.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("PhieuDatTour")]
-    public partial class PhieuDatTour
+    [Table("DanhGia")]
+    public partial class DanhGia
     {
         [Key]
+        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int MaPhieuDat { get; set; }
+        public int MaKH { get; set; }
 
-        public int? MaKH { get; set; }
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MaTour { get; set; }
 
-        public int? MaTour { get; set; }
+        public int? NumStar { get; set; }
 
         public virtual KhachHang KhachHang { get; set; }
 

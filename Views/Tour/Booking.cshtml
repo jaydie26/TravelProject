@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Booking";
-    Layout = "~/Views/MyLayout/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -245,17 +245,34 @@
                                         <label for="bankcard">Domestic bank card - ATM/ Internet Banking</label><br>
                                         <input type="radio" id="creditcard" name="payments" value="creditcard">
                                         <label for="creditcard">Credit card</label>
+                                    </form>
                                 </div>
                             </div>
                             <div class="btnbook">
-                                <button type="submit" class="btn btn-big contact-btn">
+                                <button type="submit" class="btn btn-big contact-btn" onclick="gotostep('2')">
                                     <i class="fas fa-envelope"></i>
                                     Book Tour
                                 </button>
                             </div>
                         </div>
                     </div>
+                    <div id="tab-2-content" class="tab-content-item">
+                        <p>bước2</p>
+                        <button class="btnnext" onclick="gotostep('1')">
+                            Back
+                        </button>
+                        <button class="btnback" onclick="gotostep('3')">
+                            Next
+                        </button>
+                    </div>
+                    <div id="tab-3-content" class="tab-content-item">
+                        <p>bước3</p>
+                        <button class="btnback" onclick="gotostep('2')">
+                            Back
+                        </button>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

@@ -1,8 +1,9 @@
 ﻿@using TravelProject.Models;
-@model List<Tour>
+@model PagedList.IPagedList<Tour>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/MyLayout/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -14,7 +15,6 @@
 <script src="https://kit.fontawesome.com/a858033a2a.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="~/Content/css/bootstrap.css">
 <link type="text/css" rel="stylesheet" href="~/Content/css/tour.css" />
-
 <section class="tours">
     <div class="container">
         <div class="title">
@@ -33,32 +33,31 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div id="filter-list">
-                            <input type="submit" name="submit1" class="filter active no-outline" value="ALL">
-                            <input type="submit" name="submit2" class="filter no-outline" value="TOP">
-                            <input type="submit" name="submit3" class="filter no-outline" value="PRICE">
-                            <input type="submit" name="submit4" class="filter no-outline" value="STAR">
-                            <input type="submit" name="submit5" class="filter no-outline" value="REVIEW">
-                            <input type="submit" name="submit6" class="filter no-outline" value="DAY">
+                            <input type="button" name="submit1" class="filter no-outline" value="ALL" onclick="Sortby('all')">
+                            <input type="button" name="submit2" class="filter no-outline" value="PRICE" onclick="Sortby('price')">
+                            <input type="button" name="submit3" class="filter no-outline" value="STAR" onclick="Sortby('star')">
+                            <input type="button" name="submit4" class="filter no-outline" value="REVIEW" onclick="Sortby('review')">
+                            <input type="button" name="submit5" class="filter no-outline" value="DAY" onclick="Sortby('day')">
                         </div>
                     </div>
                 </div>
-                <div class="TourList">
+                <div class="TourList" id="tourbyname_day">
                     @foreach (var item in Model)
                     {
                         <div class="img-list">
                             <div class="tour">
-                                <a href="@Url.Action("TourPlace","Tour")" class="tour-img">
+                                <a href="/Tour/TourPlace/@item.MaChiTietTour" class="tour-img">
                                     <img src="@Url.Content("~/Content/")@item.LinkImage">
                                     <p class="price"><span>$@item.Gia</span> <small>/ @item.NumDay Days</small></p>
                                 </a>
                                 <span class="desc">
                                     <p class="star">
                                         <span>
-                                            @for (int i = 0; i < @item.NumStar; i++)
+                                            @for (int i = 0; i < 4; i++)
                                             {
                                                 <i class="fas fa-star yellow"></i>
                                             }
-                                            @for (int i = 0; i < 5 - @item.NumStar; i++)
+                                            @for (int i = 0; i < 5 - 4; i++)
                                             {
                                                 <i class="fas fa-star"></i>
                                             }
@@ -66,24 +65,18 @@
                                         @item.NumView Reviews
                                     </p>
                                     <h2><a href="tour-place.html">@item.TenTour</a></h2>
-                                    <span class="city">@item.Place</span>
+                                    <span class="city">@item.DiaDiem</span>
                                 </span>
                             </div>
                         </div>
                     }
                 </div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <ul class="pagination">
-                            <li class="disabled"><a href="#">&laquo;</a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
-                    </div>
-                </div>
+                @{ 
+                    var temp = ViewBag.sortorder;
+                }
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.place, mavung = ViewBag.day, sortorder = ViewBag.sortorder}))
+
             </div>
 
             <div class="find-tour">
@@ -91,75 +84,66 @@
                     <div class="sidebar-wrap">
                         <div class="search-wrap">
                             <h3 class="sidebar-heading">Find your tour</h3>
-                            <form method="post" class="findform" action="@Url.Action("Index","Tour",new { id = "search" })">
+                            <form method="post" class="findform">
                                 <div class="row">
                                     <div class="col-md-12 ">
                                         <div class="form-group">
                                             <label for="date">Where:</label>
                                             <div class="form-field">
-                                                <input type="text" name="search" id="location" class="form-control" placeholder="Search Location">
+                                                <input type="text" id="location" class="form-control" placeholder="Search Location">
                                             </div>
                                         </div>
                                     </div>
 
-                                    @*<div class="col-md-12">
+                                    <<div class="col-md-12 ">
                                         <div class="form-group">
-                                            <label for="guests">Days Number </label>
+                                            <label for="date">Day Numbers:</label>
                                             <div class="form-field">
-                                                <select name="people" id="people" class="form-control">
-                                                    <option value="#">1 </option>
-                                                    <option value="#">2</option>
-                                                    <option value="#">3</option>
-                                                    <option value="#">4</option>
-                                                    <option value="#">5+</option>
-                                                </select>
+                                                <input type="text" id="daynumber" class="form-control" placeholder="Day Numbers">
                                             </div>
                                         </div>
-                                    </div>*@
-
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3 class="sidebar-heading">Price Range</h3>
+                                        <form method="post" class="findform-2">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="guests">Price from:</label>
+                                                        <div class="form-field">
+                                                            <i class="icon icon-arrow-down3"></i>
+                                                            <select name="price_down" id="price_down" class="form-control">
+                                                                <option value="#"></option>
+                                                                <option value="0">0</option>
+                                                                <option value="200">200</option>
+                                                                <option value="300">300</option>
+                                                                <option value="400">400</option>
+                                                                <option value="1000">1000</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="guests">Price to:</label>
+                                                        <div class="form-field">
+                                                            <select name="price_up" id="price_up" class="form-control">
+                                                                <option value="#"></option>
+                                                                <option value="2000">2000</option>
+                                                                <option value="4000">4000</option>
+                                                                <option value="6000">6000</option>
+                                                                <option value="8000">8000</option>
+                                                                <option value="10000">10000</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                     <div class="col-md-12 btnfind">
-                                        <input type="submit" name="submit" id="submit" value="Find">
+                                        <input type="button" id=@ViewBag.sortorder value='Find' onclick="HienThiTour(id)">
 
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="Price">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="sidebar-heading">Price Range</h3>
-                            <form method="post" class="findform-2">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="guests">Price from:</label>
-                                            <div class="form-field">
-                                                <i class="icon icon-arrow-down3"></i>
-                                                <select name="people" id="people" class="form-control">
-                                                    <option value="#">1</option>
-                                                    <option value="#">200</option>
-                                                    <option value="#">300</option>
-                                                    <option value="#">400</option>
-                                                    <option value="#">1000</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="guests">Price to:</label>
-                                            <div class="form-field">
-                                                <select name="people" id="people" class="form-control">
-                                                    <option value="#">2000</option>
-                                                    <option value="#">4000</option>
-                                                    <option value="#">6000</option>
-                                                    <option value="#">8000</option>
-                                                    <option value="#">10000</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -179,25 +163,25 @@
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck2">
                                     <label class="form-check-label" for="exampleCheck1">
                                         <p class="rate"><span><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star"></i></span></p>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck3">
                                     <label class="form-check-label" for="exampleCheck1">
                                         <p class="rate"><span><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck4">
                                     <label class="form-check-label" for="exampleCheck1">
                                         <p class="rate"><span><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck5">
                                     <label class="form-check-label" for="exampleCheck1">
                                         <p class="rate"><span><i class="fas fa-star yellow"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
                                     </label>
@@ -212,31 +196,31 @@
                             <h3 class="sidebar-heading">Location</h3>
                             <form method="post" class="findform-2">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck6">
                                     <label class="form-check-label" for="exampleCheck1">
                                         <h4 class="place">Ha Noi</h4>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck7">
                                     <label class="form-check-label" for="exampleCheck1">
                                         <h4 class="place">Ho Chi Minh City</h4>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck8">
                                     <label class="form-check-label" for="exampleCheck1">
                                         <h4 class="place">Da Nang</h4>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck9">
                                     <label class="form-check-label" for="exampleCheck1">
                                         <h4 class="place">Quang Ninh</h4>
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck10">
                                     <label class="form-check-label" for="exampleCheck1">
                                         <h4 class="place">Kien Giang</h4>
                                     </label>

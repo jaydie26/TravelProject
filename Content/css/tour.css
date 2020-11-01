@@ -294,7 +294,7 @@ body{
 .form-check .form-check-input{
     margin-top:10px;
 }
-.btnfind input[type=submit]{
+.btnfind input[type=button]{
     background-color: #4CAF50;
     border: none;
     color: white;

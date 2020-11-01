@@ -124,6 +124,10 @@ body{
     font-weight: 500;
     border-radius: 5px;
 }
+.btnnext,.btnback{
+    background-color: cadetblue;
+    border: green solid 2px;
+}
 .tabs{
     background: var(--dark-color);
     padding-top: 1rem;

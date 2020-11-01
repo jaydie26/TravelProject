@@ -12,6 +12,7 @@ namespace TravelProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tour()
         {
+            DanhGias = new HashSet<DanhGia>();
             PhieuDatTours = new HashSet<PhieuDatTour>();
         }
 
@@ -31,19 +32,20 @@ namespace TravelProject.Models
 
         public int? MaChiTietTour { get; set; }
 
-        public int? NumStar { get; set; }
-
         public int? NumView { get; set; }
-
-        [StringLength(100)]
-        public string Place { get; set; }
 
         [StringLength(100)]
         public string LinkImage { get; set; }
 
+        [StringLength(100)]
+        public string DiaDiem { get; set; }
+
         public int? NumDay { get; set; }
 
         public virtual ChiTietTour ChiTietTour { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DanhGia> DanhGias { get; set; }
 
         public virtual DiaDanh DiaDanh { get; set; }
 

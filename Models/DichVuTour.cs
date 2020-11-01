@@ -6,19 +6,18 @@ namespace TravelProject.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("PhieuDatTour")]
-    public partial class PhieuDatTour
+    [Table("DichVuTour")]
+    public partial class DichVuTour
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int MaPhieuDat { get; set; }
+        public int MaDichVuTour { get; set; }
 
-        public int? MaKH { get; set; }
+        [StringLength(100)]
+        public string TenDichVu { get; set; }
 
-        public int? MaTour { get; set; }
+        public int? MaChiTietTour { get; set; }
 
-        public virtual KhachHang KhachHang { get; set; }
-
-        public virtual Tour Tour { get; set; }
+        public virtual ChiTietTour ChiTietTour { get; set; }
     }
 }

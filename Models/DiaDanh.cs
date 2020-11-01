@@ -12,6 +12,7 @@ namespace TravelProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DiaDanh()
         {
+            DanhMucTours = new HashSet<DanhMucTour>();
             Tours = new HashSet<Tour>();
         }
 
@@ -19,14 +20,21 @@ namespace TravelProject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaDiaDanh { get; set; }
 
-        [StringLength(30)]
+        [StringLength(100)]
         public string TenDiaDanh { get; set; }
 
-        [StringLength(50)]
+        [StringLength(100)]
         public string Img { get; set; }
 
-        [StringLength(5000)]
+        [StringLength(1000)]
         public string MoTa { get; set; }
+
+        public int? MaVung { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DanhMucTour> DanhMucTours { get; set; }
+
+        public virtual Vung Vung { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tour> Tours { get; set; }

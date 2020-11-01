@@ -1,0 +1,22 @@
+﻿@using TravelProject.Models;
+@model List<Vung_Diadanh>
+    @foreach (Vung_Diadanh dd in Model.Take(5))
+    {
+        <a href="@Url.Action("DestinationDetail", "Destination",new {@id=dd.MaDiaDanh})" class="Ades">
+            <div class="image">
+                <img src="@Url.Content("~/Content/images/Destination2/"+dd.Img)" />
+            </div>
+            <div class="describe">
+                <div class="text">
+                    @dd.TenDiaDanh
+                </div>
+                <div class="text_describe">
+                    <ul>
+                        <li>@dd.MoTa</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+    }
+
+
