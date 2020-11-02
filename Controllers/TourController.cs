@@ -177,6 +177,16 @@ namespace TravelProject.Controllers
             md.PhieuDatTours.Add(pdt);
             md.SaveChanges();
         }
+        [HttpPost]
+        public void CapnhatDanhGia(int rating, int id)
+        {
+            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+            TravelContext md = new TravelContext();
+            DanhGia dg = new DanhGia();
+            dg.MaThanhVien = tv.MaThanhVien;
+            dg.NumStar = rating;
+            dg.MaTour = id;
+        }
         //public ActionResult TourByName_Day(string place, string day)
         //{
         //    TravelContext mdt = new TravelContext();
