@@ -1,4 +1,4 @@
-﻿
+﻿@using TravelProject.Models;
 <!DOCTYPE html>
 <html>
 
@@ -40,10 +40,23 @@
                     <li>
                         <a href="@Url.Action("Index","Tour")">Tours</a>
                     </li>
-                    
-                    <li>
-                        <a href="@Url.Action("Login","Home")">Login</a>
-                    </li>
+
+                    @if (Session["TaiKhoan"] != null && Session["TaiKhoan"] != "")
+                    {
+                        ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+                        <li>
+                            <span>Welcome, @tv.username</span>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("DangXuat","Home")">Logout</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("Login","Home")">Login</a>
+                        </li>
+                    }
                 </ul>
             </nav>
             <div class="dropdown">
