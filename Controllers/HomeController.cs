@@ -13,7 +13,8 @@ namespace TravelProject.Controllers
         private TravelContext travel = new TravelContext();
         public ActionResult Index()
         {
-            return View();
+            var model = travel.Blogs.ToList();
+            return View(model);
         }
         public ActionResult Login()
         {
@@ -70,6 +71,16 @@ namespace TravelProject.Controllers
                 return RedirectToAction("Login", "Home");
             }
            
+        }
+        [HttpPost]
+        public ActionResult Contact(string email,string message)
+        {
+            Contact ct = new Contact();
+            ct.email = email;
+            ct.mess = message;
+            travel.Contacts.Add(ct);
+            travel.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
