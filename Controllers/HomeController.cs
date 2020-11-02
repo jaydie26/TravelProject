@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TravelProject.Models;
 using System.Web.Security;
+using TravelProject.Helper;
 
 namespace TravelProject.Controllers
 {
@@ -32,7 +33,7 @@ namespace TravelProject.Controllers
             ThanhVien tv = travel.ThanhViens.SingleOrDefault(n => n.email == TenTaiKhoan);
             if (tv != null)
             {
-                if (tv.pass == MatKhau)
+                if (tv.pass == PasswordHelper.ComputeHash(MatKhau, "MD5", GetBytes("Website")))
                 {
                     Session["TaiKhoan"] = tv;
                    
@@ -57,7 +58,7 @@ namespace TravelProject.Controllers
                 Console.WriteLine(count.ToString());
                 ThanhVien tv = new ThanhVien();
                 tv.MaThanhVien = count;
-                tv.pass = pass;
+                tv.pass = PasswordHelper.ComputeHash(pass, "MD5", GetBytes("Website"));
                 tv.email = email;
                 tv.username = username;
                 travel.ThanhViens.Add(tv);
@@ -71,6 +72,12 @@ namespace TravelProject.Controllers
                 return RedirectToAction("Login", "Home");
             }
            
+        }
+        private static byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
         }
         [HttpPost]
         public ActionResult Contact(string email,string message)
