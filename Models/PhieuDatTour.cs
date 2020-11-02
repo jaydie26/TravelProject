@@ -13,11 +13,14 @@ namespace TravelProject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaPhieuDat { get; set; }
 
-        public int? MaKH { get; set; }
+        public int? MaNguoiLienHe { get; set; }
 
         public int? MaTour { get; set; }
 
-        public virtual KhachHang KhachHang { get; set; }
+        [StringLength(1000)]
+        public string DiaDiemDon { get; set; }
+
+        public virtual NguoiLienHe NguoiLienHe { get; set; }
 
         public virtual Tour Tour { get; set; }
     }

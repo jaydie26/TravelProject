@@ -88,3 +88,9 @@ window.addEventListener('scroll', function() {
         }
     }
 })
+
+var cw = document.getElementById('s').clientWidth;
+function rating(stars) {
+    document.getElementById('s').style.width = Math.round(cw * (stars / 5)) + 'px';
+}
+rating(Number(3.25));

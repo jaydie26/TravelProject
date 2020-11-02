@@ -36,7 +36,7 @@
                             <input type="button" name="submit1" class="filter no-outline" value="ALL" onclick="Sortby('all')">
                             <input type="button" name="submit2" class="filter no-outline" value="PRICE" onclick="Sortby('price')">
                             <input type="button" name="submit3" class="filter no-outline" value="STAR" onclick="Sortby('star')">
-                            <input type="button" name="submit4" class="filter no-outline" value="REVIEW" onclick="Sortby('review')">
+                            <input type="button" name="submit4" class="filter no-outline" value="VIEW" onclick="Sortby('review')">
                             <input type="button" name="submit5" class="filter no-outline" value="DAY" onclick="Sortby('day')">
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                     {
                         <div class="img-list">
                             <div class="tour">
-                                <a href="/Tour/TourPlace/@item.MaChiTietTour" class="tour-img">
+                                <a href="/Tour/TourPlace/@item.MaChiTietTour" class="tour-img" onclick="CapnhatView(@item.MaTour)">
                                     <img src="@Url.Content("~/Content/")@item.LinkImage">
                                     <p class="price"><span>$@item.Gia</span> <small>/ @item.NumDay Days</small></p>
                                 </a>
@@ -64,7 +64,7 @@
                                         </span>
                                         @item.NumView Reviews
                                     </p>
-                                    <h2><a href="tour-place.html">@item.TenTour</a></h2>
+                                    <h2><a href="/Tour/TourPlace/@item.MaChiTietTour" onclick="CapnhatView(@item.MaChiTietTour)">@item.TenTour</a></h2>
                                     <span class="city">@item.DiaDiem</span>
                                 </span>
                             </div>
@@ -74,7 +74,7 @@
                 @{ 
                     var temp = ViewBag.sortorder;
                 }
-                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                <div class="Trang_hientai"><p>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount<p></div>
                 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.place, mavung = ViewBag.day, sortorder = ViewBag.sortorder}))
 
             </div>
@@ -152,82 +152,8 @@
                 </div>
 
                 <div class="review-rating">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="sidebar-heading">Review Rating</h3>
-                            <form method="post" class="findform-2">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i></span></p>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star"></i></span></p>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck3">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck4">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star yellow"></i><i class="fas fa-star yellow"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck5">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <p class="rate"><span><i class="fas fa-star yellow"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 <div class="location">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="sidebar-heading">Location</h3>
-                            <form method="post" class="findform-2">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck6">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Ha Noi</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck7">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Ho Chi Minh City</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck8">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Da Nang</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck9">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Quang Ninh</h4>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck10">
-                                    <label class="form-check-label" for="exampleCheck1">
-                                        <h4 class="place">Kien Giang</h4>
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

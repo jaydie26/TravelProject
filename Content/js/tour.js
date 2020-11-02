@@ -36,3 +36,16 @@ function HienThiTour(value) {
 function Sortby(value) {
 	document.location.href = '/Tour/Index/?sortorder=' + value + '&place=' + $('#location').val() + '&day=' + $('#daynumber').val();
 }
+function CapnhatView(value) {
+		$.ajax({
+		type: 'POST',
+		data: { matour: value},
+		url: '/Tour/CapnhatView',
+		success: function (result) {
+			alert('success');
+		},
+		error: function (e) {
+			alert(e.responseText);
+		}
+	});
+}

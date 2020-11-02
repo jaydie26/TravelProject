@@ -13,6 +13,7 @@ namespace TravelProject.Models
         public Tour()
         {
             DanhGias = new HashSet<DanhGia>();
+            MaGiamGias = new HashSet<MaGiamGia>();
             PhieuDatTours = new HashSet<PhieuDatTour>();
         }
 
@@ -48,6 +49,9 @@ namespace TravelProject.Models
         public virtual ICollection<DanhGia> DanhGias { get; set; }
 
         public virtual DiaDanh DiaDanh { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MaGiamGia> MaGiamGias { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuDatTour> PhieuDatTours { get; set; }

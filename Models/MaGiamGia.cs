@@ -6,22 +6,20 @@ namespace TravelProject.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("DanhGia")]
-    public partial class DanhGia
+    [Table("MaGiamGia")]
+    public partial class MaGiamGia
     {
         [Key]
-        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int MaThanhVien { get; set; }
+        public int IdMaGiamGia { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column("MaGiamGia")]
+        [StringLength(50)]
+        public string MaGiamGia1 { get; set; }
+
+        public int? PhanTramGiam { get; set; }
+
         public int MaTour { get; set; }
-
-        public int? NumStar { get; set; }
-
-        public virtual ThanhVien ThanhVien { get; set; }
 
         public virtual Tour Tour { get; set; }
     }

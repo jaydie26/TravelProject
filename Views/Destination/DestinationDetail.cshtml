@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Destination";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    TravelContext mdt = new TravelContext();
+    var modelDanhmuc = mdt.DanhMucTours.Where(x=> x.MaDiaDanh==Model.MaDiaDanh).ToList();
 }
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -14,6 +16,9 @@
 <script src="https://kit.fontawesome.com/a858033a2a.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="~/Content/css/bootstrap.css">
 <link type="text/css" rel="stylesheet" href="~/Content/css/destination.css" />
+<section class="img-destination">
+    <img src="@Url.Content("~/Content/images/Destination2/"+Model.Img)">
+</section>
 <section class="content">
     <div class="container">
         <div class="recommend">
@@ -21,13 +26,7 @@
                 <h2>@Model.TenDiaDanh Tours & Package Tours</h2>
             </div>
             <p>
-                Ha Long Bay is one of the top destination travel in Norther Vietnam. It is recognized as a UNESCO
-                Word Heritage Site, and more famous news in the Word said :” Ha Long Bay one of the top wonderful
-                landscape natural in the world”.
-                <br>
-                Cat ba island belongs to Hai Phong city about 10kms southeast of Ha Long bay, 30 km form city center
-                of Hai Phong. Cat Ba is the largest island of Cat ba which is 367 island on the water of Lan Ha Bay.
-                Come to Cat Ba visitors will have a chance to enjoy the wonder of nature .
+                @Model.MoTa
             </p>
         </div>
 
@@ -253,96 +252,54 @@
                 <ul class="nav-tabs">
                     <li>
                         <div id="tab-1" class="tab-item tab-border">
-                            How to book a tour
+                            @modelDanhmuc[0].TenDanhMucGoiTour;
                         </div>
                     </li>
                     <li>
                         <div id="tab-2" class="tab-item">
-                            Must see destination
+                            @modelDanhmuc[1].TenDanhMucGoiTour;
                         </div>
                     </li>
                     <li>
                         <div id="tab-3" class="tab-item">
-                            Special interests and activities
+                            @modelDanhmuc[2].TenDanhMucGoiTour;
                         </div>
                     </li>
                     <li>
                         <div id="tab-4" class="tab-item">
-                            Best time to travel
+                            @modelDanhmuc[3].TenDanhMucGoiTour;
                         </div>
                     </li>
                     <li>
                         <div id="tab-5" class="tab-item">
-                            Transportation
+                            @modelDanhmuc[4].TenDanhMucGoiTour;
                         </div>
                     </li>
                     <li>
                         <div id="tab-6" class="tab-item">
-                            Travel considerations
+                            @modelDanhmuc[5].TenDanhMucGoiTour;
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="tab-show">
                 <div id="tab-1-content" class="tab-content-item show">
-                    There are three ways to plan and book a trip:
-                    <br>
-                    1. Get a customized tour planned and booked by a travel professional. Travel independently on
-                    your own schedule.
-                    <br>
-                    2. Book a group tour. Join an escorted group tour with a fixed departure date.
-                    <br>
-                    3. Plan and book a trip yourself.
-                    <br>
-                    The First Travel offers the best solution for a customized tour by matching you with top travel
-                    specialists who plan and book the trip for you. Our travel agency division, Marageti,
-                    specializes in helping you book an escorted group tour. There is no extra cost to you for either
-                    service.
-                    <br>
-                    Custom Tours
-                    <br>
-                    A customized tour is one that is planned by a travel specialist according to your specific
-                    interests, preferences, and schedule. Whether you desire a family-friendly adventure or a
-                    romantic getaway, each of the accommodations, activities, and destinations is tailored to your
-                    preferences. The knowledge and experience of your travel specialist makes a big difference.
-                    Zicasso has spent thousands of hours vetting the best travel partners. We act as a referral
-                    service, matching you with specialists that best meet your goals and priorities.
-                    <br>
-                    Escorted Group Tours
-                    <br>
-                    A group tour offers the advantage of convenience at a great value. The schedule is fixed, the
-                    itinerary is pre-planned, and a dedicated tour director travels with the group throughout the
-                    trip. A group tour can be 30 - 50% less expensive than an equivalent customized tour. Out of the
-                    many hundreds of group tours, how do you select the right one for you? Our travel agency
-                    division, Marageti, has sales agents who specialize in helping travelers weigh the pros and cons
-                    of each group tour. We give you personalized recommendations to find the best tour for you.
-                    <br>
-                    Goals and Priorities
-                    <br>
-                    What are your goals and priorities for the trip? These should drive your decision for either a
-                    customized tour or a fixed departure group tour. We are here to help you make the right
-                    decisions to make your dream trip a reality.
+                    @modelDanhmuc[0].Mota;
                 </div>
                 <div id="tab-2-content" class="tab-content-item">
-                    Ha Long Bay is one of the top destination travel in Norther Vietnam. It is recognized as a
-                    UNESCO Word Heritage Site, and more famous news in the Word said :” Ha Long Bay one of the top
-                    wonderful landscape natural in the world”
-                    <br>
-                    Cat ba island belongs to Hai Phong city about 10kms southeast of Ha Long bay, 30 km form city
-                    center of Hai Phong. Cat Ba is the largest island of Cat ba which is 367 island on the water of
-                    Lan Ha Bay. Come to Cat Ba visitors will have a chance to enjoy the wonder of nature .
+                    @modelDanhmuc[1].Mota;
                 </div>
                 <div id="tab-3-content" class="tab-content-item">
-
+                    @modelDanhmuc[2].Mota;
                 </div>
                 <div id="tab-4-content" class="tab-content-item">
-
+                    @modelDanhmuc[3].Mota;
                 </div>
                 <div id="tab-5-content" class="tab-content-item">
-
+                    @modelDanhmuc[4].Mota;
                 </div>
                 <div id="tab-6-content" class="tab-content-item">
-
+                    @modelDanhmuc[5].Mota;
                 </div>
 
 
