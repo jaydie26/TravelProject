@@ -12,8 +12,10 @@ namespace TravelProject.Models
         {
         }
 
+        public virtual DbSet<Blog> Blogs { get; set; }
         public virtual DbSet<ChiTietNgay> ChiTietNgays { get; set; }
         public virtual DbSet<ChiTietTour> ChiTietTours { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<DanhGia> DanhGias { get; set; }
         public virtual DbSet<DanhMucTour> DanhMucTours { get; set; }
         public virtual DbSet<DiaDanh> DiaDanhs { get; set; }
@@ -27,10 +29,43 @@ namespace TravelProject.Models
         public virtual DbSet<ThanhVien> ThanhViens { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
         public virtual DbSet<Vung> Vungs { get; set; }
+        public virtual DbSet<ChiTietTour_ChiTietNgay_Ngay> ChiTietTour_ChiTietNgay_Ngay { get; set; }
         public virtual DbSet<Vung_Diadanh> Vung_Diadanh { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Blog>()
+                .Property(e => e.img)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Blog>()
+                .Property(e => e.title)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Blog>()
+                .Property(e => e.content)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Blog>()
+                .Property(e => e.link)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Blog>()
+                .Property(e => e.author)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Blog>()
+                .Property(e => e.date_write)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Contact>()
+                .Property(e => e.email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Contact>()
+                .Property(e => e.mess)
+                .IsUnicode(false);
+
             modelBuilder.Entity<DiaDanh>()
                 .Property(e => e.Img)
                 .IsUnicode(false);

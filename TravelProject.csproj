@@ -18,7 +18,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort>44328</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -157,8 +158,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietNgay.cs" />
     <Compile Include="Models\ChiTietTour.cs" />
+    <Compile Include="Models\ChiTietTour_ChiTietNgay_Ngay.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\DanhGia.cs" />
     <Compile Include="Models\DanhMucTour.cs" />
     <Compile Include="Models\DiaDanh.cs" />
@@ -320,13 +324,13 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Tour\Index.cshtml" />
     <Content Include="Views\Tour\TourPlace.cshtml" />
-    <Content Include="Views\Home\blog.cshtml" />
     <Content Include="Views\Tour\Booking.cshtml" />
     <Content Include="Views\Destination\DestinationDetail.cshtml" />
     <Content Include="Views\Destination\Index.cshtml" />
     <Content Include="Views\Shared\DesByArea.cshtml" />
     <Content Include="Views\Shared\TourByName.cshtml" />
     <Content Include="Views\Shared\PagingDes.cshtml" />
+    <Content Include="Views\Shared\FooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

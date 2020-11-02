@@ -1,5 +1,5 @@
 ﻿@using TravelProject.Models;
-
+@model List<Blog>
 <!DOCTYPE html>
 <html>
 
@@ -45,12 +45,10 @@
                         <li>
                             <a href="@Url.Action("Index","Tour")">Tours</a>
                         </li>
-                        <li>
-                            <a href="@Url.Action("blog","Home")">Blog</a>
-                        </li>
-                        @if (Session["TaiKhoan"]!=null && Session["TaiKhoan"]!="")
+                        
+                        @if (Session["TaiKhoan"] != null && Session["TaiKhoan"] != "")
                         {
-                            ThanhVien tv=(ThanhVien)Session["TaiKhoan"];
+                            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
                             <li>
                                 <span>Welcome, @tv.username</span>
                             </li>
@@ -83,9 +81,7 @@
                         <li>
                             <a href="@Url.Action("Index","Tour")">Tours</a>
                         </li>
-                        <li>
-                            <a href="@Url.Action("blog","Home")">Blog</a>
-                        </li>
+                        
                         <li>
                             <a href="@Url.Action("Login","Home")">Login</a>
                         </li>
@@ -102,7 +98,7 @@
                 have
                 impressive and unforgettable travel experience!
             </p>
-            <a href="index.html" class="btn">
+            <a href="@Url.Action("Index","Destination")" class="btn">
                 Where do you want to go?
                 <i class="fas fa-chevron-right btn-icon"></i>
             </a>
@@ -213,7 +209,7 @@
         <div class="container">
             <div class="title">
                 <h1>
-                    Top VietNam Tours Destination
+                    VietNam Tours Destination
                 </h1>
                 <p>
                     Walk hand in hand through the romantic beach of Nha Trang, cruise on a luxury junk
@@ -292,7 +288,6 @@
             <div class="list_blog">
                 <!--slider------------------->
                 <ul id="autoWidth" class="cs-hidden">
-                    <!--1------------------------------>
                     <li class="item-a">
                         <!--slider-box-->
                         <div class="box">
@@ -300,9 +295,9 @@
                             <!--details-->
                             <div class="content">
                                 <div class="blog-infor">
-                                    <a href="#" class="post-categories">Travel Guide</a>
+                                    <a href="https:///nethue.com.vn/blog-am-thuc/" class="post-categories">Travel Guide</a>
                                     <h3>
-                                        <a href="https://blog.traveloka.com/vn/cap-nhat-nhung-quan-cafe-ha-noi-dep/">Experience for travel Hue and Hoi An </a>
+                                        <a href="https:///nethue.com.vn/blog-am-thuc/">Experience for travel Hue </a>
                                         <p class="author-date">NguyenAnh<span>, 26/03/2020</span></p>
                                     </h3>
                                 </div>
@@ -319,8 +314,8 @@
                                 <div class="blog-infor">
                                     <a href="https://blog.traveloka.com/vn/cap-nhat-nhung-quan-cafe-ha-noi-dep/" class="post-categories">Check-In Location</a>
                                     <h3>
-                                        <a href="#">
-                                            Da Nang travel experience 1 day full meal schedule - check-in
+                                        <a href="https://dulichkhampha24.com/duc-ket-kinh-nghiem-du-lich-da-nang-tu-tuc-sieu-tiet-kiem.html">
+                                            Da Nang travel experience 1 day full meal schedule
                                         </a>
                                         <p class="author-date">TuongNguyen<span>, 26/02/2020</span></p>
                                     </h3>
@@ -336,9 +331,9 @@
                             <!--details-->
                             <div class="content">
                                 <div class="blog-infor">
-                                    <a href="https://blog.traveloka.com/vn/cap-nhat-nhung-quan-cafe-ha-noi-dep/" class="post-categories">Travel Guide</a>
+                                    <a href="https://dulich9.com/kinh-nghiem-va-huong-dan-du-lich-phu-quoc-chi-tiet.html" class="post-categories">Travel Guide</a>
                                     <h3>
-                                        <a href="#">
+                                        <a href="https://dulich9.com/kinh-nghiem-va-huong-dan-du-lich-phu-quoc-chi-tiet.html">
                                             Phu Quoc travel guide for a great getaway
                                         </a>
                                         <p class="author-date">LinhNguyen<span>, 26/09/2020</span></p>
@@ -355,9 +350,9 @@
                             <!--details-->
                             <div class="content">
                                 <div class="blog-infor">
-                                    <a href="https://blog.traveloka.com/vn/cap-nhat-nhung-quan-cafe-ha-noi-dep/" class="post-categories">Check-In Location</a>
+                                    <a href="https://dulichfun.com/kinh-nghiem-du-lich-vung-tau-vui-ve-tiet-kiem-sieu-day-du.html" class="post-categories">Check-In Location</a>
                                     <h3>
-                                        <a href="#">Note immediately the genuine check-in coordinates in Vung Tau</a>
+                                        <a href="https://dulichfun.com/kinh-nghiem-du-lich-vung-tau-vui-ve-tiet-kiem-sieu-day-du.html">Note immediately the genuine check-in coordinates in Vung Tau</a>
                                         <p class="author-date">KakaPhan<span>, 15/11/2020</span></p>
                                     </h3>
                                 </div>
@@ -372,9 +367,9 @@
                             <!--details-->
                             <div class="content">
                                 <div class="blog-infor">
-                                    <a href="#" class="post-categories">Eat And Play</a>
+                                    <a href="https://www.vntrip.vn/cam-nang/cam-nag-du-lich-sai-gon-tu-den-z-khong-bo-qua-11062" class="post-categories">Eat And Play</a>
                                     <h3>
-                                        <a href="#">
+                                        <a href="https://www.vntrip.vn/cam-nang/cam-nag-du-lich-sai-gon-tu-den-z-khong-bo-qua-11062">
                                             One day sweeping SunWorld park - the largest amusement park
                                             Asian
                                         </a>
@@ -392,11 +387,10 @@
                             <!--details-->
                             <div class="content">
                                 <div class="blog-infor">
-                                    <a href="#" class="post-categories">Cẩm nang du lịch</a>
+                                    <a href="https://www.vntrip.vn/cam-nang/cam-nag-du-lich-sai-gon-tu-den-z-khong-bo-qua-11062" class="post-categories">Cẩm nang du lịch</a>
                                     <h3>
-                                        <a href="#">
-                                            Kinh nghiệm du lịch Huế 1 ngày đầy đủ lịch trình ăn - check in-
-                                            ở
+                                        <a href="https://www.vntrip.vn/cam-nang/cam-nag-du-lich-sai-gon-tu-den-z-khong-bo-qua-11062">
+                                            Traveling to Ninh Binh
                                         </a>
                                         <p class="author-date">tuongnguyen<span>, 26/02/2020</span></p>
                                     </h3>
@@ -404,10 +398,13 @@
                             </div>
                         </div>
                     </li>
+
+
                 </ul>
             </div>
         </div>
     </section>
+
 
     <section class="about-us">
         <div class="container">
@@ -470,56 +467,8 @@
             </div>
         </div>
     </section>
-    <section class="footer">
-        <div class="footer-content">
-            <div class="footer-section about">
-                <h1 class="logo-text">S-VietNam</h1>
-                <p>
-                    S Vietnam Travel is the online travel service company in VietNam. We provide the full range of travel services to VietNam. We specialize in customizing or tailor made for individuals, families and group to specify requirements at great value for money.
-                </p>
-                <div class="contact">
-                    <span><i class="fas fa-phone"></i>&nbsp; 123-456-789</span>
-                    <br>
-                    <span><i class="fas fa-envelope"></i>&nbsp; infor@svietnam.com</span>
-                </div>
-                <div class="socials">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="footer-section links">
-                <h2>Quick Links</h2>
-                <br>
-                <ul>
-                    <a href="@Url.Action("Index","Home")"><li>Home</li></a>
-                    <a href="@Url.Action("Index","Destination")"><li>Destination</li></a>
-                    <a href="@Url.Action("Index","Tour")"><li>Tours</li></a>
-                    <a href="@Url.Action("blog","Home")"><li>Blog</li></a>
-                </ul>
-            </div>
-            <div class="footer-section contact-form">
-                <h2>Contact us</h2>
-                <br>
-                <form action="index.html" method="post">
-                    <input type="email" name="email" class="text-input contact-input" placeholder="Your email address...">
-                    <br>
-                    <textarea name="message" class="text-input contact-input" placeholder="Your message..."></textarea>
-                    <br>
-                    <button type="submit" class="btn btn-big contact-btn">
-                        <i class="fas fa-envelope"></i>
-                        Send
-                    </button>
-                </form>
-            </div>
 
-        </div>
-        <div class="footer-bottom">
-            &copy; 2020 S Vietnam Travel. All Rights Reserved
-        </div>
-    </section>
-
+    @Html.Partial("~/Views/Shared/FooterPartial.cshtml")
     <a href="#" class="cd-top">Back To Top</a>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"

@@ -30,11 +30,22 @@ namespace TravelProject.Controllers
             {
                 model = mdt.Vung_Diadanh.Where(x => ((x.TenDiaDanh.Contains(search) || x.TenVung.Contains(search)) && x.Mavung == mavung)).ToList();
             }
-            int pageSize = 5;
+            int pageSize = 4;
             int no_of_page = (page ?? 1);
             ViewBag.search = search;
             ViewBag.mavung = mavung;
-            return View(model.ToPagedList(no_of_page, pageSize));
+            var des = model.ToPagedList(no_of_page, pageSize);
+            if (des.Count() != 0)
+            {
+                return View(model.ToPagedList(no_of_page, pageSize));
+            }
+            else
+            {
+                TempData["Destination"] = "<script>alert('Not found destination!');</script>";
+                return RedirectToAction("Index", "Destination");
+            }
+           
+           
         }
         //public ActionResult GetPaging(int? page)
         //{

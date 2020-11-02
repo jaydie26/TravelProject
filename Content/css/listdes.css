@@ -207,6 +207,21 @@ body{
     padding-left: 50px;
     width:30%;
 }
+    .find-tour .areas a{
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+    }
+
+.find-tour .areas a:hover{
+    align-items: center;
+    text-align:center;
+    text-decoration:none;
+}
+    .find-tour .areas .boxarea{
+       
+        padding-top: 10px;
+    }
 .sidebar-wrap {
    display: block; 
 }
