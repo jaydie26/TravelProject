@@ -29,7 +29,7 @@ namespace TravelProject.Models
         public virtual DbSet<ThanhVien> ThanhViens { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
         public virtual DbSet<Vung> Vungs { get; set; }
-        public virtual DbSet<ChiTietTour_ChiTietNgay_Ngay> ChiTietTour_ChiTietNgay_Ngay { get; set; }
+        public virtual DbSet<Soluong_DanhGia> Soluong_DanhGia { get; set; }
         public virtual DbSet<Vung_Diadanh> Vung_Diadanh { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

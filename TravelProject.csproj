@@ -157,9 +157,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\ChiTietNgay.cs" />
     <Compile Include="Models\ChiTietTour.cs" />
-    <Compile Include="Models\ChiTietTour_ChiTietNgay_Ngay.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\DanhGia.cs" />
     <Compile Include="Models\DanhMucTour.cs" />
     <Compile Include="Models\DiaDanh.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Models\Ngay.cs" />
     <Compile Include="Models\NguoiLienHe.cs" />
     <Compile Include="Models\PhieuDatTour.cs" />
+    <Compile Include="Models\Soluong_DanhGia.cs" />
     <Compile Include="Models\ThanhVien.cs" />
     <Compile Include="Models\Tour.cs" />
     <Compile Include="Models\TravelContext.cs" />
