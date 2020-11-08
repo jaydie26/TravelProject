@@ -238,3 +238,4 @@ function TongGiaTien() {
     document.getElementById("tonggiatien").innerHTML = tongtien +' $';
     
 }
+//a
