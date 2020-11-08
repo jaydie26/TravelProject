@@ -5,11 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     TravelContext mdt = new TravelContext();
     var modelNgay = mdt.Ngays.Where(x => x.MaChiTietTour == Model.MaChiTietTour).ToList();
-    var modelTour = mdt.Tours.SingleOrDefault(x => x.MaChiTietTour == Model.MaChiTietTour);
     var modelLink = mdt.Links.Where(x => x.MaChiTietTour == Model.MaChiTietTour).ToList();
     var modelDichVuTour = mdt.DichVuTours.Where(x => x.MaChiTietTour == Model.MaChiTietTour).ToList();
     var modelTours = mdt.Tours.ToList();
-    var modelSoLuongDanhGia = mdt.Soluong_DanhGia.Where(x => x.MaTour == modelTour.MaTour).ToList();
+    
+
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
@@ -54,36 +54,18 @@
                 <div class="User_rate">
                     <h3 class="heading">User Rating</h3>
                     <div class="feedback">
-                        @if (Session["TaiKhoan"] != null)
-                        {
-                            <script>
-                                function enabledanhgia() {
-                                    document.getElementById("rating-5").attr("enabled", true);
-                                    document.getElementById("rating-4").attr("enabled", true);
-                                    document.getElementById("rating-3").attr("enabled", true);
-                                    document.getElementById("rating-2").attr("enabled", true);
-                                    document.getElementById("rating-1").attr("enabled", true);
-                                }
-
-                                window.onload = enabledanhgia();
-                            </script>
-
-                            <div class="rating">
-                                @using (Html.BeginForm("CapnhatDanhGia", "Tour", FormMethod.Post, new { id = modelTour.MaTour }))
-                                {
-                                    <input type="radio" name="rating" value=5 id="rating-5">
+                            <div class="rating" id="logined">
+                                    <input type="radio" name="rating" value=5 id="rating-5" onclick="CapNhatDanhGia(5,@ViewBag.Matour)">
                                     <label for="rating-5"></label>
-                                    <input type="radio" name="rating" value=4 id="rating-4">
+                                    <input type="radio" name="rating" value=4 id="rating-4" onclick="CapNhatDanhGia(4,@ViewBag.Matour)">
                                     <label for="rating-4"></label>
-                                    <input type="radio" name="rating" value=3 id="rating-3">
+                                    <input type="radio" name="rating" value=3 id="rating-3" onclick="CapNhatDanhGia(3,@ViewBag.Matour)">
                                     <label for="rating-3"></label>
-                                    <input type="radio" name="rating" value=2 id="rating-2">
+                                    <input type="radio" name="rating" value=2 id="rating-2" onclick="CapNhatDanhGia(2,@ViewBag.Matour)">
                                     <label for="rating-2"></label>
-                                    <input type="radio" name="rating" value=1 id="rating-1">
+                                    <input type="radio" name="rating" value=1 id="rating-1" onclick="CapNhatDanhGia(1,@ViewBag.Matour)">
                                     <label for="rating-1"></label>
-                                }
-
-
+                                
                                 <div class="emoji-wrapper">
                                     <div class="emoji">
                                         <svg class="rating-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -172,89 +154,24 @@
                                     </div>
                                 </div>
                             </div>
-
-                        }
-                        else
-                        {
-                            <script>
-                            function disabledanhgia() {
-                                $("#rating-5").unbind('click').click(function () {
-                                    return false;
-                                });
-                                $("#rating-4").unbind('click').click(function () {
-                                    return false;
-                                });
-                                $("#rating-3").unbind('click').click(function () {
-                                    return false;
-                                });
-                                $("#rating-2").unbind('click').click(function () {
-                                    return false;
-                                });
-                                $("#rating-1").unbind('click').click(function () {
-                                    return false;
-                                });
-                            </script>
-                        }
                     </div>
 
                     <h3 class="heading">Reviews</h3>
-                    @{ 
-                        int? tongsl = 0;
-                        int? sl1 = 0;
-                        int? sl2 = 0;
-                        int? sl3 = 0;
-                        int? sl4 = 0;
-                        int? sl5 = 0;
-                        foreach (Soluong_DanhGia item in modelSoLuongDanhGia)
-                        {
-                            tongsl += item.soluong;
-                        }
-                        if(modelSoLuongDanhGia[0].soluong == null){
-                            sl1 = 0;
-                        }
-                        else { sl1 = modelSoLuongDanhGia[0].soluong; }
-                        if (modelSoLuongDanhGia[1].soluong == null)
-                        {
-                            sl2 = 0;
-                        }
-                        else { sl1 = modelSoLuongDanhGia[1].soluong; }
-                        if (modelSoLuongDanhGia[2].soluong == null)
-                        {
-                            sl3 = 0;
-                        }
-                        else { sl1 = modelSoLuongDanhGia[2].soluong; }
-                        if (modelSoLuongDanhGia[3].soluong == null)
-                        {
-                            sl4 = 0;
-                        }
-                        else { sl1 = modelSoLuongDanhGia[3].soluong; }
-                        if (modelSoLuongDanhGia[4].soluong == null)
-                        {
-                            sl5 = 0;
-                        }
-                        else { sl1 = modelSoLuongDanhGia[4].soluong; }
-                        int? p1 = sl1 * 100 / tongsl;
-                        int? p2 = sl2 * 100 / tongsl;
-                        int? p3 = sl3 * 100 / tongsl;
-                        int? p4 = sl4 * 100 / tongsl;
-                        int? p5 = sl5 * 100 / tongsl;
-
-                    }
                     <div class="review-rating">
                         <div class="left-review">
-                            <div class="review-title">3.5</div>
+                            <div class="review-title">@ViewBag.rating</div>
                             <div class="Star" style="position: relative; font-size: 30px; margin-top: -8px">
                                 <div style="color:#ccc;">★★★★★</div>
                                 <div id="s" class="rating1">★★★★★</div>
                             </div>
-                            <div class="review-people"><i class="fa fa-user"></i> @tongsl total</div>
+                            <div class="review-people"><i class="fa fa-user"></i> @ViewBag.tongsl total</div>
                         </div>
                         <div class="right-review">
                             <div class="row-bar">
                                 <div class="left-bar">5</div>
                                 <div class="right-bar">
                                     <div class="bar-container">
-                                        <div class="bar-5" style="width: @p1%;"></div>
+                                        <div class="bar-5" style="width: @ViewBag.p5%;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -262,7 +179,7 @@
                                 <div class="left-bar">4</div>
                                 <div class="right-bar">
                                     <div class="bar-container">
-                                        <div class="bar-4" style="width: @p2%;"></div>
+                                        <div class="bar-4" style="width: @ViewBag.p4%;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -270,7 +187,7 @@
                                 <div class="left-bar">3</div>
                                 <div class="right-bar">
                                     <div class="bar-container">
-                                        <div class="bar-3" style="width: @p3%;"></div>
+                                        <div class="bar-3" style="width: @ViewBag.p3%;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -278,7 +195,7 @@
                                 <div class="left-bar">2</div>
                                 <div class="right-bar">
                                     <div class="bar-container">
-                                        <div class="bar-2" style="width: @p4%;"></div>
+                                        <div class="bar-2" style="width: @ViewBag.p2%;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -286,7 +203,7 @@
                                 <div class="left-bar">1</div>
                                 <div class="right-bar">
                                     <div class="bar-container">
-                                        <div class="bar-1" style="width: @p5%;"></div>
+                                        <div class="bar-1" style="width: @ViewBag.p1%;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -317,7 +234,7 @@
                                         <strong>TOTAL: </strong>
                                         <strong></strong>
                                         <br>
-                                        <span>@modelTour.NumDay DAYS</span>
+                                        <span>@ViewBag.Songay DAYS</span>
                                     </div>
                                 </div>
                                 <div class="detailad">
@@ -341,7 +258,7 @@
                                         <strong>COUNTRIES VISITED </strong>
                                         <strong></strong>
                                         <br>
-                                        <span>@modelTour.DiaDiem</span>
+                                        <span>@ViewBag.Diadiem</span>
                                     </div>
                                 </div>
                                 <div class="detailad">
@@ -471,7 +388,7 @@
             </div>
         </div>
         <div class="booknow">
-            <a href="@Url.Action("Booking","Tour",new {matour=modelTour.MaTour, songay=modelTour.NumDay, tentour = modelTour.TenTour })">Book Now</a>
+            <a href="@Url.Action("Booking","Tour",new {matour=@ViewBag.Matour, songay=@ViewBag.Songay, tentour = @ViewBag.Tentour })">Book Now</a>
         </div>
     </div>
 
@@ -562,5 +479,9 @@
         </div>
     </div>
 </section>
-<script type="text/javascript" src="~/Content/js/tour-place.js"></script>
+<script src="~/Content/js/tour-place.js" type="text/javascript"></script>
+<script>
+rating(Number(@ViewBag.rating))
+showDG(@ViewBag.sosaoDG,@ViewBag.Matv)
+</script>
 

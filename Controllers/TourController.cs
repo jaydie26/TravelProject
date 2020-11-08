@@ -104,16 +104,54 @@ namespace TravelProject.Controllers
         }
         public ActionResult TourPlace(int id)
         {
+            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
             TravelContext mdt = new TravelContext();
             var model = mdt.ChiTietTours.SingleOrDefault(x => x.MaChiTietTour == id);
+            var modelTour = mdt.Tours.SingleOrDefault(x => x.MaChiTietTour == model.MaChiTietTour);
+            ViewBag.sosaoDG = 0;
+            ViewBag.Matv = 0;
+            if (tv != null) {
+                var modelDanhGia = mdt.DanhGias.SingleOrDefault(x => x.MaTour == modelTour.MaTour && x.MaThanhVien == tv.MaThanhVien);
+                ViewBag.sosaoDG = modelDanhGia.NumStar;
+                ViewBag.Matv = tv.MaThanhVien;
+            }
+            ViewBag.Matour = modelTour.MaTour;
+            ViewBag.Songay = modelTour.NumDay;
+            ViewBag.Diadiem = modelTour.DiaDiem;
+            ViewBag.Tentour = modelTour.TenTour;
+            var modelSoLuongDanhGia = mdt.Soluong_DanhGia.Where(x => x.MaTour == modelTour.MaTour).ToList();
+            int?[] sl = new int?[5] { 0, 0, 0, 0, 0 };
+            int? tongsl = 0;
+            foreach (Soluong_DanhGia item in modelSoLuongDanhGia)
+            {
+                tongsl += item.soluong;
+                sl[item.Numstar - 1] = item.soluong;
+            }
+            int? p1 = sl[0] * 100 / tongsl;
+            int? p2 = sl[1] * 100 / tongsl;
+            int? p3 = sl[2] * 100 / tongsl;
+            int? p4 = sl[3] * 100 / tongsl;
+            int? p5 = sl[4] * 100 / tongsl;
+            double rating = ((double)(sl[0] * 1 + sl[1] * 2 + sl[2] * 3 + sl[3] * 4 + sl[4] * 5) / (double)tongsl);
+            rating = Math.Round(rating, 1);
+            ViewBag.p1 = p1;
+            ViewBag.p2 = p2;
+            ViewBag.p3 = p3;
+            ViewBag.p4 = p4;
+            ViewBag.p5 = p5;
+            ViewBag.tongsl = tongsl;
+            ViewBag.rating = rating;
             return View(model);
         }
+
         public ActionResult Booking(int matour, int songay, string tentour)
         {
+            TravelContext mdt = new TravelContext();
+            var model = mdt.BangGias.FirstOrDefault(x => x.MaTour == matour);
             ViewBag.MaTour = matour;
             ViewBag.songay = songay;
             ViewBag.tentour = tentour;
-            return View();
+            return View(model);
         }
         [HttpPost]
         public void CapnhatView(int matour)
@@ -124,20 +162,21 @@ namespace TravelProject.Controllers
             md.SaveChanges();
         }
         [HttpPost]
-        public void CapnhatTTNLH(string ten,string email, string diachi, string dienthoai, string note)
+        public void CapnhatPhieuDatTour(string pickupplace, int matour, int gia)
         {
             TravelContext md = new TravelContext();
             int idnlh = md.NguoiLienHes.Count() + 1;
-            NguoiLienHe nlh = new NguoiLienHe();
-            nlh.TenNguoiLienHe = ten;
-            nlh.MaNguoiLienHe = idnlh;
-            nlh.SoDienThoai = dienthoai;
-            nlh.Email = email;
-            nlh.GhiChu = note;
-            nlh.Diachi = diachi;
-            md.NguoiLienHes.Add(nlh);
+            int idpdt = md.PhieuDatTours.Count() + 1;
+            PhieuDatTour pdt = new PhieuDatTour();
+            pdt.DiaDiemDon = pickupplace;
+            pdt.MaNguoiLienHe = idnlh;
+            pdt.MaPhieuDat = idpdt;
+            pdt.MaTour = matour;
+            pdt.TongGia = gia;
+            md.PhieuDatTours.Add(pdt);
             md.SaveChanges();
         }
+        [HttpPost]
         public void CapnhatKH(string mangten, string mangdiachi, string mangloai, string manggt, string mangngay, int soluong)
         {
             TravelContext md = new TravelContext();
@@ -164,28 +203,41 @@ namespace TravelProject.Controllers
             md.SaveChanges();
 
         }
-        public void CapnhatPhieuDatTour(string pickupplace, int matour)
+        [HttpPost]
+        public void CapnhatTTNLH(string ten, string email, string diachi, string dienthoai, string note)
         {
             TravelContext md = new TravelContext();
-            int idnlh = md.NguoiLienHes.Count()+1;
-            int idpdt = md.PhieuDatTours.Count()+1;
-            PhieuDatTour pdt = new PhieuDatTour();
-            pdt.DiaDiemDon = pickupplace;
-            pdt.MaNguoiLienHe = idnlh;
-            pdt.MaPhieuDat = idpdt;
-            pdt.MaTour = matour;
-            md.PhieuDatTours.Add(pdt);
+            int idnlh = md.NguoiLienHes.Count() + 1;
+            NguoiLienHe nlh = new NguoiLienHe();
+            nlh.TenNguoiLienHe = ten;
+            nlh.MaNguoiLienHe = idnlh;
+            nlh.SoDienThoai = dienthoai;
+            nlh.Email = email;
+            nlh.GhiChu = note;
+            nlh.Diachi = diachi;
+            md.NguoiLienHes.Add(nlh);
             md.SaveChanges();
         }
+
         [HttpPost]
         public void CapnhatDanhGia(int rating, int id)
         {
             ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
             TravelContext md = new TravelContext();
-            DanhGia dg = new DanhGia();
-            dg.MaThanhVien = tv.MaThanhVien;
-            dg.NumStar = rating;
-            dg.MaTour = id;
+            var modelDG = md.DanhGias.SingleOrDefault(x => x.MaThanhVien == tv.MaThanhVien && x.MaTour == id);
+            if (modelDG == null) {
+                DanhGia dg = new DanhGia();
+                dg.MaThanhVien = tv.MaThanhVien;
+                dg.NumStar = rating;
+                dg.MaTour = id;
+                md.DanhGias.Add(dg);
+            }
+            else
+            {
+                md.DanhGias.SingleOrDefault(x => x.MaThanhVien == tv.MaThanhVien && x.MaTour == id).NumStar = rating;
+            }
+            md.SaveChanges();
+
         }
         //public ActionResult TourByName_Day(string place, string day)
         //{

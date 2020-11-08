@@ -12,6 +12,7 @@ namespace TravelProject.Models
         {
         }
 
+        public virtual DbSet<BangGia> BangGias { get; set; }
         public virtual DbSet<Blog> Blogs { get; set; }
         public virtual DbSet<ChiTietNgay> ChiTietNgays { get; set; }
         public virtual DbSet<ChiTietTour> ChiTietTours { get; set; }

@@ -1,4 +1,5 @@
-﻿
+﻿@using TravelProject.Models;
+@model TravelProject.Models.BangGia
 @{
     ViewBag.Title = "Booking";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -39,76 +40,76 @@
                         </div>
                     </div>
                 </div>
-                    <div class="step1">
-                        <div id="tab-1-content" class="tab-content-item show">
-                            <div class="tab-1-content-container">
+                <div class="step1">
+                    <div id="tab-1-content" class="tab-content-item show">
+                        <div class="tab-1-content-container">
 
-                                <div class="Tour-inf">
+                            <div class="Tour-inf">
 
-                                    <div class="Tour-inf-detail">
-                                        <div class="content-tour">
-                                            <span>Tour Information</span>
-                                        </div>
-
-                                        <div class="tour-inf-dt">
-                                            <div class="Tour-name"><span>@ViewBag.tentour</span></div>
-                                            <ul>
-                                                <li>
-                                                    <div id="_matour" value=@ViewBag.matour><span>Tour Id : <strong>@ViewBag.matour</strong></span></div>
-                                                </li>
-                                                <li>
-                                                    <span>Time: <strong>@ViewBag.songay Days</strong></span>
-                                                </li>
-                                                <li>
-                                                    <span>Day Check-in: <input type="date" id="_ngaycheckin"></span>
-                                                </li>
-                                                @*<li>
-                                                    <span>Day Check-out: <input type="date" id="_ngaycheckout"></span>
-                                                </li>*@
-                                                <li>
-                                                    <span>Pick up place: <input type="text" id="_pickupplace"></span>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                <div class="Tour-inf-detail">
+                                    <div class="content-tour">
+                                        <span>Tour Information</span>
                                     </div>
-                                    <div class="Tour-price">
-                                        <div class="content-tour">
-                                            <span>Tour Price</span>
-                                        </div>
-                                        <div class="Tour-price-table">
-                                            <table>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Vienamese</th>
-                                                    <th>Overseas Vietnamese</th>
-                                                    <th>Foreigner</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>Adult (> 9 years old)</td>
-                                                    <td>100</td>
-                                                    <td>100</td>
-                                                    <td>100</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Children (6 to 8 years old)</td>
-                                                    <td>100</td>
-                                                    <td>100</td>
-                                                    <td>100</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Baby (< 5 years old)</td>
-                                                    <td>100</td>
-                                                    <td>100</td>
-                                                    <td>100</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="note">
-                                            <span>Note: Promotion applies (if any)</span>
-                                            <div class="Currency_unit"><span>Currency unit : $</span></div>
-                                        </div>
+
+                                    <div class="tour-inf-dt">
+                                        <div class="Tour-name"><span>@ViewBag.tentour</span></div>
+                                        <ul>
+                                            <li>
+                                                <div id="_matour" value=@ViewBag.matour><span>Tour Id : <strong>@ViewBag.matour</strong></span></div>
+                                            </li>
+                                            <li>
+                                                <span>Time: <strong>@ViewBag.songay Days</strong></span>
+                                            </li>
+                                            <li>
+                                                <span>Day Check-in: <input type="date" name="ngaycheckin" id="_ngaycheckin"></span>
+                                            </li>
+                                            @*<li>
+                            <span>Day Check-out: <input type="date" id="_ngaycheckout"></span>
+                        </li>*@
+                                            <li>
+                                                <span>Pick up place: <input type="text" id="_pickupplace"></span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
+                                <div class="Tour-price">
+                                    <div class="content-tour">
+                                        <span>Tour Price</span>
+                                    </div>
+                                    <div class="Tour-price-table">
+                                        <table>
+                                            <tr>
+                                                <th></th>
+                                                <th>Vienamese</th>
+                                                <th>Overseas Vietnamese</th>
+                                                <th>Foreigner</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Adult (> 9 years old)</td>
+                                                <td>@Model.GiaVN_NguoiLon</td>
+                                                <td>@Model.GiaVK_NguoiLon</td>
+                                                <td>@Model.GiaNC_NguoiLon</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Children (6 to 8 years old)</td>
+                                                <td>@Model.GiaVN_TreEm</td>
+                                                <td>@Model.GiaVK_TreEm</td>
+                                                <td>@Model.GiaNC_TreEm</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Baby (< 5 years old)</td>
+                                                <td>@Model.GiaVN_EmBe</td>
+                                                <td>@Model.GiaVK_EmBe</td>
+                                                <td>@Model.GiaNC_EmBe</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="note">
+                                        <span>Note: Promotion applies (if any)</span>
+                                        <div class="Currency_unit"><span>Currency unit : $</span></div>
+                                    </div>
+                                </div>
+                            </div>
                                 <div class="Contact-Person">
                                     <div class="content-tour">
                                         <span>Contact Persion Information</span>
@@ -119,13 +120,13 @@
                                                 <div class="cnt">
                                                     <span>Full Name</span>
                                                 </div>
-                                                <input type="text" name="ten" class="box">
+                                                <input type="text" name="ten" class="box" id="tennlh">
                                             </div>
                                             <div class="box-container">
                                                 <div class="cnt">
                                                     <span>Email</span>
                                                 </div>
-                                                <input type="text" name="email" class="box">
+                                                <input type="text" name="email" class="box" id="emailnlh">
                                             </div>
                                         </div>
                                         <div class="boxrow2">
@@ -133,13 +134,13 @@
                                                 <div class="cnt">
                                                     <span>Address</span>
                                                 </div>
-                                                <input type="text" name="diachi" class="box">
+                                                <input type="text" name="diachi" class="box" id="diachinlh">
                                             </div>
                                             <div class="box-container">
                                                 <div class="cnt">
                                                     <span>Phone Number</span>
                                                 </div>
-                                                <input type="text" name="dienthoai" class="box">
+                                                <input type="text" name="dienthoai" class="box" id="dtnlh">
                                             </div>
                                         </div>
                                         <div class="boxrow3">
@@ -147,141 +148,139 @@
                                                 <div class="cnt">
                                                     <span>Notes</span>
                                                 </div>
-                                                <input type="text" name="note" class="box">
+                                                <input type="text" name="note" class="box" id="notenlh">
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
 
-                                @using (Html.BeginForm("CapnhatTTNLH", "Tour", FormMethod.Post, new { id = "CapnhatTTNLH" }))
-                                {
-                                    <div class="List-customer">
-                                        <div class="content-tour">
-                                            <span>List customers</span>
-                                        </div>
-                                        <div class="List-customer-detail">
-                                            <div class="tablebar">
-                                                <table id="tablecustomers">
-                                                    <tr>
-                                                        <th>STT</th>
-                                                        <th>Full Name</th>
-                                                        <th>Date Of Birth</th>
-                                                        <th>Address</th>
-                                                        <th>Sex</th>
-                                                        <th>Type</th>
-                                                        <th>Age</th>
-                                                        <th>Price</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td><input type="text" class="fullname"></td>
-                                                        <td><input type="date" class="dateofb"></td>
-                                                        <td><input type="text" class="adr"></td>
-                                                        <td>
-                                                            <select name="sex" class="sex">
-                                                                <option value="Male">Male</option>
-                                                                <option value="Female">Female</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select name="typecustomer" class="typecustomer">
-                                                                <option value="VietNamese">VietNamese</option>
-                                                                <option value="VietNamese">Overseas Vietnamese</option>
-                                                                <option value="VietNamese">Foreigner</option>
-                                                            </select>
-                                                        </td>
-                                                        <td><input type="text" class="age"></td>
-                                                        <td><input type="text" class="pri"></td>
-                                                        <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td><input type="text" class="fullname"></td>
-                                                        <td><input type="date" class="dateofb"></td>
-                                                        <td><input type="text" class="adr"></td>
-                                                        <td>
-                                                            <select name="sex" class="sex">
-                                                                <option value="Male">Male</option>
-                                                                <option value="Female">Female</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <select name="typecustomer" class="typecustomer">
-                                                                <option value="VietNamese">VietNamese</option>
-                                                                <option value="Overseas Vietnamese">Overseas Vietnamese</option>
-                                                                <option value="Foreigner">Foreigner</option>
-                                                            </select>
-                                                        </td>
-                                                        <td><input type="text" class="age"></td>
-                                                        <td><input type="text" class="pri"></td>
-                                                        <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            <div class="insert-customer">
-                                                <a class="insertBtn" onclick="insertCustomer()">Insert Customers</a>
-                                                @*<div class="SaleId">
-                                                    <div class="cnt"><span>Discount Code</span></div>
-                                                    <div class="box"></div>
-                                                </div>*@
-                                            </div>
-                                            <div class="Money">
-                                                <div class="note">
-                                                    <span><strong>Notes :</strong>The unit price includes tour price and other surcharges (if any)</span>
-                                                </div>
-                                                <div class="price">
-                                                    <strong>Total Price :</strong>
-                                                    <div class="price1>"><span>200 $</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="payments">
-                                        <div class="content-tour">
-                                            <span>Payments</span>
+                                <div class="List-customer">
+                                    <div class="content-tour">
+                                        <span>List customers</span>
+                                    </div>
+                                    <div class="List-customer-detail">
+                                        <div class="tablebar">
+                                            <table id="tablecustomers">
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Full Name</th>
+                                                    <th>Date Of Birth</th>
+                                                    <th>Address</th>
+                                                    <th>Sex</th>
+                                                    <th>Type</th>
+                                                    <th>Age</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td><input type="text" class="fullname"></td>
+                                                    <td><input type="date" class="dateofb" id="dateofb1" onchange="CapNhatTuoi(event,1)"></td>
+                                                    <td><input type="text" class="adr"></td>
+                                                    <td>
+                                                        <select name="sex" class="sex">
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select name="typecustomer" class="typecustomer" id="loai1" onchange="CapNhatLoai(event,1)">
+                                                            <option value="VietNamese">VietNamese</option>
+                                                            <option value="Overseas Vietnamese">Overseas Vietnamese</option>
+                                                            <option value="Foreigner">Foreigner</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><div class="age" id="age1"></div></td>
+                                                    <td><div class="pri" id="pri1"></div></td>
+                                                    <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td><input type="text" class="fullname"></td>
+                                                    <td><input type="date" class="dateofb" id="dateofb2" onchange="CapNhatTuoi(event,2)"></td>
+                                                    <td><input type="text" class="adr"></td>
+                                                    <td>
+                                                        <select name="sex" class="sex">
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select name="typecustomer" class="typecustomer" id="loai2" onchange="CapNhatLoai(event,2)">
+                                                            <option value="VietNamese">VietNamese</option>
+                                                            <option value="Overseas Vietnamese">Overseas Vietnamese</option>
+                                                            <option value="Foreigner">Foreigner</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><div class="age" id="age2"></div></td>
+                                                    <td><div class="pri" id="pri2"></div></td>
+                                                    <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
+                                                </tr>
+                                            </table>
                                         </div>
-                                        <div class="payments-detail">
-                                            <p>Please select your payment:</p>
-                                            <input type="radio" id="cash" name="payments" value="cash">
-                                            <label for="cash">Cash</label><br>
-                                            <input type="radio" id="transfer" name="payments" value="transfer">
-                                            <label for="transfer">Transfer</label><br>
-                                            <input type="radio" id="bankcard" name="payments" value="bankcard">
-                                            <label for="bankcard">Domestic bank card - ATM/ Internet Banking</label><br>
-                                            <input type="radio" id="creditcard" name="payments" value="creditcard">
-                                            <label for="creditcard">Credit card</label>
+                                        <div class="insert-customer">
+                                            <a class="insertBtn" onclick="insertCustomer()">Insert Customers</a>
+                                            @*<div class="SaleId">
+                            <div class="cnt"><span>Discount Code</span></div>
+                            <div class="box"></div>
+                        </div>*@
+                                        </div>
+                                        <div class="Money">
+                                            <div class="note">
+                                                <span><strong>Notes :</strong>The unit price includes tour price and other surcharges (if any)</span>
+                                            </div>
+                                            <div class="price">
+                                                <strong>Total Price :</strong>
+                                                <div class="price1>"><span id="tonggiatien">0 $</span></div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="btnbook">
-                                        <button type="submit" class="btn btn-big contact-btn" value="Book Tour" onclick="gotostep('2')">
-                                            <i class="fas fa-envelope"></i>
-                                            Book Tour
-                                        </button>
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                                </div>
 
-                        <div id="tab-2-content" class="tab-content-item">
-                            <p>bước2</p>
-                            <button class="btnnext" onclick="gotostep('1')">
-                                Back
-                            </button>
-                            <button class="btnback" onclick="gotostep('3')">
-                                Next
-                            </button>
-                        </div>
-                        <div id="tab-3-content" class="tab-content-item">
-                            <p>bước3</p>
-                            <button class="btnback" onclick="gotostep('2')">
-                                Back
-                            </button>
+                                <div class="payments">
+                                    <div class="content-tour">
+                                        <span>Payments</span>
+                                    </div>
+                                    <div class="payments-detail">
+                                        <p>Please select your payment:</p>
+                                        <input type="radio" id="cash" name="payments" value="cash">
+                                        <label for="cash">Cash</label><br>
+                                        <input type="radio" id="transfer" name="payments" value="transfer">
+                                        <label for="transfer">Transfer</label><br>
+                                        <input type="radio" id="bankcard" name="payments" value="bankcard">
+                                        <label for="bankcard">Domestic bank card - ATM/ Internet Banking</label><br>
+                                        <input type="radio" id="creditcard" name="payments" value="creditcard">
+                                        <label for="creditcard">Credit card</label>
+                                    </div>
+                                </div>
+                                <div class="btnbook">
+                                    <button type="submit" class="btn btn-big contact-btn" value="Book Tour" onclick="gotostep('2')">
+                                        <i class="fas fa-envelope"></i>
+                                        Book Tour
+                                    </button>
+                                </div>
                         </div>
                     </div>
 
+                    <div id="tab-2-content" class="tab-content-item">
+                        <p>bước2</p>
+                        <button class="btnnext" onclick="gotostep('1')">
+                            Back
+                        </button>
+                        <button class="btnback" onclick="gotostep('3')">
+                            Next
+                        </button>
+                    </div>
+                    <div id="tab-3-content" class="tab-content-item">
+                        <p>bước3</p>
+                        <button class="btnback" onclick="gotostep('2')">
+                            Back
+                        </button>
+                    </div>
                 </div>
+
+            </div>
         </div>
     </div>
 </section>

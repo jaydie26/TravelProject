@@ -12,6 +12,7 @@ namespace TravelProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tour()
         {
+            BangGias = new HashSet<BangGia>();
             DanhGias = new HashSet<DanhGia>();
             MaGiamGias = new HashSet<MaGiamGia>();
             PhieuDatTours = new HashSet<PhieuDatTour>();
@@ -42,6 +43,9 @@ namespace TravelProject.Models
         public string DiaDiem { get; set; }
 
         public int? NumDay { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BangGia> BangGias { get; set; }
 
         public virtual ChiTietTour ChiTietTour { get; set; }
 
