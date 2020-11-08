@@ -23,7 +23,7 @@ namespace TravelProject.Models
         [StringLength(10)]
         public string username { get; set; }
 
-        [StringLength(40)]
+        [StringLength(100)]
         public string pass { get; set; }
 
         [StringLength(100)]

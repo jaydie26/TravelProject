@@ -8,9 +8,13 @@ namespace TravelProject.Models
 
     public partial class Soluong_DanhGia
     {
-        public int? Numstar { get; set; }
+        [Key]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Numstar { get; set; }
 
         [Key]
+        [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaTour { get; set; }
 

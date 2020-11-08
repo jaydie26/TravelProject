@@ -7,6 +7,8 @@ using TravelProject.Models;
 using PagedList;
 using System.Data.Entity;
 using Newtonsoft.Json;
+using System.Net.Mail;
+using System.Net;
 
 namespace TravelProject.Controllers
 {
@@ -124,7 +126,7 @@ namespace TravelProject.Controllers
             md.SaveChanges();
         }
         [HttpPost]
-        public void CapnhatTTNLH(string ten,string email, string diachi, string dienthoai, string note)
+        public ActionResult CapnhatTTNLH(string ten,string email, string diachi, string dienthoai, string note)
         {
             TravelContext md = new TravelContext();
             int idnlh = md.NguoiLienHes.Count() + 1;
@@ -137,6 +139,40 @@ namespace TravelProject.Controllers
             nlh.Diachi = diachi;
             md.NguoiLienHes.Add(nlh);
             md.SaveChanges();
+
+            try
+            {
+
+                var senderEmail = new MailAddress("nguyendinhdai.no1@gmail.com", "S-VietNam");
+                var receiverEmail = new MailAddress("nguyendinhdai01@gmail.com", "dai");
+                var password = "nguyendinhdai";
+                var sub = "Test";
+                var body = "s-VietNam";
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail.Address, password)
+                };
+                using (var mess = new MailMessage(senderEmail, receiverEmail)
+                {
+                    Subject = sub,
+                    Body = body
+                })
+                {
+                    smtp.Send(mess);
+                }
+                return View();
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+            return View();
+            
         }
         public void CapnhatKH(string mangten, string mangdiachi, string mangloai, string manggt, string mangngay, int soluong)
         {

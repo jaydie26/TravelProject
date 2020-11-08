@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using TravelProject.Models;
 using System.Web.Security;
 using TravelProject.Helper;
+using System.Net.Mail;
+using System.Net;
 
 namespace TravelProject.Controllers
 {
@@ -19,6 +21,7 @@ namespace TravelProject.Controllers
         }
         public ActionResult Login()
         {
+           
             return View();
         }
         public ActionResult blog()
