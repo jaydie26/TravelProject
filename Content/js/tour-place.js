@@ -93,4 +93,27 @@ var cw = document.getElementById('s').clientWidth;
 function rating(stars) {
     document.getElementById('s').style.width = Math.round(cw * (stars / 5)) + 'px';
 }
-rating(Number(3.25));
+function CapNhatDanhGia(index,ma) {
+	$.ajax({
+
+		type: 'GET',
+		data: { rating:index, id:ma },
+		url: '/Tour/CapNhatDanhGia',
+        success: function (result) {
+		},
+		error: function (e) {
+			alert(e.responseText);
+		}
+	}); 
+}
+function showDG(sosao, matv) {
+    if (sosao==0 && matv==0) {
+        document.getElementById("logined").innerHTML = "Login is required to perform this function";
+        alert(index)
+    }
+    else if (sosao !== 0&&matv !== 0) {
+        $(document).ready(function () {
+            $('#rating-'+sosao).trigger('click');
+        });
+    }
+}

@@ -20,6 +20,8 @@ namespace TravelProject.Models
         [StringLength(1000)]
         public string DiaDiemDon { get; set; }
 
+        public int? TongGia { get; set; }
+
         public virtual NguoiLienHe NguoiLienHe { get; set; }
 
         public virtual Tour Tour { get; set; }
