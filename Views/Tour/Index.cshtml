@@ -74,7 +74,6 @@
                 @{ 
                     var temp = ViewBag.sortorder;
                 }
-                <div class="Trang_hientai"><p>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount<p></div>
                 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.place, mavung = ViewBag.day, sortorder = ViewBag.sortorder}))
 
             </div>

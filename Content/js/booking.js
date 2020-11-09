@@ -1,5 +1,8 @@
 const tabItems=document.querySelectorAll(".tab-item");
-const tabContentItems=document.querySelectorAll(".tab-content-item");
+const tabContentItems = document.querySelectorAll(".tab-content-item");
+function NotifyLogin() {
+    alert("Login Account");
+}
 function gotostep(step) {
     removeBorder();
     removeShow();
@@ -17,11 +20,10 @@ function gotostep(step) {
         data: { ten: _tennlh, email: _emailnlh, diachi: _diachinlh, dienthoai: _dtnlh, note: _notenlh },
         url: '/Tour/CapnhatTTNLH',
         success: function (result) {
-
-            alert('thanhconghaha')
+            //alert('thanhconghaha')
         },
         error: function (e) {
-            alert(e.responseText);
+            alert("Error");
         }
     });
     var lisNameKH = document.getElementsByClassName("fullname")
@@ -46,11 +48,10 @@ function gotostep(step) {
         data: { mangten: JSON.stringify(listnamekh), mangdiachi: JSON.stringify(listadrkh), mangloai: JSON.stringify(listtypekh), manggt: JSON.stringify(listsexkh), mangngay: JSON.stringify(listnskh), soluong: lisNameKH.length },
         url: '/Tour/CapnhatKH',
         success: function (result) {
-            
-            alert('successkh')
+            //alert('successkh')
         },
         error: function (e) {
-            alert(e.responseText);
+            alert("Error");
         }
     });
     var Matour = document.getElementById('_matour').getAttribute('value');
@@ -62,11 +63,10 @@ function gotostep(step) {
         data: { pickupplace: Pickupplace, matour: Matour, gia: Tonggia },
         url: '/Tour/CapnhatPhieuDatTour',
         success: function (result) {
-
-            alert('thanhcongphieudattour')
+        //    alert('thanhcongphieudattour')
         },
         error: function (e) {
-            alert('');
+            alert('Information lack!');
         }
     });
     
@@ -76,9 +76,15 @@ function gotostep(step) {
         url: '/Tour/SendMail',
         data: { _mess: m }
     }).done(function () {
-        //alert('');
+        
     });
-   
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    goStep(Ngaycheckin, Pickupplace, _tennlh, _diachinlh, _dtnlh, _emailnlh, today, Tonggia)
 }
 function removeShow(){
     tabContentItems.forEach(item=>item.classList.remove("show"));
@@ -244,6 +250,23 @@ function TongGiaTien() {
     }
     document.getElementById("tonggiatien").value = tongtien;
     document.getElementById("tonggiatien").innerHTML = tongtien +' $';
-    
 }
-//a
+
+function goStep(ngaycheck, diadiemdon, ten, diachi, sdt, email, thoigianbook, tien) {
+    setTimeout(function () {
+        removeBorder();
+        removeShow();
+        const tabitem = document.querySelector("#tab-" + 3);
+        tabitem.classList.add("tab-border")
+        const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
+        tabContentItem.classList.add('show');
+        $("#ngaycheckin2").html(ngaycheck);
+        $("#diadiemdon").html(diadiemdon);
+        $("#fullname").html(ten);
+        $("#diachi2").html(diachi);
+        $("#sdt2").html(sdt);
+        $("#email2").html(email);
+        $("#tgbook").html(thoigianbook);
+        $("#tien2").html(tien);
+    }, 4000);
+}

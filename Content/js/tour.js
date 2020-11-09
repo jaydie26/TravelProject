@@ -42,7 +42,7 @@ function CapnhatView(value) {
 		data: { matour: value},
 		url: '/Tour/CapnhatView',
 		success: function (result) {
-			alert('success');
+			//alert('success');
 		},
 		error: function (e) {
 			alert(e.responseText);

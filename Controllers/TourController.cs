@@ -154,9 +154,18 @@ namespace TravelProject.Controllers
         {
             TravelContext mdt = new TravelContext();
             var model = mdt.BangGias.FirstOrDefault(x => x.MaTour == matour);
-            ViewBag.MaTour = matour;
+            ViewBag.matour = matour;
             ViewBag.songay = songay;
             ViewBag.tentour = tentour;
+            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+            if (tv == null)
+            {
+                ViewBag.ThongBaoLogin = "LoginFail";
+            }
+            else
+            {
+                ViewBag.ThongBaoLogin = "LoginSuccess";
+            }
             return View(model);
         }
         [HttpPost]
