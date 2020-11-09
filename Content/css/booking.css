@@ -708,4 +708,104 @@ a.cd-top.cd-fade-out {
         padding-right: 10px;
     }
 }
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    margin-left:45%;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.ThongTin_Dat {
+    display: flex;
+    flex-direction: row;
+}
+
+.tour-information li {
+    margin-top: 20px;
+}
+
+.ThongTinTour {
+    width: 40%;
+    border: gray solid 2px;
+    font-size: 20px;
+}
+
+.ThongTinDatTour {
+    width: 60%;
+    border: gray solid 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tour-dat-if {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.nd li {
+    margin-bottom: 20px;
+}
+
+.nd {
+    width: 50%;
+    font-size: 20px;
+}
+
+.nd2 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.Mess {
+    display: flex;
+    flex-direction: column;
+    font-style: unset;
+    margin-right: 30px;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.vuong {
+    border: tomato solid 5px;
+    padding: 30px;
+    text-align: center;
+    text-justify: center;
+}
+
+.Sotien {
+    text-justify: center;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 65px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
 

@@ -78,7 +78,7 @@ function gotostep(step) {
     }).done(function () {
         //alert('');
     });
-    //goStep()
+   
 }
 function removeShow(){
     tabContentItems.forEach(item=>item.classList.remove("show"));
@@ -246,20 +246,4 @@ function TongGiaTien() {
     document.getElementById("tonggiatien").innerHTML = tongtien +' $';
     
 }
-var gotoStep = function () {
-    removeBorder();
-    removeShow();
-    const tabitem = document.querySelector("#tab-" + 3);
-    tabitem.classList.add("tab-border")
-    const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
-    tabContentItem.classList.add('show');
-}
-function goStep() {
-    setTimeout(function () {
-            removeBorder();
-            removeShow();
-            const tabitem = document.querySelector("#tab-" + 3);
-            tabitem.classList.add("tab-border")
-            const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
-            tabContentItem.classList.add('show'); }, 4000);
-}
+//a
