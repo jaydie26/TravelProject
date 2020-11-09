@@ -66,11 +66,19 @@ function gotostep(step) {
             alert('thanhcongphieudattour')
         },
         error: function (e) {
-            alert(e.responseText);
+            alert('');
         }
-        
     });
-   
+    
+    var m = "Welcome, " + _tennlh.toString() + '\n' + "Ma tour: " + Matour.toString() + '\n'  + "Tong thanh toan: " + Tonggia.toString() + '\n' + "Dai li se lien he voi ban trong thoi gian som nhat.Xin chan thanh cam on";
+    $.ajax({
+        type: 'POST',
+        url: '/Tour/SendMail',
+        data: { _mess: m }
+    }).done(function () {
+        //alert('');
+    });
+    //goStep()
 }
 function removeShow(){
     tabContentItems.forEach(item=>item.classList.remove("show"));
@@ -238,4 +246,20 @@ function TongGiaTien() {
     document.getElementById("tonggiatien").innerHTML = tongtien +' $';
     
 }
-//a
+var gotoStep = function () {
+    removeBorder();
+    removeShow();
+    const tabitem = document.querySelector("#tab-" + 3);
+    tabitem.classList.add("tab-border")
+    const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
+    tabContentItem.classList.add('show');
+}
+function goStep() {
+    setTimeout(function () {
+            removeBorder();
+            removeShow();
+            const tabitem = document.querySelector("#tab-" + 3);
+            tabitem.classList.add("tab-border")
+            const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
+            tabContentItem.classList.add('show'); }, 4000);
+}

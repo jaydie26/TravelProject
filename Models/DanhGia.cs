@@ -19,10 +19,7 @@ namespace TravelProject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaTour { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int NumStar { get; set; }
+        public int? NumStar { get; set; }
 
         public virtual ThanhVien ThanhVien { get; set; }
 
