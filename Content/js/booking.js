@@ -70,7 +70,13 @@ function gotostep(step) {
         }
         
     });
-   
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    goStep(Ngaycheckin, Pickupplace, _tennlh, _diachinlh, _dtnlh, _emailnlh, today, Tonggia)
 }
 function removeShow(){
     tabContentItems.forEach(item=>item.classList.remove("show"));
@@ -238,4 +244,30 @@ function TongGiaTien() {
     document.getElementById("tonggiatien").innerHTML = tongtien +' $';
     
 }
-//a
+var gotoStep = function () {
+    removeBorder();
+    removeShow();
+    const tabitem = document.querySelector("#tab-" + 3);
+    tabitem.classList.add("tab-border")
+    const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
+    tabContentItem.classList.add('show');
+}
+function goStep(ngaycheck, diadiemdon,ten,diachi,sdt,email,thoigianbook,tien) {
+    setTimeout(function () {
+            removeBorder();
+            removeShow();
+            const tabitem = document.querySelector("#tab-" + 3);
+            tabitem.classList.add("tab-border")
+            const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
+        tabContentItem.classList.add('show');
+        $("#ngaycheckin2").html(ngaycheck);
+        $("#diadiemdon").html(diadiemdon);
+        $("#fullname").html(ten);
+        $("#diachi2").html(diachi);
+        $("#sdt2").html(sdt);
+        $("#email2").html(email);
+        $("#tgbook").html(thoigianbook);
+        $("#tien2").html(tien);
+    }, 4000);
+    
+}

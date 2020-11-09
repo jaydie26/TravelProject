@@ -264,19 +264,66 @@
                     </div>
 
                     <div id="tab-2-content" class="tab-content-item">
-                        <p>bước2</p>
-                        <button class="btnnext" onclick="gotostep('1')">
-                            Back
-                        </button>
-                        <button class="btnback" onclick="gotostep('3')">
-                            Next
-                        </button>
+                        <div class="loader"></div>
                     </div>
                     <div id="tab-3-content" class="tab-content-item">
-                        <p>bước3</p>
-                        <button class="btnback" onclick="gotostep('2')">
-                            Back
-                        </button>
+                        <div class="ThongTin_Dat">
+                            <div class="ThongTinTour">
+                                <div class="content-tour">
+                                    <span>Tour Information</span>
+                                </div>
+                                <div class="tour-information">
+                                    <ul>
+                                        <li>
+                                            <span>Tour Id : <strong>@ViewBag.matour</strong></span>
+                                        </li>
+                                        <li>
+                                            <span>Time: <strong>@ViewBag.songay Days</strong></span>
+                                        </li>
+                                        <li>
+                                            <span>Day Check-in: <strong id="ngaycheckin2">25/05/2020</strong></span>
+                                        </li>
+                                        <li>
+                                            <span>Pick up place: <strong id="diadiendon">Ha Noi</strong></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="ThongTinDatTour">
+                                <div class="content-tour">
+                                    <span>Tour Information</span>
+                                </div>
+                                <div class="tour-dat-if">
+                                    <div class="nd">
+                                        <ul>
+                                            <li>
+                                                <span>Full Name : <strong id="fullname">Jack Sparrows</strong></span>
+                                            </li>
+                                            <li>
+                                                <span>Address : <strong id="diachi2">ABCYS-FAKJ-DJJKAAK</strong></span>
+                                            </li>
+                                            <li>
+                                                <span>Phone Number: <strong id="sdt2">25/05/2020</strong></span>
+                                            </li>
+                                            <li>
+                                                <span>Email: <strong id="email2">28/05/2020</strong></span>
+                                            </li>
+                                            <li>
+                                                <span>Time Booking: <strong id="tgbook">Ha Noi</strong></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="nd2">
+                                        <div class="Mess">
+                                            <div class="vuong">We have been sent a QRCode to your email. Please take it to our ticket room</div>
+                                        </div>
+                                        <div class="Sotien">Total Price: <strong id="tien2">10000000</strong></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 
