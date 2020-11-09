@@ -13,6 +13,7 @@ namespace TravelProject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Numstar { get; set; }
 
+
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

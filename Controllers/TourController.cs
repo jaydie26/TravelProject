@@ -30,6 +30,7 @@ namespace TravelProject.Controllers
                     model = getModelByPrice(model, pricedown, priceup);
                     break;
                 case "star":
+                    model = model.OrderByDescending(x => x.NumStar).ToList();
                     model = getModelByKey(model, place, day);
                     model = getModelByPrice(model, pricedown, priceup);
                     break;
@@ -59,7 +60,6 @@ namespace TravelProject.Controllers
             else {
                 ViewBag.sortorder = sortorder;
             }
-            
             int pageSize = 6;
             int no_of_page = (page ?? 1);
             return View(model.ToPagedList(no_of_page, pageSize));
@@ -141,14 +141,17 @@ namespace TravelProject.Controllers
             ViewBag.p5 = p5;
             ViewBag.tongsl = tongsl;
             ViewBag.rating = rating;
+            mdt.Tours.SingleOrDefault(x => x.MaChiTietTour == model.MaChiTietTour).NumStar=(int)rating;
+            mdt.SaveChanges();
             return View(model);
         }
 
         public ActionResult Booking(int matour, int songay, string tentour)
         {
+            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
             TravelContext mdt = new TravelContext();
             var model = mdt.BangGias.FirstOrDefault(x => x.MaTour == matour);
-            ViewBag.MaTour = matour;
+            ViewBag.maTour = matour;
             ViewBag.songay = songay;
             ViewBag.tentour = tentour;
             return View(model);

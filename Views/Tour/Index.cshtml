@@ -53,11 +53,11 @@
                                 <span class="desc">
                                     <p class="star">
                                         <span>
-                                            @for (int i = 0; i < 4; i++)
+                                            @for (int i = 0; i < item.NumStar; i++)
                                             {
                                                 <i class="fas fa-star yellow"></i>
                                             }
-                                            @for (int i = 0; i < 5 - 4; i++)
+                                            @for (int i = 0; i < 5 - item.NumStar; i++)
                                             {
                                                 <i class="fas fa-star"></i>
                                             }
@@ -74,7 +74,6 @@
                 @{ 
                     var temp = ViewBag.sortorder;
                 }
-                <div class="Trang_hientai"><p>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount<p></div>
                 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.place, mavung = ViewBag.day, sortorder = ViewBag.sortorder}))
 
             </div>
