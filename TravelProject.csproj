@@ -198,6 +198,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\DestinationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TourController.cs" />
@@ -397,6 +398,8 @@
     <Content Include="Views\Shared\TourByName.cshtml" />
     <Content Include="Views\Shared\PagingDes.cshtml" />
     <Content Include="Views\Tour\TourPlace.cshtml" />
+    <Content Include="Views\Captcha\Index.cshtml" />
+    <Content Include="Views\Shared\FooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

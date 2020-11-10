@@ -45,7 +45,7 @@
                         <li>
                             <a href="@Url.Action("Index","Tour")">Tours</a>
                         </li>
-                        
+
                         @if (Session["TaiKhoan"] != null && Session["TaiKhoan"] != "")
                         {
                             ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
@@ -59,7 +59,8 @@
                         else
                         {
                             <li>
-                                <a href="@Url.Action("Login","Home")">Login</a>
+                                @*<a href="@Url.Action("Login","Home")">Login</a>*@
+                                <a href="@Url.Action("Index","Captcha")">Login</a>
                             </li>
                         }
                     </ul>

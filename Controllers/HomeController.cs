@@ -85,12 +85,21 @@ namespace TravelProject.Controllers
         [HttpPost]
         public ActionResult Contact(string email,string message)
         {
-            Contact ct = new Contact();
-            ct.email = email;
-            ct.mess = message;
-            travel.Contacts.Add(ct);
-            travel.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            if (Session["TaiKhoan"] != null)
+            {
+                ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+                Contact ct = new Contact();
+                ct.email = tv.email;
+                ct.mess = message;
+                travel.Contacts.Add(ct);
+                travel.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                TempData["ThongBao"] = "<script>alert('Login Account!');</script>";
+                return RedirectToAction("Index", "Captcha");
+            }
         }
     }
 }
