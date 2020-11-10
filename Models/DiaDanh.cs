@@ -31,6 +31,9 @@ namespace TravelProject.Models
 
         public int? MaVung { get; set; }
 
+        [StringLength(100)]
+        public string Img2 { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DanhMucTour> DanhMucTours { get; set; }
 

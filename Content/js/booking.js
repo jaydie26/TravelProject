@@ -70,7 +70,7 @@ function gotostep(step) {
         }
     });
     
-    var m = "Welcome, " + _tennlh.toString() + '\n' + "Ma tour: " + Matour.toString() + '\n'  + "Tong thanh toan: " + Tonggia.toString() + '\n' + "Dai li se lien he voi ban trong thoi gian som nhat.Xin chan thanh cam on";
+    var m = "Welcome, " + _tennlh.toString() + '\n' + "Code tour: " + Matour.toString() + '\n'  + "Total price: " + Tonggia.toString() + '\n' + "We are going to contact to you soon. Thank you very much!";
     $.ajax({
         type: 'POST',
         url: '/Tour/SendMail',
@@ -270,3 +270,6 @@ function goStep(ngaycheck, diadiemdon, ten, diachi, sdt, email, thoigianbook, ti
         $("#tien2").html(tien);
     }, 4000);
 }
+//function Kichhoat(list) {
+
+//}

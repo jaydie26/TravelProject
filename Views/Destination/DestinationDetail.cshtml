@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     TravelContext mdt = new TravelContext();
     var modelDanhmuc = mdt.DanhMucTours.Where(x => x.MaDiaDanh == Model.MaDiaDanh).ToList();
+    var modelTour = mdt.Tours.ToList();
 }
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -17,7 +18,7 @@
 <link rel="stylesheet" href="~/Content/css/bootstrap.css">
 <link type="text/css" rel="stylesheet" href="~/Content/css/destination.css" />
 <section class="img-destination">
-    <img src="@Url.Content("~/Content/images/Destination2/" + Model.Img)">
+    <img src="@Url.Content("~/Content/images/Destination2/" + Model.Img2)">
 </section>
 <section class="content">
     <div class="container">
@@ -40,16 +41,16 @@
             </p>
             <div class="list-tours">
                 <div class="TourList">
-                    @*@foreach( var item in Model.Take(3)*@
-                    @{for (int i = 0; i < 3; i++)
+                    @*@foreach( var item in Model.Take(3))*@
+                    @{ foreach (Tour t in modelTour.Take(3))
                         {
                             <div class="tour-item">
                                 <div class="img-list">
-                                    <img src="~/Content/images/TopTours/HaLong.jpg">
+                                    <img src="@Url.Content("~/Content/")@t.LinkImage" />
                                 </div>
                                 <div class="wrap-list-gui">
                                     <h3>
-                                        Best Trip in Ha Long Bay 3 Days 2 Nights
+                                        @t.TenTour
                                     </h3>
                                     <div class="add">
                                         <div class="add-left">
@@ -59,14 +60,13 @@
                                             <br>
                                             <span>
                                                 <i class="far fa-clock"></i>
-                                                <i>3 Days 2 Nights</i>
-                                                <span class="price">$1500</span>
+                                                <i>@t.NumDay Days @t.NumDay-1 Nights</i>
+                                                <span class="price">$@t.Gia</span>
                                             </span>
                                         </div>
                                         <div class="view-detail-btn">
                                             <div class="add-view">
-                                                @*<a href="/Tour/TourPlace/@item.MaChiTietTour" onclick="CapnhatView(@item.MaTour)">View Detail</a>*@
-                                                <a href="@Url.Action("TourPlace","Tour")" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View Detail</a>
+                                                <a href="/Tour/TourPlace/@t.MaChiTietTour">View DeTail</a>
                                             </div>
                                         </div>
                                     </div>

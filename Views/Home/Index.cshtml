@@ -1,5 +1,9 @@
 ﻿@using TravelProject.Models;
 @model List<Blog>
+    @{ 
+        TravelContext mdt = new TravelContext();
+        var modelTours = mdt.Tours.ToList();
+    }
 <!DOCTYPE html>
 <html>
 
@@ -135,7 +139,7 @@
                             </div>
                             <div class="view-detail-btn">
                                 <div class="add-view">
-                                    <a href="#" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
+                                    <a href="@Url.Action("DestinationDetail", "Destination", new { @id = 1004 })" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
                                 </div>
                             </div>
                         </div>
@@ -147,28 +151,59 @@
                         <img src="~/Content/images/TopTours/sapa.jpg">
                     </div>
                     <div class="wrap-list-gui">
-                        <h3>
-                            Best Trip in Ha Long Bay 3 Days 2 Nights
-                        </h3>
-                        <div class="add">
-                            <div class="add-left">
-                                <span>
-                                    <i>Ha Noi, Ha Long Bay. Titop Island</i>
-                                </span>
-                                <br>
-                                <span>
-                                    <i class="far fa-clock"></i>
-                                    <i>3 Days 2 Nights</i>
-                                    <span class="price">$1500</span>
-                                </span>
+            <h3>
+                Best Trip in Ha Long Bay 3 Days 2 Nights
+            </h3>
+            <div class="add">
+                <div class="add-left">
+                    <span>
+                        <i>Ha Noi, Ha Long Bay. Titop Island</i>
+                    </span>
+                    <br>
+                    <span>
+                        <i class="far fa-clock"></i>
+                        <i>3 Days 2 Nights</i>
+                        <span class="price">$1500</span>
+                    </span>
+                </div>
+                <div class="view-detail-btn">
+                    <div class="add-view">
+                        <a href="@Url.Action("DestinationDetail", "Destination", new { @id = 1000 })" title="Best Trip in Phu Quoc 3 Days 2 Nights">View DeTail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    @*@foreach (Tour t in modelTours.Take(3))
+                    {
+                        <div class="tour-item">
+                            <div class="img-list">
+                                <img src="@Url.Content("~/Content/")@t.LinkImage" />
                             </div>
-                            <div class="view-detail-btn">
-                                <div class="add-view">
-                                    <a href="#" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
+                            <div class="wrap-list-gui">
+                                <h3>
+                                    @t.TenTour
+                                </h3>
+                                <div class="add">
+                                    <div class="add-left">
+                                        <span>
+                                            <i>Ha Noi, Ha Long Bay. Titop Island</i>
+                                        </span>
+                                        <br>
+                                        <span>
+                                            <i class="far fa-clock"></i>
+                                            <i>@t.NumDay Days @t.NumDay-1 Nights</i>
+                                            <span class="price">$@t.Gia</span>
+                                        </span>
+                                    </div>
+                                    <div class="view-detail-btn">
+                                        <div class="add-view">
+                                            <a href="/Tour/TourPlace/@t.MaChiTietTour">View DeTail</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }*@
                 </div>
 
                 <div class="tour-item">
@@ -193,7 +228,7 @@
                             </div>
                             <div class="view-detail-btn">
                                 <div class="add-view">
-                                    <a href="#" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
+                                    <a href="@Url.Action("DestinationDetail", "Destination", new { @id = 1000 })" title="Best Trip in Nha Trang 3 Days 2 Nights">View DeTail</a>
                                 </div>
                             </div>
                         </div>
@@ -227,7 +262,7 @@
                     </div>
                     <div class="content">
                         <h2><span>Ha Long</span></h2>
-                        <a href="./destination.html" class="btn">Read More</a>
+                        <a href="@Url.Action("DestinationDetail", "Destination", new { @id = 1004 })" class="btn">Read More</a>
                     </div>
                 </div>
                 <div class="box box2">
@@ -236,7 +271,7 @@
                     </div>
                     <div class="content">
                         <h2><span>Khanh Hoa</span></h2>
-                        <a href="./destination.html" class="btn">Read More</a>
+                        <a href="@Url.Action("DestinationDetail", "Destination", new { @id = 1004 })" class="btn">Read More</a>
                     </div>
                 </div>
                 <div class="box box3">
@@ -245,7 +280,7 @@
                     </div>
                     <div class="content">
                         <h2><span>Kien Giang</span></h2>
-                        <a href="./destination.html" class="btn">Read More</a>
+                        <a href="@Url.Action("DestinationDetail", "Destination", new { @id = 1000 })" class="btn">Read More</a>
                     </div>
                 </div>
                 <div class="box box4">
@@ -254,7 +289,7 @@
                     </div>
                     <div class="content">
                         <h2><span>Da Nang</span></h2>
-                        <a href="./destination.html" class="btn">Read More</a>
+                        <a href="@Url.Action("DestinationDetail", "Destination", new { @id = 1000 })" class="btn">Read More</a>
                     </div>
                 </div>
                 <div class="box box5">
@@ -263,7 +298,7 @@
                     </div>
                     <div class="content">
                         <h2><span>Quang Nam</span></h2>
-                        <a href="./destination.html" class="btn">Read More</a>
+                        <a href="@Url.Action("DestinationDetail", "Destination", new { @id = 1000 })" class="btn">Read More</a>
                     </div>
                 </div>
                 <div class="box box6">
@@ -272,7 +307,7 @@
                     </div>
                     <div class="content">
                         <h2><span>Thua Thien Hue</span></h2>
-                        <a href="./destination.html" class="btn">Read More</a>
+                        <a href="@Url.Action("DestinationDetail", "Destination", new { @id = 1002 })" class="btn">Read More</a>
                     </div>
                 </div>
             </div>

@@ -75,7 +75,7 @@ namespace TravelProject.Controllers
             if (day != "" && place != "")
             {
                 int day2 = Convert.ToInt32(day);
-                model = model.Where(x => (x.DiaDiem.Contains(place) && x.NumDay == day2)).ToList();
+                model = model.Where(x => ((x.DiaDiem.ToUpper().Contains(place.ToUpper()) ||x.TenTour.ToUpper().Contains(place.ToUpper())) && x.NumDay == day2)).ToList();
             }
             if (place == "" && day != "")
             {
@@ -84,7 +84,7 @@ namespace TravelProject.Controllers
             }
             if (place != "" && day == "")
             {
-                model = model.Where(x => x.DiaDiem.Contains(place)).ToList();
+                model = model.Where(x => (x.DiaDiem.ToUpper().Contains(place.ToUpper()) || x.TenTour.ToUpper().Contains(place.ToUpper()))).ToList();
             }
             if (day == "" && place == "")
             {
@@ -114,12 +114,23 @@ namespace TravelProject.Controllers
             TravelContext mdt = new TravelContext();
             var model = mdt.ChiTietTours.SingleOrDefault(x => x.MaChiTietTour == id);
             var modelTour = mdt.Tours.SingleOrDefault(x => x.MaChiTietTour == model.MaChiTietTour);
+            ViewBag.gia = modelTour.Gia;
             ViewBag.sosaoDG = 0;
             ViewBag.Matv = 0;
-            if (tv != null) {
+            if (tv != null)
+            {
                 var modelDanhGia = mdt.DanhGias.SingleOrDefault(x => x.MaTour == modelTour.MaTour && x.MaThanhVien == tv.MaThanhVien);
-                ViewBag.sosaoDG = modelDanhGia.NumStar;
-                ViewBag.Matv = tv.MaThanhVien;
+                if (modelDanhGia == null)
+                {
+                    ViewBag.sosaoDG = 0;
+                    ViewBag.Matv = tv.MaThanhVien;
+                }
+                else
+                {
+                    ViewBag.sosaoDG = modelDanhGia.NumStar;
+                    ViewBag.Matv = tv.MaThanhVien;
+                }
+               
             }
             ViewBag.Matour = modelTour.MaTour;
             ViewBag.Songay = modelTour.NumDay;
@@ -160,7 +171,6 @@ namespace TravelProject.Controllers
             ViewBag.MaTour = matour;
             ViewBag.songay = songay;
             ViewBag.tentour = tentour;
-            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
             if (tv == null)
             {
                 ViewBag.ThongBaoLogin = "LoginFail";
@@ -169,6 +179,13 @@ namespace TravelProject.Controllers
             {
                 ViewBag.ThongBaoLogin = "LoginSuccess";
             }
+            //var modelGiamGia = mdt.MaGiamGias.ToList();
+            //List<SelectListItem> ListGiamGia = new List<SelectListItem>();
+            //foreach(var item in modelGiamGia)
+            //{
+            //    ListGiamGia.Add(new SelectListItem { Text = item.MaGiamGia1, Value = item.PhanTramGiam.ToString() });
+            //}
+            //ViewBag.Discount = ListGiamGia;
             return View(model);
         }
         [HttpPost]
@@ -185,7 +202,7 @@ namespace TravelProject.Controllers
 
         {
             TravelContext md = new TravelContext();
-            int idnlh = md.NguoiLienHes.Count() + 1;
+            int idnlh = md.NguoiLienHes.Count();
             int idpdt = md.PhieuDatTours.Count() + 1;
             PhieuDatTour pdt = new PhieuDatTour();
             pdt.DiaDiemDon = pickupplace;
@@ -202,7 +219,7 @@ namespace TravelProject.Controllers
         {
             TravelContext md = new TravelContext();
             int idkh = md.KhachHangs.Count() + 1;
-            int idnlh = md.NguoiLienHes.Count() + 1;
+            int idnlh = md.NguoiLienHes.Count();
             dynamic ten = JsonConvert.DeserializeObject(mangten);
             dynamic diachi = JsonConvert.DeserializeObject(mangdiachi);
             dynamic loai = JsonConvert.DeserializeObject(mangloai);

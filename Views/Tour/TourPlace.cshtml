@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     TravelContext mdt = new TravelContext();
     var modelNgay = mdt.Ngays.Where(x => x.MaChiTietTour == Model.MaChiTietTour).ToList();
-    var modelLink = mdt.Links.Where(x => x.MaChiTietTour == Model.MaChiTietTour).ToList();
+    var modelLink = mdt.Links.SingleOrDefault(x => x.MaChiTietTour == Model.MaChiTietTour);
     var modelDichVuTour = mdt.DichVuTours.Where(x => x.MaChiTietTour == Model.MaChiTietTour).ToList();
     var modelTours = mdt.Tours.ToList();
-    
+    var modelContact = mdt.Contacts.ToList();
 
 }
 
@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="~/Content/css/bootstrap.css">
 <link type="text/css" rel="stylesheet" href="~/Content/css/tour-place.css" />
 <section class="img-destination">
-    <img src="@Url.Content("~/Content/images/Tour/DetailTour/"+modelLink[0].LinkImg)">
+    <img src="@Url.Content("~/Content/images/Tour/DetailTour/"+modelLink.LinkImg+".jpg")">
 </section>
 <section class="DescribeTour">
     <div class="container">
@@ -38,7 +38,7 @@
                     @{
                         int temp = 0;
                     }
-                    @for (int k=1;k<modelLink.Count;k++)
+                    @for (int k=1;k<=6;k++)
                     {
                         temp = temp + 1;
 
@@ -46,7 +46,7 @@
 
                         <div class="@classbox">
                             <div class="imgBx">
-                                <img src="@Url.Content("~/Content/images/Tour/DetailTour/"+modelLink[k].LinkImg)" class="fitBg">
+                                <img src="@Url.Content("~/Content/images/Tour/DetailTour/"+modelLink.LinkImg+k.ToString()+".jpg")" class="fitBg">
                             </div>
                         </div>
                     }
@@ -290,7 +290,6 @@
                                     <div class="list_item">
                                         <div class="list_time">
                                             <div class="num">@item.TenNgay</div>
-                                            <div class="day">28/10/2020</div>
                                         </div>
                                         @{ var idhien = "hienra" + i;
                                             var idan = "andi" + i;
@@ -316,10 +315,10 @@
                                             </div>
                                             <div class="an-hien" id="@idanhien">
                                                 <div class="btnanhien" id="@idhien" style="display: block;">
-                                                    <button onclick="hienthi('@idd','@idhien','@idan')"> Xem thêm &nbsp;<i class="fas fa-arrow-down"></i></button>
+                                                    <button onclick="hienthi('@idd','@idhien','@idan')"> More &nbsp;<i class="fas fa-arrow-down"></i></button>
                                                 </div>
                                                 <div class="btnanhien" id="@idan" style="display: none;">
-                                                    <button onclick="andi('@idd','@idhien','@idan')"> Ẩn đi &nbsp;<i class="fas fa-arrow-up"></i></button>
+                                                    <button onclick="andi('@idd','@idhien','@idan')"> Hidden &nbsp;<i class="fas fa-arrow-up"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -336,7 +335,7 @@
                                     <strong>Starting Price</strong>
                                 </span>
                                 <ul>
-                                    <li>$3745 per person (excluding international flights)</li>
+                                    <li>$@ViewBag.gia per person (excluding international flights)</li>
                                     <li>This trip is customizable for your private travel.</li>
                                 </ul>
                             </div>
@@ -446,36 +445,40 @@
             </h1>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="user-review">
-                    <p>
-                        Industries that use this model include mail order book sales clubs and music sales clubs, private web mail providers, cable television, satellite television providers with pay television channels, providers with digital catalogs with downloadable music or eBooks, satellite radio
-                        <h5>Captain American</h5>
-                        <small>Los AngeLes</small>
-                    </p>
-                </div>
-                <img src="~/Content/images/Tour/avatar.png">
+            @{foreach (var item in modelContact.Take(3))
+                {
+                    <div class="col-md-4">
+                        <div class="user-review">
+                            <p>
+                                @item.mess
+                                <h5>@item.email</h5>
+                                @*<small>Los AngeLes</small>*@
+                            </p>
+                        </div>
+                        @*<img src="~/Content/images/Tour/avatar.png">*@
+                    </div>
+                    }
+                }
+            @*<div class="col-md-4">
+            <div class="user-review">
+                <p>
+                    Industries that use this model include mail order book sales clubs and music sales clubs, private web mail providers, cable television, satellite television providers with pay television channels, providers with digital catalogs with downloadable music or eBooks, satellite radio
+                    <h5>Chris Evan</h5>
+                    <small>South American</small>
+                </p>
             </div>
-            <div class="col-md-4">
-                <div class="user-review">
-                    <p>
-                        Industries that use this model include mail order book sales clubs and music sales clubs, private web mail providers, cable television, satellite television providers with pay television channels, providers with digital catalogs with downloadable music or eBooks, satellite radio
-                        <h5>Chris Evan</h5>
-                        <small>South American</small>
-                    </p>
-                </div>
-                <img src="~/Content/images/Tour/avatar2.jpg">
+            <img src="~/Content/images/Tour/avatar2.jpg">
+        </div>
+        <div class="col-md-4">
+            <div class="user-review">
+                <p>
+                    Industries that use this model include mail order book sales clubs and music sales clubs, private web mail providers, cable television, satellite television providers with pay television channels, providers with digital catalogs with downloadable music or eBooks, satellite radio
+                    <h5>Tony Stark</h5>
+                    <small>Avengers Game</small>
+                </p>
             </div>
-            <div class="col-md-4">
-                <div class="user-review">
-                    <p>
-                        Industries that use this model include mail order book sales clubs and music sales clubs, private web mail providers, cable television, satellite television providers with pay television channels, providers with digital catalogs with downloadable music or eBooks, satellite radio
-                        <h5>Tony Stark</h5>
-                        <small>Avengers Game</small>
-                    </p>
-                </div>
-                <img src="~/Content/images/Tour/avatar3.jpg">
-            </div>
+            <img src="~/Content/images/Tour/avatar3.jpg">
+        </div>*@
         </div>
     </div>
 </section>

@@ -1,8 +1,10 @@
 ﻿@using TravelProject.Models;
 @model TravelProject.Models.BangGia
 @{
+    TravelContext mdt = new TravelContext();
     ViewBag.Title = "Booking";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var modelGiamGia = mdt.MaGiamGias.ToList();
 }
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -221,10 +223,11 @@
                                     </div>
                                     <div class="insert-customer">
                                         <a class="insertBtn" onclick="insertCustomer()">Insert Customers</a>
-                                        @*<div class="SaleId">
-                        <div class="cnt"><span>Discount Code</span></div>
-                        <div class="box"></div>
-                    </div>*@
+                                    @*<div class="SaleId">
+                                        <div class="cnt"><span>Discount Code</span></div>
+                                        <input type="text" class="discountcode">
+                                        <button onclick="Kichhoat(@modelGiamGia)">Activate</button>
+                                    </div>*@
                                     </div>
                                     <div class="Money">
                                         <div class="note">

@@ -75,6 +75,10 @@ namespace TravelProject.Models
                 .Property(e => e.MoTa)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<DiaDanh>()
+                .Property(e => e.Img2)
+                .IsUnicode(false);
+
             modelBuilder.Entity<KhachHang>()
                 .Property(e => e.NgaySinh)
                 .IsUnicode(false);
