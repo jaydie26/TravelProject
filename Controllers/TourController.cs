@@ -7,6 +7,12 @@ using TravelProject.Models;
 using PagedList;
 using System.Data.Entity;
 using Newtonsoft.Json;
+using System.Net.Mail;
+using System.Net;
+using System.Drawing;
+using System.IO;
+using QRCoder;
+using System.Windows;
 
 namespace TravelProject.Controllers
 {
@@ -151,9 +157,18 @@ namespace TravelProject.Controllers
             ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
             TravelContext mdt = new TravelContext();
             var model = mdt.BangGias.FirstOrDefault(x => x.MaTour == matour);
-            ViewBag.maTour = matour;
+            ViewBag.MaTour = matour;
             ViewBag.songay = songay;
             ViewBag.tentour = tentour;
+            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+            if (tv == null)
+            {
+                ViewBag.ThongBaoLogin = "LoginFail";
+            }
+            else
+            {
+                ViewBag.ThongBaoLogin = "LoginSuccess";
+            }
             return View(model);
         }
         [HttpPost]
@@ -165,7 +180,9 @@ namespace TravelProject.Controllers
             md.SaveChanges();
         }
         [HttpPost]
+
         public void CapnhatPhieuDatTour(string pickupplace, int matour, int gia)
+
         {
             TravelContext md = new TravelContext();
             int idnlh = md.NguoiLienHes.Count() + 1;
@@ -178,6 +195,7 @@ namespace TravelProject.Controllers
             pdt.TongGia = gia;
             md.PhieuDatTours.Add(pdt);
             md.SaveChanges();
+
         }
         [HttpPost]
         public void CapnhatKH(string mangten, string mangdiachi, string mangloai, string manggt, string mangngay, int soluong)
@@ -240,6 +258,51 @@ namespace TravelProject.Controllers
                 md.DanhGias.SingleOrDefault(x => x.MaThanhVien == tv.MaThanhVien && x.MaTour == id).NumStar = rating;
             }
             md.SaveChanges();
+
+        }
+        [HttpPost]
+        public ActionResult SendMail(string _mess)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(_mess, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            qrCodeImage.Save(Server.MapPath("~/Content/images/QRcode1.jpg"));
+            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+            try
+            {
+                var senderEmail = new MailAddress("nguyendinhdai.no1@gmail.com", "S-VietNam");
+                var receiverEmail = new MailAddress("nguyendinhdai01@gmail.com", "Nguyen Dinh Dai");
+                var password = "nguyendinhdai";
+                var sub = "Welcome to S-VietNam";
+                var body = _mess;
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail.Address, password)
+                };
+                Attachment ImageAttachment = new Attachment(Server.MapPath("~/Content/images/QRcode1.jpg"));
+                ImageAttachment.ContentId = "QRcode.jpg";
+                MailMessage mail = new MailMessage();
+                mail.From = senderEmail;
+                mail.To.Add(receiverEmail);
+                mail.Subject = sub;
+                mail.Body = body;
+                mail.Attachments.Add(ImageAttachment);
+                smtp.Send(mail);
+                return View();
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+            return View();
+            
+            
 
         }
         //public ActionResult TourByName_Day(string place, string day)

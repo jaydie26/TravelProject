@@ -1,5 +1,8 @@
 const tabItems=document.querySelectorAll(".tab-item");
-const tabContentItems=document.querySelectorAll(".tab-content-item");
+const tabContentItems = document.querySelectorAll(".tab-content-item");
+function NotifyLogin() {
+    alert("Login Account");
+}
 function gotostep(step) {
     removeBorder();
     removeShow();
@@ -17,11 +20,10 @@ function gotostep(step) {
         data: { ten: _tennlh, email: _emailnlh, diachi: _diachinlh, dienthoai: _dtnlh, note: _notenlh },
         url: '/Tour/CapnhatTTNLH',
         success: function (result) {
-
-            alert('thanhconghaha')
+            //alert('thanhconghaha')
         },
         error: function (e) {
-            alert(e.responseText);
+            alert("Error");
         }
     });
     var lisNameKH = document.getElementsByClassName("fullname")
@@ -46,11 +48,10 @@ function gotostep(step) {
         data: { mangten: JSON.stringify(listnamekh), mangdiachi: JSON.stringify(listadrkh), mangloai: JSON.stringify(listtypekh), manggt: JSON.stringify(listsexkh), mangngay: JSON.stringify(listnskh), soluong: lisNameKH.length },
         url: '/Tour/CapnhatKH',
         success: function (result) {
-            
-            alert('successkh')
+            //alert('successkh')
         },
         error: function (e) {
-            alert(e.responseText);
+            alert("Error");
         }
     });
     var Matour = document.getElementById('_matour').getAttribute('value');
@@ -62,12 +63,19 @@ function gotostep(step) {
         data: { pickupplace: Pickupplace, matour: Matour, gia: Tonggia },
         url: '/Tour/CapnhatPhieuDatTour',
         success: function (result) {
-
-            alert('thanhcongphieudattour')
+        //    alert('thanhcongphieudattour')
         },
         error: function (e) {
-            alert(e.responseText);
+            alert('Information lack!');
         }
+    });
+    
+    var m = "Welcome, " + _tennlh.toString() + '\n' + "Ma tour: " + Matour.toString() + '\n'  + "Tong thanh toan: " + Tonggia.toString() + '\n' + "Dai li se lien he voi ban trong thoi gian som nhat.Xin chan thanh cam on";
+    $.ajax({
+        type: 'POST',
+        url: '/Tour/SendMail',
+        data: { _mess: m }
+    }).done(function () {
         
     });
     var today = new Date();
@@ -242,23 +250,15 @@ function TongGiaTien() {
     }
     document.getElementById("tonggiatien").value = tongtien;
     document.getElementById("tonggiatien").innerHTML = tongtien +' $';
-    
 }
-var gotoStep = function () {
-    removeBorder();
-    removeShow();
-    const tabitem = document.querySelector("#tab-" + 3);
-    tabitem.classList.add("tab-border")
-    const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
-    tabContentItem.classList.add('show');
-}
-function goStep(ngaycheck, diadiemdon,ten,diachi,sdt,email,thoigianbook,tien) {
+
+function goStep(ngaycheck, diadiemdon, ten, diachi, sdt, email, thoigianbook, tien) {
     setTimeout(function () {
-            removeBorder();
-            removeShow();
-            const tabitem = document.querySelector("#tab-" + 3);
-            tabitem.classList.add("tab-border")
-            const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
+        removeBorder();
+        removeShow();
+        const tabitem = document.querySelector("#tab-" + 3);
+        tabitem.classList.add("tab-border")
+        const tabContentItem = document.querySelector("#tab-" + 3 + "-content");
         tabContentItem.classList.add('show');
         $("#ngaycheckin2").html(ngaycheck);
         $("#diadiemdon").html(diadiemdon);
@@ -269,5 +269,4 @@ function goStep(ngaycheck, diadiemdon,ten,diachi,sdt,email,thoigianbook,tien) {
         $("#tgbook").html(thoigianbook);
         $("#tien2").html(tien);
     }, 4000);
-    
 }

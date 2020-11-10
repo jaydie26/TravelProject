@@ -4,7 +4,7 @@
     ViewBag.Title = "Destination";
     Layout = "~/Views/Shared/_Layout.cshtml";
     TravelContext mdt = new TravelContext();
-    var modelDanhmuc = mdt.DanhMucTours.Where(x=> x.MaDiaDanh==Model.MaDiaDanh).ToList();
+    var modelDanhmuc = mdt.DanhMucTours.Where(x => x.MaDiaDanh == Model.MaDiaDanh).ToList();
 }
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="~/Content/css/bootstrap.css">
 <link type="text/css" rel="stylesheet" href="~/Content/css/destination.css" />
 <section class="img-destination">
-    <img src="@Url.Content("~/Content/images/Destination2/"+Model.Img)">
+    <img src="@Url.Content("~/Content/images/Destination2/" + Model.Img)">
 </section>
 <section class="content">
     <div class="container">
@@ -40,204 +40,40 @@
             </p>
             <div class="list-tours">
                 <div class="TourList">
-                    <div class="tour-item">
-                        <div class="img-list">
-                            <img src="~/Content/images/TopTours/HaLong.jpg">
-                        </div>
-                        <div class="wrap-list-gui">
-                            <h3>
-                                Best Trip in Ha Long Bay 3 Days 2 Nights
-                            </h3>
-                            <div class="add">
-                                <div class="add-left">
-                                    <span>
-                                        <i>Ha Noi, Ha Long Bay. Titop Island</i>
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="far fa-clock"></i>
-                                        <i>3 Days 2 Nights</i>
-                                        <span class="price">$1500</span>
-                                    </span>
+                    @*@foreach( var item in Model.Take(3)*@
+                    @{for (int i = 0; i < 3; i++)
+                        {
+                            <div class="tour-item">
+                                <div class="img-list">
+                                    <img src="~/Content/images/TopTours/HaLong.jpg">
                                 </div>
-                                <div class="view-detail-btn">
-                                    <div class="add-view">
-                                        <a href="@Url.Action("TourPlace","Tour")" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
+                                <div class="wrap-list-gui">
+                                    <h3>
+                                        Best Trip in Ha Long Bay 3 Days 2 Nights
+                                    </h3>
+                                    <div class="add">
+                                        <div class="add-left">
+                                            <span>
+                                                <i>Ha Noi, Ha Long Bay. Titop Island</i>
+                                            </span>
+                                            <br>
+                                            <span>
+                                                <i class="far fa-clock"></i>
+                                                <i>3 Days 2 Nights</i>
+                                                <span class="price">$1500</span>
+                                            </span>
+                                        </div>
+                                        <div class="view-detail-btn">
+                                            <div class="add-view">
+                                                @*<a href="/Tour/TourPlace/@item.MaChiTietTour" onclick="CapnhatView(@item.MaTour)">View Detail</a>*@
+                                                <a href="@Url.Action("TourPlace","Tour")" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View Detail</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="tour-item">
-                        <div class="img-list">
-                            <img src="~/Content/images/TopTours/HaLong.jpg">
-                        </div>
-                        <div class="wrap-list-gui">
-                            <h3>
-                                Best Trip in Ha Long Bay 3 Days 2 Nights
-                            </h3>
-                            <div class="add">
-                                <div class="add-left">
-                                    <span>
-                                        <i>Ha Noi, Ha Long Bay. Titop Island</i>
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="far fa-clock"></i>
-                                        <i>3 Days 2 Nights</i>
-                                        <span class="price">$1500</span>
-                                    </span>
-                                </div>
-                                <div class="view-detail-btn">
-                                    <div class="add-view">
-                                        <a href="@Url.Action("TourPlace","Tour")" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item">
-                        <div class="img-list">
-                            <img src="~/Content/images/TopTours/HaLong.jpg">
-                        </div>
-                        <div class="wrap-list-gui">
-                            <h3>
-                                Best Trip in Ha Long Bay 3 Days 2 Nights
-                            </h3>
-                            <div class="add">
-                                <div class="add-left">
-                                    <span>
-                                        <i>Ha Noi, Ha Long Bay. Titop Island</i>
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="far fa-clock"></i>
-                                        <i>3 Days 2 Nights</i>
-                                        <span class="price">$1500</span>
-                                    </span>
-                                </div>
-                                <div class="view-detail-btn">
-                                    <div class="add-view">
-                                        <a href="@Url.Action("TourPlace","Tour")" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item">
-                        <div class="img-list">
-                            <img src="~/Content/images/TopTours/HaLong.jpg">
-                        </div>
-                        <div class="wrap-list-gui">
-                            <h3>
-                                Best Trip in Ha Long Bay 3 Days 2 Nights
-                            </h3>
-                            <div class="add">
-                                <div class="add-left">
-                                    <span>
-                                        <i>Ha Noi, Ha Long Bay. Titop Island</i>
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="far fa-clock"></i>
-                                        <i>3 Days 2 Nights</i>
-                                        <span class="price">$1500</span>
-                                    </span>
-                                </div>
-                                <div class="view-detail-btn">
-                                    <div class="add-view">
-                                        <a href="@Url.Action("TourPlace","Tour")" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item">
-                        <div class="img-list">
-                            <img src="~/Content/images/TopTours/HaLong.jpg">
-                        </div>
-                        <div class="wrap-list-gui">
-                            <h3>
-                                Best Trip in Ha Long Bay 3 Days 2 Nights
-                            </h3>
-                            <div class="add">
-                                <div class="add-left">
-                                    <span>
-                                        <i>Ha Noi, Ha Long Bay. Titop Island</i>
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="far fa-clock"></i>
-                                        <i>3 Days 2 Nights</i>
-                                        <span class="price">$1500</span>
-                                    </span>
-                                </div>
-                                <div class="view-detail-btn">
-                                    <div class="add-view">
-                                        <a href="@Url.Action("TourPlace","Tour")" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tour-item">
-                        <div class="img-list">
-                            <img src="~/Content/images/TopTours/sapa.jpg">
-                        </div>
-                        <div class="wrap-list-gui">
-                            <h3>
-                                Best Trip in Ha Long Bay 3 Days 2 Nights
-                            </h3>
-                            <div class="add">
-                                <div class="add-left">
-                                    <span>
-                                        <i>Ha Noi, Ha Long Bay. Titop Island</i>
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="far fa-clock"></i>
-                                        <i>3 Days 2 Nights</i>
-                                        <span class="price">$1500</span>
-                                    </span>
-                                </div>
-                                <div class="view-detail-btn">
-                                    <div class="add-view">
-                                        <a href="@Url.Action("TourPlace","Tour")" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tour-item">
-                        <div class="img-list">
-                            <img src="~/Content/images/TopTours/DaNang.png">
-                        </div>
-                        <div class="wrap-list-gui">
-                            <h3>
-                                Best Trip in Ha Long Bay 3 Days 2 Nights
-                            </h3>
-                            <div class="add">
-                                <div class="add-left">
-                                    <span>
-                                        <i>Ha Noi, Ha Long Bay. Titop Island</i>
-                                    </span>
-                                    <br>
-                                    <span>
-                                        <i class="far fa-clock"></i>
-                                        <i>3 Days 2 Nights</i>
-                                        <span class="price">$1500</span>
-                                    </span>
-                                </div>
-                                <div class="view-detail-btn">
-                                    <div class="add-view">
-                                        <a href="@Url.Action("TourPlace","Tour")" title="Best Trip in Ha Long Bay 3 Days 2 Nights">View DeTail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -252,54 +88,54 @@
                 <ul class="nav-tabs">
                     <li>
                         <div id="tab-1" class="tab-item tab-border">
-                            @modelDanhmuc[0].TenDanhMucGoiTour;
+                            @modelDanhmuc[0].TenDanhMucGoiTour
                         </div>
                     </li>
                     <li>
                         <div id="tab-2" class="tab-item">
-                            @modelDanhmuc[1].TenDanhMucGoiTour;
+                            @modelDanhmuc[1].TenDanhMucGoiTour
                         </div>
                     </li>
                     <li>
                         <div id="tab-3" class="tab-item">
-                            @modelDanhmuc[2].TenDanhMucGoiTour;
+                            @modelDanhmuc[2].TenDanhMucGoiTour
                         </div>
                     </li>
                     <li>
                         <div id="tab-4" class="tab-item">
-                            @modelDanhmuc[3].TenDanhMucGoiTour;
+                            @modelDanhmuc[3].TenDanhMucGoiTour
                         </div>
                     </li>
                     <li>
                         <div id="tab-5" class="tab-item">
-                            @modelDanhmuc[4].TenDanhMucGoiTour;
+                            @modelDanhmuc[4].TenDanhMucGoiTour
                         </div>
                     </li>
                     <li>
                         <div id="tab-6" class="tab-item">
-                            @modelDanhmuc[5].TenDanhMucGoiTour;
+                            @modelDanhmuc[5].TenDanhMucGoiTour
                         </div>
                     </li>
                 </ul>
             </div>
             <div class="tab-show">
                 <div id="tab-1-content" class="tab-content-item show">
-                    @modelDanhmuc[0].Mota;
+                    @Html.Raw(modelDanhmuc[0].Mota)
                 </div>
                 <div id="tab-2-content" class="tab-content-item">
-                    @modelDanhmuc[1].Mota;
+                    @Html.Raw(modelDanhmuc[1].Mota)
                 </div>
                 <div id="tab-3-content" class="tab-content-item">
-                    @modelDanhmuc[2].Mota;
+                    @Html.Raw(modelDanhmuc[2].Mota)
                 </div>
                 <div id="tab-4-content" class="tab-content-item">
-                    @modelDanhmuc[3].Mota;
+                    @Html.Raw(modelDanhmuc[3].Mota)
                 </div>
                 <div id="tab-5-content" class="tab-content-item">
-                    @modelDanhmuc[4].Mota;
+                    @Html.Raw(modelDanhmuc[4].Mota)
                 </div>
                 <div id="tab-6-content" class="tab-content-item">
-                    @modelDanhmuc[5].Mota;
+                    @Html.Raw(modelDanhmuc[5].Mota)
                 </div>
 
 
