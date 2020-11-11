@@ -4,28 +4,13 @@ function NotifyLogin() {
     alert("Login Account");
 }
 function gotostep(step) {
-    removeBorder();
-    removeShow();
-    const tabitem = document.querySelector("#tab-" + step);
-    tabitem.classList.add("tab-border")
-    const tabContentItem = document.querySelector("#tab-" + step + "-content");
-    tabContentItem.classList.add('show');
+
     var _tennlh = $('#tennlh').val();
     var _emailnlh = $('#emailnlh').val();
     var _diachinlh = $('#diachinlh').val();
     var _dtnlh = $('#dtnlh').val();
     var _notenlh = $('#notenlh').val();
-    $.ajax({
-        type: 'POST',
-        data: { ten: _tennlh, email: _emailnlh, diachi: _diachinlh, dienthoai: _dtnlh, note: _notenlh },
-        url: '/Tour/CapnhatTTNLH',
-        success: function (result) {
-            //alert('thanhconghaha')
-        },
-        error: function (e) {
-            alert("Error");
-        }
-    });
+
     var lisNameKH = document.getElementsByClassName("fullname")
     var lisNSKH = document.getElementsByClassName("dateofb")
     var lisAdrKH = document.getElementsByClassName("adr")
@@ -36,56 +21,89 @@ function gotostep(step) {
     var listadrkh = []
     var listsexkh = []
     var listtypekh = []
+    
     for (i = 0; i < lisNameKH.length; i++) {
-        listnamekh.push(lisNameKH[i].value)
-        listnskh.push(lisNSKH[i].value)
-        listadrkh.push(lisAdrKH[i].value)
-        listtypekh.push(lisTypeKH[i].value)
-        listsexkh.push(lisSexKH[i].value)
-    }
-    $.ajax({
-        type: 'POST',
-        data: { mangten: JSON.stringify(listnamekh), mangdiachi: JSON.stringify(listadrkh), mangloai: JSON.stringify(listtypekh), manggt: JSON.stringify(listsexkh), mangngay: JSON.stringify(listnskh), soluong: lisNameKH.length },
-        url: '/Tour/CapnhatKH',
-        success: function (result) {
-            //alert('successkh')
-        },
-        error: function (e) {
-            alert("Error");
+        if (lisNameKH[i].value != '' && lisNSKH[i].value != 'undefined' && lisAdrKH[i].value != '') {
+            listnamekh.push(lisNameKH[i].value)
+            listnskh.push(lisNSKH[i].value)
+            listadrkh.push(lisAdrKH[i].value)
+            listtypekh.push(lisTypeKH[i].value)
+            listsexkh.push(lisSexKH[i].value)
         }
-    });
+    }
+
     var Matour = document.getElementById('_matour').getAttribute('value');
     var Ngaycheckin = $("#_ngaycheckin").val()
     var Pickupplace = $("#_pickupplace").val()
     var Tonggia = $("#tonggiatien").val()
-    $.ajax({
-        type: 'POST',
-        data: { pickupplace: Pickupplace, matour: Matour, gia: Tonggia },
-        url: '/Tour/CapnhatPhieuDatTour',
-        success: function (result) {
-        //    alert('thanhcongphieudattour')
-        },
-        error: function (e) {
-            alert('Information lack!');
-        }
-    });
+
     
-    var m = "Welcome, " + _tennlh.toString() + '\n' + "Ma tour: " + Matour.toString() + '\n'  + "Tong thanh toan: " + Tonggia.toString() + '\n' + "Dai li se lien he voi ban trong thoi gian som nhat.Xin chan thanh cam on";
-    $.ajax({
-        type: 'POST',
-        url: '/Tour/SendMail',
-        data: { _mess: m }
-    }).done(function () {
+    var m = "Welcome, " + _tennlh.toString() + '\n' + "Code tour: " + Matour.toString() + '\n'  + "Total price: " + Tonggia.toString() + '\n' + "We are going to contact to you soon. Thank you very much!";
+
         
-    });
+   
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
     today = mm + '/' + dd + '/' + yyyy;
-    goStep(Ngaycheckin, Pickupplace, _tennlh, _diachinlh, _dtnlh, _emailnlh, today, Tonggia)
+    if (Ngaycheckin != '' && Pickupplace != '' && _tennlh != '' && _diachinlh != '' && _dtnlh != '' && _emailnlh != '' && today != '' && Tonggia != '' && listnamekh.length != 0 && listnskh.length != 0 && listadrkh.length != 0 && listsexkh.length != 0 && listtypekh.length != 0) {
+        goStep(Ngaycheckin, Pickupplace, _tennlh, _diachinlh, _dtnlh, _emailnlh, today, Tonggia)
+        $.ajax({
+            type: 'POST',
+            data: { ten: _tennlh, email: _emailnlh, diachi: _diachinlh, dienthoai: _dtnlh, note: _notenlh },
+            url: '/Tour/CapnhatTTNLH',
+            success: function (result) {
+                //alert('thanhconghaha')
+            },
+            error: function (e) {
+                alert('You have not entered enough information');
+                location.reload(true);
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            data: { mangten: JSON.stringify(listnamekh), mangdiachi: JSON.stringify(listadrkh), mangloai: JSON.stringify(listtypekh), manggt: JSON.stringify(listsexkh), mangngay: JSON.stringify(listnskh), soluong: lisNameKH.length },
+            url: '/Tour/CapnhatKH',
+            success: function (result) {
+                //alert('successkh')
+            },
+            error: function (e) {
+                alert('You have not entered enough information');
+                location.reload(true);
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            data: { pickupplace: Pickupplace, matour: Matour, gia: Tonggia },
+            url: '/Tour/CapnhatPhieuDatTour',
+            success: function (result) {
+                //    alert('thanhcongphieudattour')
+            },
+            error: function (e) {
+                alert('You have not entered enough information');
+                location.reload(true);
+            }
+        });
+        $.ajax({
+            type: 'POST',
+            url: '/Tour/SendMail',
+            data: { _mess: m }
+        }).done(function () { });
+    }
+    else {
+        alert('You have not entered enough information')
+        location.reload(true);
+    }
+    removeBorder();
+    removeShow();
+    const tabitem = document.querySelector("#tab-" + step);
+    tabitem.classList.add("tab-border")
+    const tabContentItem = document.querySelector("#tab-" + step + "-content");
+    tabContentItem.classList.add('show');
 }
+   
 function removeShow(){
     tabContentItems.forEach(item=>item.classList.remove("show"));
 }
@@ -270,3 +288,6 @@ function goStep(ngaycheck, diadiemdon, ten, diachi, sdt, email, thoigianbook, ti
         $("#tien2").html(tien);
     }, 4000);
 }
+//function Kichhoat(list) {
+
+//}

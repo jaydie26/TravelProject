@@ -96,9 +96,9 @@ function rating(stars) {
 function CapNhatDanhGia(index,ma) {
 	$.ajax({
 
-		type: 'GET',
+		type: 'POST',
 		data: { rating:index, id:ma },
-		url: '/Tour/CapNhatDanhGia',
+        url: '/Tour/CapnhatDanhGia',
         success: function (result) {
 		},
 		error: function (e) {
@@ -111,7 +111,7 @@ function showDG(sosao, matv) {
         document.getElementById("logined").innerHTML = "Login is required to perform this function";
         alert(index)
     }
-    else if (sosao !== 0&&matv !== 0) {
+    else if (sosao !== 0&& matv !== 0) {
         $(document).ready(function () {
             $('#rating-'+sosao).trigger('click');
         });

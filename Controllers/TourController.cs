@@ -37,6 +37,7 @@ namespace TravelProject.Controllers
                     model = getModelByPrice(model, pricedown, priceup);
                     break;
                 case "star":
+                    model = model.OrderByDescending(x => x.NumStar).ToList();
                     model = getModelByKey(model, place, day);
                     model = getModelByPrice(model, pricedown, priceup);
                     break;
@@ -66,7 +67,6 @@ namespace TravelProject.Controllers
             else {
                 ViewBag.sortorder = sortorder;
             }
-            
             int pageSize = 6;
             int no_of_page = (page ?? 1);
             return View(model.ToPagedList(no_of_page, pageSize));
@@ -77,7 +77,7 @@ namespace TravelProject.Controllers
             if (day != "" && place != "")
             {
                 int day2 = Convert.ToInt32(day);
-                model = model.Where(x => (x.DiaDiem.Contains(place) && x.NumDay == day2)).ToList();
+                model = model.Where(x => ((x.DiaDiem.ToUpper().Contains(place.ToUpper()) ||x.TenTour.ToUpper().Contains(place.ToUpper())) && x.NumDay == day2)).ToList();
             }
             if (place == "" && day != "")
             {
@@ -86,7 +86,7 @@ namespace TravelProject.Controllers
             }
             if (place != "" && day == "")
             {
-                model = model.Where(x => x.DiaDiem.Contains(place)).ToList();
+                model = model.Where(x => (x.DiaDiem.ToUpper().Contains(place.ToUpper()) || x.TenTour.ToUpper().Contains(place.ToUpper()))).ToList();
             }
             if (day == "" && place == "")
             {
@@ -117,32 +117,60 @@ namespace TravelProject.Controllers
             TravelContext mdt = new TravelContext();
             var model = mdt.ChiTietTours.SingleOrDefault(x => x.MaChiTietTour == id);
             var modelTour = mdt.Tours.SingleOrDefault(x => x.MaChiTietTour == model.MaChiTietTour);
+            ViewBag.gia = modelTour.Gia;
             ViewBag.sosaoDG = 0;
             ViewBag.Matv = 0;
-            if (tv != null) {
+            if (tv != null)
+            {
                 var modelDanhGia = mdt.DanhGias.SingleOrDefault(x => x.MaTour == modelTour.MaTour && x.MaThanhVien == tv.MaThanhVien);
-                ViewBag.sosaoDG = modelDanhGia.NumStar;
-                ViewBag.Matv = tv.MaThanhVien;
+                if (modelDanhGia == null)
+                {
+                    ViewBag.sosaoDG = 0;
+                    ViewBag.Matv = tv.MaThanhVien;
+                }
+                else
+                {
+                    ViewBag.sosaoDG = modelDanhGia.NumStar;
+                    ViewBag.Matv = tv.MaThanhVien;
+                }
+               
             }
             ViewBag.Matour = modelTour.MaTour;
             ViewBag.Songay = modelTour.NumDay;
             ViewBag.Diadiem = modelTour.DiaDiem;
             ViewBag.Tentour = modelTour.TenTour;
             var modelSoLuongDanhGia = mdt.Soluong_DanhGia.Where(x => x.MaTour == modelTour.MaTour).ToList();
+            int? tongsl = 1;
             int?[] sl = new int?[5] { 0, 0, 0, 0, 0 };
-            int? tongsl = 0;
-            foreach (Soluong_DanhGia item in modelSoLuongDanhGia)
-            {
-                tongsl += item.soluong;
-                sl[item.Numstar - 1] = item.soluong;
+            if (modelSoLuongDanhGia.Count!=0) {
+                tongsl = 0;
+                foreach (Soluong_DanhGia item in modelSoLuongDanhGia)
+                {
+                    tongsl += item.soluong;
+                    sl[item.Numstar - 1] = item.soluong;
+                }
             }
-            int? p1 = sl[0] * 100 / tongsl;
-            int? p2 = sl[1] * 100 / tongsl;
-            int? p3 = sl[2] * 100 / tongsl;
-            int? p4 = sl[3] * 100 / tongsl;
-            int? p5 = sl[4] * 100 / tongsl;
-            double rating = ((double)(sl[0] * 1 + sl[1] * 2 + sl[2] * 3 + sl[3] * 4 + sl[4] * 5) / (double)tongsl);
-            rating = Math.Round(rating, 1);
+            int? p1 = 0;
+            int? p2 = 0;
+            int? p3 = 0;
+            int? p4 = 0;
+            int? p5 = 0;
+
+            double rating = 0;
+            if (modelSoLuongDanhGia.Count==0)
+            {
+                tongsl = 0;
+                rating = 0;
+            }
+            else { 
+                rating = ((double)(sl[0] * 1 + sl[1] * 2 + sl[2] * 3 + sl[3] * 4 + sl[4] * 5) / (double)tongsl);
+                if (sl[0] != null) { p1 = sl[0] * 100 / tongsl; }
+                if (sl[1] != null) { p2 = sl[1] * 100 / tongsl; }
+                if (sl[2] != null) { p3 = sl[2] * 100 / tongsl; }
+                if (sl[3] != null) { p4 = sl[3] * 100 / tongsl; }
+                if (sl[4] != null) { p5 = sl[4] * 100 / tongsl; }
+                rating = Math.Round(rating, 1);
+            } 
             ViewBag.p1 = p1;
             ViewBag.p2 = p2;
             ViewBag.p3 = p3;
@@ -150,18 +178,20 @@ namespace TravelProject.Controllers
             ViewBag.p5 = p5;
             ViewBag.tongsl = tongsl;
             ViewBag.rating = rating;
+            mdt.Tours.SingleOrDefault(x => x.MaChiTietTour == model.MaChiTietTour).NumStar=(int)rating;
+            mdt.SaveChanges();
             return View(model);
         }
 
         [Authorize]
         public ActionResult Booking(int matour, int songay, string tentour)
         {
+            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
             TravelContext mdt = new TravelContext();
             var model = mdt.BangGias.FirstOrDefault(x => x.MaTour == matour);
-            ViewBag.matour = matour;
+            ViewBag.MaTour = matour;
             ViewBag.songay = songay;
             ViewBag.tentour = tentour;
-            ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
             if (tv == null)
             {
                 ViewBag.ThongBaoLogin = "LoginFail";
@@ -170,6 +200,13 @@ namespace TravelProject.Controllers
             {
                 ViewBag.ThongBaoLogin = "LoginSuccess";
             }
+            //var modelGiamGia = mdt.MaGiamGias.ToList();
+            //List<SelectListItem> ListGiamGia = new List<SelectListItem>();
+            //foreach(var item in modelGiamGia)
+            //{
+            //    ListGiamGia.Add(new SelectListItem { Text = item.MaGiamGia1, Value = item.PhanTramGiam.ToString() });
+            //}
+            //ViewBag.Discount = ListGiamGia;
             return View(model);
         }
         [HttpPost]
@@ -186,7 +223,7 @@ namespace TravelProject.Controllers
 
         {
             TravelContext md = new TravelContext();
-            int idnlh = md.NguoiLienHes.Count() + 1;
+            int idnlh = md.NguoiLienHes.Count();
             int idpdt = md.PhieuDatTours.Count() + 1;
             PhieuDatTour pdt = new PhieuDatTour();
             pdt.DiaDiemDon = pickupplace;
@@ -203,7 +240,7 @@ namespace TravelProject.Controllers
         {
             TravelContext md = new TravelContext();
             int idkh = md.KhachHangs.Count() + 1;
-            int idnlh = md.NguoiLienHes.Count() + 1;
+            int idnlh = md.NguoiLienHes.Count();
             dynamic ten = JsonConvert.DeserializeObject(mangten);
             dynamic diachi = JsonConvert.DeserializeObject(mangdiachi);
             dynamic loai = JsonConvert.DeserializeObject(mangloai);
