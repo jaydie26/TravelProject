@@ -44,6 +44,8 @@ namespace TravelProject.Models
 
         public int? NumDay { get; set; }
 
+        public int? NumStar { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BangGia> BangGias { get; set; }
 
