@@ -59,9 +59,8 @@ namespace TravelProject.Controllers
             if (tv1 == null)
             {
                 var count = travel.ThanhViens.Count();
-                Console.WriteLine(count.ToString());
                 ThanhVien tv = new ThanhVien();
-                tv.MaThanhVien = count;
+                tv.MaThanhVien = count+1;
                 tv.pass = PasswordHelper.ComputeHash(pass, "MD5", GetBytes("Website"));
                 tv.email = email;
                 tv.username = username;
