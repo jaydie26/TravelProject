@@ -11,6 +11,7 @@ using PagedList;
 
 namespace TravelProject.Controllers
 {
+    [AllowAnonymous]
     public class DestinationController : Controller
     {
         private TravelContext travel = new TravelContext();

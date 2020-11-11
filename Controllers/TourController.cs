@@ -19,6 +19,7 @@ namespace TravelProject.Controllers
     public class TourController : Controller
     {
         // GET: Tour
+        [AllowAnonymous]
         public ActionResult Index(int? page, string place="", string day="",  string sortorder="",int? star=0, int? pricedown=null, int? priceup=null)
         {
             TravelContext md = new TravelContext();
@@ -70,6 +71,7 @@ namespace TravelProject.Controllers
             int no_of_page = (page ?? 1);
             return View(model.ToPagedList(no_of_page, pageSize));
         }
+        
         public List<Tour> getModelByKey(List<Tour> model,string place, string day)
         {
             if (day != "" && place != "")
@@ -108,6 +110,7 @@ namespace TravelProject.Controllers
             }
             return model;
         }
+        [AllowAnonymous]
         public ActionResult TourPlace(int id)
         {
             ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
@@ -150,6 +153,7 @@ namespace TravelProject.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult Booking(int matour, int songay, string tentour)
         {
             TravelContext mdt = new TravelContext();
@@ -257,6 +261,7 @@ namespace TravelProject.Controllers
             md.SaveChanges();
 
         }
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult SendMail(string _mess)
         {

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace TravelProject.Controllers
 {
+    [AllowAnonymous]
     public class CaptchaController : Controller
     {
         // GET: Captcha
