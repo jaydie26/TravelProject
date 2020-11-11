@@ -11,6 +11,7 @@ using System.Net;
 
 namespace TravelProject.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private TravelContext travel = new TravelContext();
