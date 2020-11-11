@@ -116,7 +116,7 @@ $('#submit').click(function(e){
 //tabItems.forEach(item => item.addEventListener("click",selectItem));
 function insertCustomer() {
     var x = document.getElementById("tablecustomers").rows.length;
-    document.getElementById("tablecustomers").insertRow(-1).innerHTML = '<tr><td>' + x + '</td><td><input type="text"class="fullname"></td><td><input type="date" class="dateofb" id="dateofb'+x+'" onchange="CapNhatTuoi(event,' + x + ')"></td><td><input type="text" class="adr"></td><td><select name="sex" class="sex"><option value="Male">Male</option><option value=">Female">Female</option></select></td><td><select name="typecustomer" class="typecustomer" id="loai' + x + '" onchange="CapNhatLoai(event,' + x +')"><option value="VietNamese">VietNamese</option><option value="Overseas Vietnamese">Overseas Vietnamese</option><option value="Foreigner">Foreigner</option></select></td><td><div class="age" id="age' + x + '"></div></td><td><div class="pri" id="pri'+x+'"></div></td></tr><td><button class="trash fas fa-trash"onclick="deletecustomer(this)"></button></td>';
+    document.getElementById("tablecustomers").insertRow(-1).innerHTML = '<tr><td>' + x + '</td><td><input type="text"class="fullname"></td><td><input type="date" class="dateofb" id="dateofb' + x + '" onchange="CapNhatTuoi(event,' + x + ',@Model.GiaVN_NguoiLon,@Model.GiaVN_TreEm,@Model.GiaVN_EmBe,@Model.GiaVK_NguoiLon,@Model.GiaVK_TreEm,@Model.GiaVK_EmBe,@Model.GiaNC_NguoiLon,@Model.GiaNC_TreEm,@Model.GiaVN_EmBe)"></td><td><input type="text" class="adr"></td><td><select name="sex" class="sex"><option value="Male">Male</option><option value=">Female">Female</option></select></td><td><select name="typecustomer" class="typecustomer" id="loai' + x + '" onchange="CapNhatLoai(event,' + x +',@Model.GiaVN_NguoiLon,@Model.GiaVN_TreEm,@Model.GiaVN_EmBe,@Model.GiaVK_NguoiLon,@Model.GiaVK_TreEm,@Model.GiaVK_EmBe,@Model.GiaNC_NguoiLon,@Model.GiaNC_TreEm,@Model.GiaVN_EmBe)"><option value="VietNamese">VietNamese</option><option value="Overseas Vietnamese">Overseas Vietnamese</option><option value="Foreigner">Foreigner</option></select></td><td><div class="age" id="age' + x + '"></div></td><td><div class="pri" id="pri'+x+'"></div></td></tr><td><button class="trash fas fa-trash"onclick="deletecustomer(this)"></button></td>';
     DayformatBirth()
     TongGiaTien()
 }
@@ -141,7 +141,7 @@ function deletecustomer(x){
 //		}
 //	});
 //}
-function CapNhatTuoi(e, index) {
+function CapNhatTuoi(e, index, GiaVN_NguoiLon, GiaVN_TreEm, GiaVN_EmBe, GiaVK_NguoiLon, GiaVK_TreEm, GiaVK_EmBe, GiaNC_NguoiLon, GiaNC_TreEm, GiaNC_EmBe) {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -160,39 +160,39 @@ function CapNhatTuoi(e, index) {
     var n3 = loai.localeCompare("Foreigner");
     var price = 0;
     if (n1 == 0 && age < 5) {
-        price = 500
+        price = GiaVN_EmBe
     }
     else if (n1 == 0 && age >= 5 && age <= 8) {
-        price = 800
+        price = GiaVN_TreEm
     }
     else if (n1 == 0 && age >= 9) {
-        price = 1000
+        price = GiaVN_NguoiLon
     }
 
     if (n2 == 0 && age < 5) {
-        price = 500
+        price = GiaVK_EmBe
     }
     else if (n2 == 0 && age >= 5 && age <= 8) {
-        price = 900
+        price = GiaVK_TreEm
     }
     else if (n2 == 0 && age >= 9) {
-        price = 1200
+        price = GiaVK_NguoiLon
     }
 
     if (n3 == 0 && age < 5) {
-        price = 500
+        price = GiaNC_EmBe
     }
     else if (n3 == 0 && age >= 5 && age <= 8) {
-        price = 1000
+        price = GiaNC_TreEm
     }
     else if (n3 == 0 && age >= 9) {
-        price = 1400
+        price = GiaNC_NguoiLon
     }
     document.getElementById("pri" + index).innerHTML = price;
     document.getElementById("pri" + index).value = price;
     TongGiaTien()
 }
-function CapNhatLoai(e,index) {
+function CapNhatLoai(e, index, GiaVN_NguoiLon, GiaVN_TreEm, GiaVN_EmBe, GiaVK_NguoiLon, GiaVK_TreEm, GiaVK_EmBe, GiaNC_NguoiLon, GiaNC_TreEm, GiaNC_EmBe) {
     var dateselect = $('#dateofb'+index).val()
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -211,33 +211,33 @@ function CapNhatLoai(e,index) {
     var n3 = loai.localeCompare("Foreigner");
     var price = 0;
     if (n1 == 0 && age < 5) {
-        price = 500
+        price = GiaVN_EmBe
     }
     else if (n1 == 0 && age >= 5 && age <= 8) {
-        price = 800
+        price = GiaVN_TreEm
     }
     else if (n1 == 0 && age >= 9) {
-        price = 1000
+        price = GiaVN_NguoiLon
     }
 
     if (n2 == 0 && age < 5) {
-        price = 500
+        price = GiaVK_EmBe
     }
     else if (n2 == 0 && age >= 5 && age <= 8) {
-        price = 900
+        price = GiaVK_TreEm
     }
     else if (n2 == 0 && age >= 9) {
-        price = 1200
+        price = GiaVK_NguoiLon
     }
 
     if (n3 == 0 && age < 5) {
-        price = 500
+        price = GiaNC_EmBe
     }
     else if (n3 == 0 && age >= 5 && age <= 8) {
-        price = 1000
+        price = GiaNC_TreEm
     }
     else if (n3 == 0 && age >= 9) {
-        price = 1400
+        price = GiaNC_NguoiLon
     }
     document.getElementById("pri" + index).innerHTML = price;
     document.getElementById("pri" + index).value = price;

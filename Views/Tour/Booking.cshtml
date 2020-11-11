@@ -1,10 +1,8 @@
 ﻿@using TravelProject.Models;
 @model TravelProject.Models.BangGia
 @{
-    TravelContext mdt = new TravelContext();
     ViewBag.Title = "Booking";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var modelGiamGia = mdt.MaGiamGias.ToList();
 }
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -178,7 +176,7 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td><input type="text" class="fullname"></td>
-                                                <td><input type="date" class="dateofb" id="dateofb1" onchange="CapNhatTuoi(event,1)"></td>
+                                                <td><input type="date" class="dateofb" id="dateofb1" onchange="CapNhatTuoi(event,1,@Model.GiaVN_NguoiLon,@Model.GiaVN_TreEm,@Model.GiaVN_EmBe,@Model.GiaVK_NguoiLon,@Model.GiaVK_TreEm,@Model.GiaVK_EmBe,@Model.GiaNC_NguoiLon,@Model.GiaNC_TreEm,@Model.GiaVN_EmBe)"></td>
                                                 <td><input type="text" class="adr"></td>
                                                 <td>
                                                     <select name="sex" class="sex">
@@ -187,20 +185,20 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select name="typecustomer" class="typecustomer" id="loai1" onchange="CapNhatLoai(event,1)">
+                                                    <select name="typecustomer" class="typecustomer" id="loai1" onchange="CapNhatLoai(event,1,@Model.GiaVN_NguoiLon,@Model.GiaVN_TreEm,@Model.GiaVN_EmBe,@Model.GiaVK_NguoiLon,@Model.GiaVK_TreEm,@Model.GiaVK_EmBe,@Model.GiaNC_NguoiLon,@Model.GiaNC_TreEm,@Model.GiaVN_EmBe)">
                                                         <option value="VietNamese">VietNamese</option>
                                                         <option value="Overseas Vietnamese">Overseas Vietnamese</option>
                                                         <option value="Foreigner">Foreigner</option>
                                                     </select>
                                                 </td>
-                                                <td><div class="age" id="age1"></div></td>
-                                                <td><div class="pri" id="pri1"></div></td>
+                                                <td class="temp"><div class="age" id="age1"></div></td>
+                                                <td class="temp"><div class="pri" id="pri1"></div></td>
                                                 <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
                                                 <td><input type="text" class="fullname"></td>
-                                                <td><input type="date" class="dateofb" id="dateofb2" onchange="CapNhatTuoi(event,2)"></td>
+                                                <td><input type="date" class="dateofb" id="dateofb2" onchange="CapNhatTuoi(event,2,@Model.GiaVN_NguoiLon,@Model.GiaVN_TreEm,@Model.GiaVN_EmBe,@Model.GiaVK_NguoiLon,@Model.GiaVK_TreEm,@Model.GiaVK_EmBe,@Model.GiaNC_NguoiLon,@Model.GiaNC_TreEm,@Model.GiaVN_EmBe)"></td>
                                                 <td><input type="text" class="adr"></td>
                                                 <td>
                                                     <select name="sex" class="sex">
@@ -209,14 +207,14 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <select name="typecustomer" class="typecustomer" id="loai2" onchange="CapNhatLoai(event,2)">
+                                                    <select name="typecustomer" class="typecustomer" id="loai2" onchange="CapNhatLoai(event,2,@Model.GiaVN_NguoiLon,@Model.GiaVN_TreEm,@Model.GiaVN_EmBe,@Model.GiaVK_NguoiLon,@Model.GiaVK_TreEm,@Model.GiaVK_EmBe,@Model.GiaNC_NguoiLon,@Model.GiaNC_TreEm,@Model.GiaVN_EmBe)">
                                                         <option value="VietNamese">VietNamese</option>
                                                         <option value="Overseas Vietnamese">Overseas Vietnamese</option>
                                                         <option value="Foreigner">Foreigner</option>
                                                     </select>
                                                 </td>
-                                                <td><div class="age" id="age2"></div></td>
-                                                <td><div class="pri" id="pri2"></div></td>
+                                                <td class="temp"><div class="age" id="age2"></div></td>
+                                                <td class="temp"><div class="pri" id="pri2"></div></td>
                                                 <td><button class="trash fas fa-trash" onclick="deletecustomer(this)"></button></td>
                                             </tr>
                                         </table>
