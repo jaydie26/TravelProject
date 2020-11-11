@@ -16,6 +16,7 @@ using System.Windows;
 
 namespace TravelProject.Controllers
 {
+    [AllowAnonymous]
     public class TourController : Controller
     {
         // GET: Tour
@@ -183,7 +184,7 @@ namespace TravelProject.Controllers
             return View(model);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         public ActionResult Booking(int matour, int songay, string tentour)
         {
             ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
