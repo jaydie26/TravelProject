@@ -42,33 +42,44 @@
                     </div>
                 </div>
                 <div class="TourList" id="tourbyname_day">
-                    @foreach (var item in Model)
+                    @if (Model.Count != 0)
                     {
-                        <div class="img-list">
-                            <div class="tour">
-                                <a href="/Tour/TourPlace/@item.MaChiTietTour" class="tour-img" onclick="CapnhatView(@item.MaTour)">
-                                    <img src="@Url.Content("~/Content/")@item.LinkImage">
-                                    <p class="price"><span>$@item.Gia</span> <small>/ @item.NumDay Days</small></p>
-                                </a>
-                                <span class="desc">
-                                    <p class="star">
-                                        <span>
-                                            @for (int i = 0; i < item.NumStar; i++)
-                                            {
-                                                <i class="fas fa-star yellow"></i>
-                                            }
-                                            @for (int i = 0; i < 5 - item.NumStar; i++)
-                                            {
-                                                <i class="fas fa-star"></i>
-                                            }
-                                        </span>
-                                        @item.NumView Reviews
-                                    </p>
-                                    <h2><a href="/Tour/TourPlace/@item.MaChiTietTour" onclick="CapnhatView(@item.MaTour)">@item.TenTour</a></h2>
-                                    <span class="city">@item.DiaDiem</span>
-                                </span>
+                        foreach (var item in Model)
+                        {
+                            <div class="img-list">
+                                <div class="tour">
+                                    <a href="/Tour/TourPlace/@item.MaChiTietTour" class="tour-img" onclick="CapnhatView(@item.MaTour)">
+                                        <img src="@Url.Content("~/Content/")@item.LinkImage">
+                                        <p class="price"><span>$@item.Gia</span> <small>/ @item.NumDay Days</small></p>
+                                    </a>
+                                    <span class="desc">
+                                        <p class="star">
+                                            <span>
+                                                @for (int i = 0; i < item.NumStar; i++)
+                                                {
+                                                    <i class="fas fa-star yellow"></i>
+                                                }
+                                                @for (int i = 0; i < 5 - item.NumStar; i++)
+                                                {
+                                                    <i class="fas fa-star"></i>
+                                                }
+                                            </span>
+                                            @item.NumView Reviews
+                                        </p>
+                                        <h2><a href="/Tour/TourPlace/@item.MaChiTietTour" onclick="CapnhatView(@item.MaTour)">@item.TenTour</a></h2>
+                                        <span class="city">@item.DiaDiem</span>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+                        }
+                    }
+                    else
+                    {
+                <script>
+                            alert('There is no result')
+                    var url = "/Tour/Index";
+                    window.location.href = url;
+                </script>
                     }
                 </div>
                 @{ 

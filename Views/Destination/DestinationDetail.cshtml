@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     TravelContext mdt = new TravelContext();
     var modelDanhmuc = mdt.DanhMucTours.Where(x => x.MaDiaDanh == Model.MaDiaDanh).ToList();
-    var modelTour = mdt.Tours.ToList();
+    var modelTour = mdt.Tours.Where(x=>x.MaDiaDanh == Model.MaDiaDanh).ToList();
 }
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -55,7 +55,7 @@
                                     <div class="add">
                                         <div class="add-left">
                                             <span>
-                                                <i>Ha Noi, Ha Long Bay. Titop Island</i>
+                                                <i>@t.DiaDiem</i>
                                             </span>
                                             <br>
                                             <span>

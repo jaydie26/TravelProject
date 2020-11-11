@@ -18,7 +18,7 @@ namespace TravelProject.Controllers
         public ActionResult FormSubmit()
         {
             var response = Request["g-recaptcha-response"];
-            string secretKey = "6Lcj9OAZAAAAAIuzlZNXcHVmE-T5zC99J0pRBLsK";
+            string secretKey = "6Ld_VOEZAAAAABw_1l49t8neWcK_ehP0qw3kxXDh";
             var client = new WebClient();
             ViewData["Message"] = "Google reCaptcha validation success";
             return RedirectToAction("Login","Home");

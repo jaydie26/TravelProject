@@ -137,20 +137,37 @@ namespace TravelProject.Controllers
             ViewBag.Diadiem = modelTour.DiaDiem;
             ViewBag.Tentour = modelTour.TenTour;
             var modelSoLuongDanhGia = mdt.Soluong_DanhGia.Where(x => x.MaTour == modelTour.MaTour).ToList();
+            int? tongsl = 1;
             int?[] sl = new int?[5] { 0, 0, 0, 0, 0 };
-            int? tongsl = 0;
-            foreach (Soluong_DanhGia item in modelSoLuongDanhGia)
-            {
-                tongsl += item.soluong;
-                sl[item.Numstar - 1] = item.soluong;
+            if (modelSoLuongDanhGia.Count!=0) {
+                tongsl = 0;
+                foreach (Soluong_DanhGia item in modelSoLuongDanhGia)
+                {
+                    tongsl += item.soluong;
+                    sl[item.Numstar - 1] = item.soluong;
+                }
             }
-            int? p1 = sl[0] * 100 / tongsl;
-            int? p2 = sl[1] * 100 / tongsl;
-            int? p3 = sl[2] * 100 / tongsl;
-            int? p4 = sl[3] * 100 / tongsl;
-            int? p5 = sl[4] * 100 / tongsl;
-            double rating = ((double)(sl[0] * 1 + sl[1] * 2 + sl[2] * 3 + sl[3] * 4 + sl[4] * 5) / (double)tongsl);
-            rating = Math.Round(rating, 1);
+            int? p1 = 0;
+            int? p2 = 0;
+            int? p3 = 0;
+            int? p4 = 0;
+            int? p5 = 0;
+
+            double rating = 0;
+            if (modelSoLuongDanhGia.Count==0)
+            {
+                tongsl = 0;
+                rating = 0;
+            }
+            else { 
+                rating = ((double)(sl[0] * 1 + sl[1] * 2 + sl[2] * 3 + sl[3] * 4 + sl[4] * 5) / (double)tongsl);
+                if (sl[0] != null) { p1 = sl[0] * 100 / tongsl; }
+                if (sl[1] != null) { p2 = sl[1] * 100 / tongsl; }
+                if (sl[2] != null) { p3 = sl[2] * 100 / tongsl; }
+                if (sl[3] != null) { p4 = sl[3] * 100 / tongsl; }
+                if (sl[4] != null) { p5 = sl[4] * 100 / tongsl; }
+                rating = Math.Round(rating, 1);
+            } 
             ViewBag.p1 = p1;
             ViewBag.p2 = p2;
             ViewBag.p3 = p3;
