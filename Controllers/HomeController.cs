@@ -40,8 +40,11 @@ namespace TravelProject.Controllers
                 if (tv.pass == PasswordHelper.ComputeHash(MatKhau, "MD5", GetBytes("Website")))
                 {
                     Session["TaiKhoan"] = tv;
-                   
-                    return RedirectToAction("Index","Home");
+                    if (Session["Book"] !=null)
+                    {
+                        return RedirectToAction("Booking", "Tour", new { matour = TempData["MaTourBook"], songay = TempData["Songay"], tentour = TempData["tentour"] });
+                    }
+                    else return RedirectToAction("Index","Home");
                 }
             }
             return Content("Tài khoản hoặc mật khẩu không đúng!");
@@ -98,7 +101,7 @@ namespace TravelProject.Controllers
             else
             {
                 TempData["ThongBao"] = "<script>alert('Login Account!');</script>";
-                return RedirectToAction("Index", "Captcha");
+                return RedirectToAction("Login", "Home");
             }
         }
     }
