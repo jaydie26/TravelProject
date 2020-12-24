@@ -104,7 +104,8 @@ function CapNhatDanhGia(index,ma) {
 		error: function (e) {
 			alert(e.responseText);
 		}
-	}); 
+    }); 
+    
 }
 function showDG(sosao, matv) {
     if (sosao==0 && matv==0) {

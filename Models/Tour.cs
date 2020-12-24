@@ -28,7 +28,7 @@ namespace TravelProject.Models
         [StringLength(100)]
         public string Mota { get; set; }
 
-        public decimal? Gia { get; set; }
+        public decimal Gia { get; set; }
 
         public int? MaDiaDanh { get; set; }
 

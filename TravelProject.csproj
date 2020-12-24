@@ -213,6 +213,7 @@
     <Compile Include="Models\DanhGia.cs" />
     <Compile Include="Models\DanhMucTour.cs" />
     <Compile Include="Models\DiaDanh.cs" />
+    <Compile Include="Models\DiaDanh_DanhMucTour.cs" />
     <Compile Include="Models\DichVuTour.cs" />
     <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\Link.cs" />
@@ -327,14 +328,6 @@
     <Content Include="Content\images\Tour\price_icon.svg" />
     <Content Include="Content\images\Tour\sapa1.jpg" />
     <Content Include="Content\images\Tour\shield%402x.png" />
-    <Content Include="Content\images\Tour\tour-1.jpg" />
-    <Content Include="Content\images\Tour\tour-2.jpg" />
-    <Content Include="Content\images\Tour\tour-3.jpg" />
-    <Content Include="Content\images\Tour\tour-4.jpg" />
-    <Content Include="Content\images\Tour\tour-5.jpg" />
-    <Content Include="Content\images\Tour\tour-6.jpg" />
-    <Content Include="Content\images\Tour\tour-7.jpg" />
-    <Content Include="Content\images\Tour\tour-8.jpg" />
     <Content Include="Content\images\Tour\trip_days_icon.png" />
     <Content Include="Content\images\Tour\vungtau1.jpg" />
     <Content Include="Content\images\vnmap.jpg" />

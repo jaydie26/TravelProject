@@ -25,6 +25,17 @@ namespace TravelProject.Controllers
         {
             TravelContext md = new TravelContext();
             var model = md.Tours.ToList();
+            decimal giacn = 0;
+            foreach (var item in model)
+            {
+                if (giacn <= item.Gia)
+                {
+                    giacn = item.Gia;
+                }
+            }
+            ViewBag.giacn = giacn;
+            ViewBag.giatcn = giacn - 10;
+            ViewBag.kc = 10;
             switch (sortorder)
             {
                 case "all":

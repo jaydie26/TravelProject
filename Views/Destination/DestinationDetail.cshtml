@@ -4,7 +4,8 @@
     ViewBag.Title = "Destination";
     Layout = "~/Views/Shared/_Layout.cshtml";
     TravelContext mdt = new TravelContext();
-    var modelDanhmuc = mdt.DanhMucTours.Where(x => x.MaDiaDanh == Model.MaDiaDanh).ToList();
+    var modelDiaDanh_DanhMucTour = mdt.DiaDanh_DanhMucTour.Where(x => x.MaDiaDanh == Model.MaDiaDanh).ToList();
+    var modelDanhmuc = mdt.DanhMucTours.ToList();
     var modelTour = mdt.Tours.Where(x=>x.MaDiaDanh == Model.MaDiaDanh).ToList();
 }
 <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
@@ -120,22 +121,22 @@
             </div>
             <div class="tab-show">
                 <div id="tab-1-content" class="tab-content-item show">
-                    @Html.Raw(modelDanhmuc[0].Mota)
+                    @Html.Raw(modelDiaDanh_DanhMucTour[0].Mota)
                 </div>
                 <div id="tab-2-content" class="tab-content-item">
-                    @Html.Raw(modelDanhmuc[1].Mota)
+                    @Html.Raw(modelDiaDanh_DanhMucTour[1].Mota)
                 </div>
                 <div id="tab-3-content" class="tab-content-item">
-                    @Html.Raw(modelDanhmuc[2].Mota)
+                    @Html.Raw(modelDiaDanh_DanhMucTour[2].Mota)
                 </div>
                 <div id="tab-4-content" class="tab-content-item">
-                    @Html.Raw(modelDanhmuc[3].Mota)
+                    @Html.Raw(modelDiaDanh_DanhMucTour[3].Mota)
                 </div>
                 <div id="tab-5-content" class="tab-content-item">
-                    @Html.Raw(modelDanhmuc[4].Mota)
+                    @Html.Raw(modelDiaDanh_DanhMucTour[4].Mota)
                 </div>
                 <div id="tab-6-content" class="tab-content-item">
-                    @Html.Raw(modelDanhmuc[5].Mota)
+                    @Html.Raw(modelDiaDanh_DanhMucTour[5].Mota)
                 </div>
 
 

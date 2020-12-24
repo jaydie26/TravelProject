@@ -20,6 +20,7 @@ namespace TravelProject.Models
         public virtual DbSet<DanhGia> DanhGias { get; set; }
         public virtual DbSet<DanhMucTour> DanhMucTours { get; set; }
         public virtual DbSet<DiaDanh> DiaDanhs { get; set; }
+        public virtual DbSet<DiaDanh_DanhMucTour> DiaDanh_DanhMucTour { get; set; }
         public virtual DbSet<DichVuTour> DichVuTours { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<Link> Links { get; set; }
@@ -67,6 +68,11 @@ namespace TravelProject.Models
                 .Property(e => e.mess)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<DanhMucTour>()
+                .HasMany(e => e.DiaDanh_DanhMucTour)
+                .WithRequired(e => e.DanhMucTour)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<DiaDanh>()
                 .Property(e => e.Img)
                 .IsUnicode(false);
@@ -77,6 +83,15 @@ namespace TravelProject.Models
 
             modelBuilder.Entity<DiaDanh>()
                 .Property(e => e.Img2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DiaDanh>()
+                .HasMany(e => e.DiaDanh_DanhMucTour)
+                .WithRequired(e => e.DiaDanh)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DiaDanh_DanhMucTour>()
+                .Property(e => e.Mota)
                 .IsUnicode(false);
 
             modelBuilder.Entity<KhachHang>()
