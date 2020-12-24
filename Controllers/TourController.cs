@@ -25,7 +25,7 @@ namespace TravelProject.Controllers
         {
             TravelContext md = new TravelContext();
             var model = md.Tours.ToList();
-            decimal giacn = 0;
+            decimal? giacn = 0;
             foreach (var item in model)
             {
                 if (giacn <= item.Gia)

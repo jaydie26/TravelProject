@@ -24,7 +24,6 @@ namespace TravelProject.Models
         public virtual DbSet<DichVuTour> DichVuTours { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<Link> Links { get; set; }
-        public virtual DbSet<MaGiamGia> MaGiamGias { get; set; }
         public virtual DbSet<Ngay> Ngays { get; set; }
         public virtual DbSet<NguoiLienHe> NguoiLienHes { get; set; }
         public virtual DbSet<PhieuDatTour> PhieuDatTours { get; set; }
@@ -114,10 +113,6 @@ namespace TravelProject.Models
                 .Property(e => e.LinkImg)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<MaGiamGia>()
-                .Property(e => e.MaGiamGia1)
-                .IsUnicode(false);
-
             modelBuilder.Entity<NguoiLienHe>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
@@ -157,11 +152,6 @@ namespace TravelProject.Models
 
             modelBuilder.Entity<Tour>()
                 .HasMany(e => e.DanhGias)
-                .WithRequired(e => e.Tour)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Tour>()
-                .HasMany(e => e.MaGiamGias)
                 .WithRequired(e => e.Tour)
                 .WillCascadeOnDelete(false);
 
