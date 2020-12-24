@@ -100,6 +100,7 @@ function CapNhatDanhGia(index,ma) {
 		data: { rating:index, id:ma },
         url: '/Tour/CapnhatDanhGia',
         success: function (result) {
+            $("#demo").load(location.href + " #demo");
 		},
 		error: function (e) {
 			alert(e.responseText);
