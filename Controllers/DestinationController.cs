@@ -58,6 +58,7 @@ namespace TravelProject.Controllers
         //}
         public ActionResult DestinationDetail(int? id)
         {
+
             if (id==null)
             {
                 return RedirectToAction("Index", "Destination");

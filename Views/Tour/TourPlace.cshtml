@@ -7,8 +7,9 @@
     var modelNgay = mdt.Ngays.Where(x => x.MaChiTietTour == Model.MaChiTietTour).ToList();
     var modelLink = mdt.Links.SingleOrDefault(x => x.MaChiTietTour == Model.MaChiTietTour);
     var modelDichVuTour = mdt.DichVuTours.Where(x => x.MaChiTietTour == Model.MaChiTietTour).ToList();
-    var modelTours = mdt.Tours.ToList();
     var modelContact = mdt.Contacts.ToList();
+    var modelTour = mdt.Tours.SingleOrDefault(x => x.MaChiTietTour == Model.MaChiTietTour);
+    var modelRelated = mdt.Tours.Where(x => x.MaDiaDanh == modelTour.MaDiaDanh).ToList();
 
 }
 
@@ -415,7 +416,7 @@
             </h1>
         </div>
         <div class="TourList">
-            @foreach (Tour t in modelTours.Take(3))
+            @foreach (Tour t in modelRelated.Take(3))
             {
                 <div class="tour-item">
                     <div class="img-list">
@@ -458,7 +459,7 @@
             </h1>
         </div>
         <div class="row">
-            @{foreach (var item in modelContact.Take(3))
+            @{foreach (var item in modelContact.GetRange(modelContact.Count-3,modelContact.Count-1))
                 {
                     <div class="col-md-4">
                         <div class="user-review">
